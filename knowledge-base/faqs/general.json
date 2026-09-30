@@ -1,0 +1,15 @@
+{
+  "id": "faq-general",
+  "category": "faqs",
+  "title": "General Frequently Asked Questions",
+  "faqs": [
+    {
+      "question": "How do I log into the KNEC portal?",
+      "answer": "Visit https://qms.knec.ac.ke or the specific exam portal and use your registered institutional or candidate credentials."
+    },
+    {
+      "question": "What is the official KNEC helpline?",
+      "answer": "You can reach KNEC support at 0800 724 900 or via email at info@knec.ac.ke."
+    }
+  ]
+}

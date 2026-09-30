@@ -1,0 +1,13 @@
+{
+  "id": "reg-kcse",
+  "category": "registration",
+  "title": "KCSE Examination Registration",
+  "description": "Guidelines and requirements for KCSE candidate registration.",
+  "requirements": [
+    "Birth Certificate / ID copy",
+    "KCPE Result Slip / Certificate",
+    "Passport-size photo"
+  ],
+  "fee": "Varies by subject selection and candidate category",
+  "portalUrl": "https://kcse.knec.ac.ke"
+}

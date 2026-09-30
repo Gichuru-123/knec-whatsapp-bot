@@ -1,0 +1,13 @@
+{
+  "id": "ver-results",
+  "category": "verifications",
+  "title": "Confirmation of Results",
+  "description": "Process for verifying exam results for employment or further studies.",
+  "requirements": [
+    "Copy of certificate or result slip",
+    "National ID copy",
+    "Official request letter from institution/employer"
+  ],
+  "fee": "KSH 2,000 per copy",
+  "portalUrl": "https://qms.knec.ac.ke"
+}

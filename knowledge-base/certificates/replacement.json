@@ -1,0 +1,14 @@
+{
+  "id": "cert-replacement",
+  "category": "certificates",
+  "title": "Certificate Replacement / Letter of Confirmation",
+  "description": "Procedure for requesting a confirmation letter for lost or damaged certificates.",
+  "requirements": [
+    "Police Abstract",
+    "Copy of lost certificate/result slip",
+    "Copy of National ID",
+    "Recommendation letter from school"
+  ],
+  "fee": "KSH 5,000",
+  "portalUrl": "https://qms.knec.ac.ke"
+}
