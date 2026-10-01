@@ -13,5 +13,27 @@ The application follows a clean layered architecture:
 - **Layer 3: Express HTTP Server & Middleware (`src/app.js`)** — Centralized environment validation, Winston-style lightweight logging, Helmet security, CORS restrictions, and centralized error handling.
 
 ## Directory Structure
-Set-Content -Path "src\config\index.js" -Value @'
-...
+knec-whatsapp-bot/
++-- data/
+¦   +-- certificates/
+¦   +-- faqs/
+¦   +-- registration/
+¦   +-- verifications/
++-- scripts/
+¦   +-- validate-kb.js
++-- src/
+¦   +-- config/
+¦   +-- logger/
+¦   +-- repository/
+¦   +-- services/
+¦   +-- app.js
++-- tests/
++-- integration/
++-- unit/
+## Setup & Testing Instructions
+
+1. **Install Dependencies:**
+   ```bash
+   npm install
+npm run validate-kb
+npm test
