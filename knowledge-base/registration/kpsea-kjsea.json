@@ -1,4 +1,4 @@
-{
+ï»¿{
   "id": "reg-kpsea-kjsea",
   "category": "registration",
   "examination": "KPSEA/KJSEA",
@@ -10,7 +10,7 @@
     "Birth Certificate registration details",
     "Headteacher portal endorsement via institutional login"
   ],
-  "fee": "Exact fee structure and subsidies vary by cohort — confirm via official KNEC circulars or the CBA portal before proceeding",
+  "fee": "Exact fee structure and subsidies vary by cohort - confirm via official KNEC circulars or the CBA portal before proceeding",
   "portalUrl": "https://cba.knec.ac.ke",
   "source_url": "https://cba.knec.ac.ke",
   "source_date": "2026-01-01",
@@ -23,3 +23,4 @@
   "escalation_required": false,
   "individual_record_required": true
 }
+

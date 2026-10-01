@@ -1,4 +1,4 @@
-{
+ï»¿{
   "id": "reg-tvet",
   "category": "registration",
   "examination": "TVET/Business",
@@ -10,7 +10,7 @@
     "Institutional registration code",
     "National ID or Passport details"
   ],
-  "fee": "Module-dependent fees apply — check the official CBATE portal or current KNEC fee schedules before applying",
+  "fee": "Module-dependent fees apply - check the official CBATE portal or current KNEC fee schedules before applying",
   "portalUrl": "https://cbate.knec.ac.ke",
   "source_url": "https://cbate.knec.ac.ke",
   "source_date": "2026-01-01",
@@ -23,3 +23,4 @@
   "escalation_required": false,
   "individual_record_required": true
 }
+

@@ -1,4 +1,4 @@
-{
+ï»¿{
   "id": "cert-replacement",
   "category": "certificates",
   "examination": "General",
@@ -11,7 +11,7 @@
     "Copy of National ID or Passport",
     "Recommendation letter from school or institution"
   ],
-  "fee": "Subject to official tariff display on QMIS portal — verify active fees inside QMIS prior to payment",
+  "fee": "Subject to official tariff display on QMIS portal - verify active fees inside QMIS prior to payment",
   "portalUrl": "https://qmis.knec.ac.ke",
   "source_url": "https://qmis.knec.ac.ke",
   "source_date": "2026-01-01",
@@ -24,3 +24,4 @@
   "escalation_required": false,
   "individual_record_required": true
 }
+
