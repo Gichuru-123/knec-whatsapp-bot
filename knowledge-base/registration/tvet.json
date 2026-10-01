@@ -1,0 +1,25 @@
+{
+  "id": "reg-tvet",
+  "category": "registration",
+  "examination": "TVET/Business",
+  "department": "TVET Examinations",
+  "title": "TVET and Business Examinations Registration",
+  "description": "Guidelines for candidates enrolling in Technical and Vocational Education and Training (TVET) certificate and diploma exams.",
+  "requirements": [
+    "Course module completion prerequisites",
+    "Institutional registration code",
+    "National ID / Alien ID copy"
+  ],
+  "fee": "Module-dependent according to official KNEC fee schedules",
+  "portalUrl": "https://cbate.knec.ac.ke",
+  "source_url": "https://www.knec.ac.ke",
+  "source_date": "2026-01-01",
+  "effective_date": "2026-01-01",
+  "review_date": "2026-12-31",
+  "status": "active",
+  "verification_status": "verified_domain",
+  "authority_tier": "official_portal",
+  "version": "1.0.0",
+  "escalation_required": false,
+  "individual_record_required": true
+}

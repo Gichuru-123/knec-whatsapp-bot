@@ -1,0 +1,29 @@
+{
+  "id": "faq-scam-awareness",
+  "category": "faqs",
+  "examination": "General",
+  "department": "Corporate Communications",
+  "title": "KNEC Official Security Advisory & Fraud Awareness",
+  "description": "Official warnings regarding fake results revision sites, social media scammers, and unauthorized agents.",
+  "faqs": [
+    {
+      "question": "Can KNEC change or upgrade examination results after publication?",
+      "answer": "No. KNEC does NOT change exam results for individuals upon request or payment. Any person or channel offering 'grade upgrades' is fraudulent."
+    },
+    {
+      "question": "Which are the only official KNEC portals?",
+      "answer": "Official services are strictly offered through knec.ac.ke, qmis.knec.ac.ke, cba.knec.ac.ke, and official institutional portals."
+    }
+  ],
+  "portalUrl": "https://www.knec.ac.ke",
+  "source_url": "https://www.knec.ac.ke",
+  "source_date": "2026-01-01",
+  "effective_date": "2026-01-01",
+  "review_date": "2026-12-31",
+  "status": "active",
+  "verification_status": "verified_domain",
+  "authority_tier": "official_portal",
+  "version": "1.0.0",
+  "escalation_required": false,
+  "individual_record_required": false
+}

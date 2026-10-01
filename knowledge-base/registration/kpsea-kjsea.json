@@ -1,0 +1,25 @@
+{
+  "id": "reg-kpsea-kjsea",
+  "category": "registration",
+  "examination": "KPSEA/KJSEA",
+  "department": "Test Administration",
+  "title": "KPSEA and KJSEA Assessment Registration",
+  "description": "Registration guidelines for Kenya Primary School Education Assessment (KPSEA) and Kenya Junior Secondary Education Assessment (KJSEA) candidates.",
+  "requirements": [
+    "Learner Assessment Number (LAN)",
+    "Birth Certificate registration details",
+    "Institutional headteacher portal endorsement"
+  ],
+  "fee": "Fully subsidized for public institutions; private schools follow official KNEC circulars",
+  "portalUrl": "https://cba.knec.ac.ke",
+  "source_url": "https://www.knec.ac.ke",
+  "source_date": "2026-01-01",
+  "effective_date": "2026-01-01",
+  "review_date": "2026-12-31",
+  "status": "active",
+  "verification_status": "verified_domain",
+  "authority_tier": "official_portal",
+  "version": "1.0.0",
+  "escalation_required": false,
+  "individual_record_required": true
+}
