@@ -21,7 +21,7 @@
   "effective_date": "2026-01-01",
   "review_date": "2026-12-31",
   "status": "active",
-  "verification_status": "verified_domain",
+  "verification_status": "unverified",
   "authority_tier": "official_portal",
   "version": "1.0.0",
   "escalation_required": false,

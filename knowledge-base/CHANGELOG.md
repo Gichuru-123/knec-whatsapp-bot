@@ -2,6 +2,6 @@
 
 ## [1.0.0] - 2026-10-01
 ### Added
-- Initial core articles: eg-kcse, er-results, cert-replacement, aq-general.
-- Retrofitted schema compliance fields: source_url, source_date, status, erification_status.
-- Standardized official portal URLs to qmis.knec.ac.ke and www.knec.ac.ke.
+- Initial core articles: `reg-kcse`, `reg-kpsea-kjsea`, `reg-tvet`, `ver-results`, `cert-replacement`, `faq-scam-awareness`, `faq-general`.
+- Retrofitted schema compliance fields: `source_url`, `source_date`, `status`, `verification_status`.
+- Standardized official portal URLs and set honest `verification_status` labels to `unverified` pending direct circular sourcing.

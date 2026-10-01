@@ -7,18 +7,18 @@
   "description": "Procedure for requesting a confirmation letter for lost or damaged certificates via QMIS.",
   "requirements": [
     "Police Abstract",
-    "Copy of lost certificate/result slip (if available)",
-    "Copy of National ID / Passport",
-    "Recommendation letter from school or employer"
+    "Copy of lost certificate or result slip (if available)",
+    "Copy of National ID or Passport",
+    "Recommendation letter from school or institution"
   ],
-  "fee": "Subject to official tariff display on QMIS portal",
+  "fee": "Subject to official tariff display on QMIS portal — verify active fees inside QMIS prior to payment",
   "portalUrl": "https://qmis.knec.ac.ke",
   "source_url": "https://qmis.knec.ac.ke",
   "source_date": "2026-01-01",
   "effective_date": "2026-01-01",
   "review_date": "2026-12-31",
   "status": "active",
-  "verification_status": "verified_domain",
+  "verification_status": "unverified",
   "authority_tier": "official_portal",
   "version": "1.0.0",
   "escalation_required": false,
