@@ -4,6 +4,20 @@ const logger = require('../logger');
 
 const kbDir = path.join(__dirname, '..', '..', 'knowledge-base');
 
+function deepFreeze(obj) {
+  Object.freeze(obj);
+  Object.getOwnPropertyNames(obj).forEach(prop => {
+    if (
+      obj[prop] !== null &&
+      (typeof obj[prop] === 'object' || typeof obj[prop] === 'function') &&
+      !Object.isFrozen(obj[prop])
+    ) {
+      deepFreeze(obj[prop]);
+    }
+  });
+  return obj;
+}
+
 class KBRepository {
   constructor() {
     this.kbIndex = new Map();
@@ -27,7 +41,7 @@ class KBRepository {
             const content = fs.readFileSync(fullPath, 'utf8');
             const parsed = JSON.parse(content);
             if (parsed && parsed.id) {
-              this.kbIndex.set(parsed.id, Object.freeze(JSON.parse(JSON.stringify(parsed))));
+              this.kbIndex.set(parsed.id, deepFreeze(parsed));
             }
           } catch (err) {
             logger.error(`Failed to load KB file: ${fullPath}`, err);
