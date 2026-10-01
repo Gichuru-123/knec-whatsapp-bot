@@ -3,6 +3,17 @@ const path = require('path');
 
 const kbDir = path.join(__dirname, '..', 'knowledge-base');
 
+const REQUIRED_FIELDS = [
+  'id',
+  'category',
+  'title',
+  'source_url',
+  'source_date',
+  'status',
+  'verification_status',
+  'version'
+];
+
 function validateDirectory(dir) {
   const items = fs.readdirSync(dir);
   let totalFiles = 0;
@@ -12,15 +23,24 @@ function validateDirectory(dir) {
     const stat = fs.statSync(fullPath);
 
     if (stat.isDirectory()) {
+      if (item === 'schema') continue;
       totalFiles += validateDirectory(fullPath);
     } else if (item.endsWith('.json')) {
       const content = fs.readFileSync(fullPath, 'utf8');
       try {
-        JSON.parse(content);
-        console.log('? Valid JSON:', path.relative(kbDir, fullPath));
+        const parsed = JSON.parse(content);
+        
+        for (const field of REQUIRED_FIELDS) {
+          if (!parsed[field]) {
+            console.error('? Schema Error in ' + path.relative(kbDir, fullPath) + ': Missing field "' + field + '"');
+            process.exit(1);
+          }
+        }
+
+        console.log('? Schema Verified:', path.relative(kbDir, fullPath));
         totalFiles++;
       } catch (err) {
-        console.error('? Invalid JSON in file:', fullPath);
+        console.error('? Invalid JSON in file:', fullPath, err.message);
         process.exit(1);
       }
     }
@@ -28,6 +48,6 @@ function validateDirectory(dir) {
   return totalFiles;
 }
 
-console.log('Validating Knowledge Base JSON files...');
+console.log('Validating Knowledge Base JSON files against Schema requirements...');
 const validatedCount = validateDirectory(kbDir);
-console.log('Validation complete: ' + validatedCount + ' JSON files verified.');
+console.log('Validation complete: ' + validatedCount + ' JSON files fully verified.');

@@ -1,13 +1,25 @@
 {
   "id": "ver-results",
   "category": "verifications",
+  "examination": "General",
+  "department": "Archives and Verification",
   "title": "Confirmation of Results",
-  "description": "Process for verifying exam results for employment or further studies.",
+  "description": "Process for verifying exam results through the official KNEC Quality Management Information System (QMIS).",
   "requirements": [
     "Copy of certificate or result slip",
     "National ID copy",
-    "Official request letter from institution/employer"
+    "Official request details"
   ],
-  "fee": "KSH 2,000 per copy",
-  "portalUrl": "https://qms.knec.ac.ke"
+  "fee": "Subject to official tariff display on QMIS portal",
+  "portalUrl": "https://qmis.knec.ac.ke",
+  "source_url": "https://qmis.knec.ac.ke",
+  "source_date": "2026-01-01",
+  "effective_date": "2026-01-01",
+  "review_date": "2026-12-31",
+  "status": "active",
+  "verification_status": "verified_domain",
+  "authority_tier": "official_portal",
+  "version": "1.0.0",
+  "escalation_required": false,
+  "individual_record_required": true
 }

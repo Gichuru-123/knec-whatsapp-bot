@@ -1,13 +1,25 @@
 {
   "id": "reg-kcse",
   "category": "registration",
+  "examination": "KCSE",
+  "department": "Test Administration",
   "title": "KCSE Examination Registration",
-  "description": "Guidelines and requirements for KCSE candidate registration.",
+  "description": "Guidelines and general information for KCSE candidate registration.",
   "requirements": [
-    "Birth Certificate / ID copy",
-    "KCPE Result Slip / Certificate",
-    "Passport-size photo"
+    "Birth Certificate / National ID copy",
+    "KPSEA/KJSEA or equivalent prior exam record",
+    "Passport-size photograph"
   ],
-  "fee": "Varies by subject selection and candidate category",
-  "portalUrl": "https://kcse.knec.ac.ke"
+  "fee": "To be confirmed via official KNEC circulars for the specific exam cohort",
+  "portalUrl": "https://www.knec.ac.ke",
+  "source_url": "https://www.knec.ac.ke",
+  "source_date": "2026-01-01",
+  "effective_date": "2026-01-01",
+  "review_date": "2026-12-31",
+  "status": "draft",
+  "verification_status": "unverified",
+  "authority_tier": "official_portal",
+  "version": "1.0.0",
+  "escalation_required": false,
+  "individual_record_required": true
 }
