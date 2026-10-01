@@ -1,13 +1,24 @@
+const app = require('./app');
 const config = require('./config');
 const logger = require('./logger');
+const kbRepository = require('./repository/kbRepository');
 
-logger.info("Starting KNEC WhatsApp Bot Application Initialization...");
+logger.info("Initializing KNEC WhatsApp Bot Application...");
 
-function main() {
-  logger.info("Phase 1 initialization successful. Environment loaded.", {
-    environment: config.nodeEnv,
-    port: config.port
-  });
-}
+// Pre-load Knowledge Base on startup
+kbRepository.loadKBData();
 
-main();
+const server = app.listen(config.port, () => {
+  logger.info(`Server running in ${config.nodeEnv} mode on port ${config.port}`);
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+  logger.error('Unhandled Promise Rejection:', reason);
+});
+
+process.on('uncaughtException', (err) => {
+  logger.error('Uncaught Exception thrown:', err);
+  process.exit(1);
+});
+
+module.exports = server;
