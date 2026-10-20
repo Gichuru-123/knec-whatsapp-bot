@@ -78,3 +78,52 @@ test('Inspection Boundary: Returns 403 when dev inspection routes disabled', asy
 
   config.enableDevInspectionRoutes = originalFlag;
 });
+
+test('Phase 4 repair: malformed JSON is a safe 400 without body excerpts or stack traces in any environment', async () => {
+  const config = require('../../src/config');
+  const savedEnv = config.nodeEnv;
+  const saved = { log: console.log, warn: console.warn, error: console.error };
+  let captured = '';
+  const capture = (...args) => { captured += args.join(' ') + '\n'; };
+  console.log = capture; console.warn = capture; console.error = capture;
+  try {
+    for (const env of ['production', 'development', 'test']) {
+      config.nodeEnv = env;
+      const response = await request(app).post('/health').set('Content-Type', 'application/json').send('PRIV123');
+      assert.strictEqual(response.status, 400);
+      assert.deepStrictEqual(response.body, { error: { message: 'Bad Request', code: 400 } });
+    }
+    assert.ok(captured.includes('HTTP request failed'), 'failure remains observable');
+    assert.ok(!captured.includes('PRIV123'), 'submitted body must never reach logs');
+    assert.ok(!captured.includes('SyntaxError'));
+    assert.ok(!captured.includes('node_modules'));
+  } finally {
+    config.nodeEnv = savedEnv;
+    Object.assign(console, saved);
+  }
+});
+
+test('Phase 4 repair: unexpected errors preserve only safe HTTP status information', async () => {
+  const express = require('express');
+  const errorHandler = require('../../src/middleware/errorHandler');
+  const fixtureApp = express();
+  fixtureApp.get('/failure/:status', (req, res, next) => {
+    const err = new Error('PRIVATE_EXCEPTION_SENTINEL');
+    err.status = Number(req.params.status);
+    err.cause = new Error('PRIVATE_CAUSE_SENTINEL');
+    next(err);
+  });
+  fixtureApp.use(errorHandler);
+  const saved = console.error;
+  let captured = '';
+  console.error = (...args) => { captured += args.join(' '); };
+  try {
+    for (const [input, expected, message] of [[500, 500, 'Internal Server Error'], [401, 401, 'Unauthorized'], [200, 500, 'Internal Server Error'], [999, 500, 'Internal Server Error']]) {
+      const response = await request(fixtureApp).get(`/failure/${input}`);
+      assert.strictEqual(response.status, expected);
+      assert.deepStrictEqual(response.body, { error: { code: expected, message } });
+    }
+    assert.ok(!captured.includes('PRIVATE_EXCEPTION_SENTINEL'));
+    assert.ok(!captured.includes('PRIVATE_CAUSE_SENTINEL'));
+  } finally { console.error = saved; }
+});

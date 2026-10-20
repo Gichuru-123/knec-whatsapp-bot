@@ -1,10 +1,18 @@
 class MessagingAdapter {
-  parseInboundPayload(rawPayload) {
-    throw new Error('Method parseInboundPayload() must be implemented.');
+  verifyWebhook(query) {
+    throw new Error('verifyWebhook() method must be implemented by subclass.');
   }
 
-  formatOutboundMessage(recipientId, messageText) {
-    throw new Error('Method formatOutboundMessage() must be implemented.');
+  validateSignature(req) {
+    throw new Error('validateSignature() method must be implemented by subclass.');
+  }
+
+  normalizeInboundPayload(body) {
+    throw new Error('normalizeInboundPayload() method must be implemented by subclass.');
+  }
+
+  async sendTextMessage(to, text) {
+    throw new Error('sendTextMessage() method must be implemented by subclass.');
   }
 }
 

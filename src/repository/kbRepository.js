@@ -26,7 +26,7 @@ class KBRepository {
 
   loadKBData() {
     this.kbIndex.clear();
-    
+
     const readDirectory = (dir) => {
       if (!fs.existsSync(dir)) {
         throw new Error(`Critical KB Startup Error: Knowledge base directory missing at '${dir}'`);

@@ -1,22 +1,22 @@
 const express = require('express');
 const router = express.Router();
-const config = require('../config');
 const kbController = require('../controllers/kbController');
+const config = require('../config');
 
-// Technical Safety Boundary: Disable inspection endpoints unless explicitly enabled
+// Production Guard: Internal inspection routes return 403 when disabled
 router.use((req, res, next) => {
   if (!config.enableDevInspectionRoutes) {
     return res.status(403).json({
       error: {
-        message: 'Internal inspection API endpoints are disabled in this environment.',
-        code: 403
+        code: 403,
+        message: 'Forbidden: Knowledge Base inspection endpoints are disabled in this environment.'
       }
     });
   }
   next();
 });
 
-router.get('/kb', kbController.getAllArticles);
-router.get('/kb/:id', kbController.getArticleById);
+router.get('/', (req, res) => kbController.getAllArticles(req, res));
+router.get('/:id', (req, res) => kbController.getArticleById(req, res));
 
 module.exports = router;

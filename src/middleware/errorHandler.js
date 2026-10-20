@@ -1,23 +1,19 @@
 const logger = require('../logger');
-const config = require('../config');
+const { STATUS_CODES } = require('http');
 
 function errorHandler(err, req, res, next) {
-  logger.error(`Unhandled Error: ${err.message}`, err);
-
-  const statusCode = err.statusCode || err.status || 500;
+  const candidate = err && (err.statusCode || err.status);
+  const statusCode = Number.isInteger(candidate) && candidate >= 400 && candidate <= 599 ? candidate : 500;
+  // Exceptions can contain submitted JSON, credentials or provider responses. Never log them.
+  logger.error('HTTP request failed', { statusCode, requestId: req.requestId });
   const response = {
     error: {
-      message: statusCode === 500 && config.nodeEnv === 'production' 
-        ? 'Internal Server Error' 
-        : err.message,
+      message: STATUS_CODES[statusCode] || 'Request Failed',
       code: statusCode
     }
   };
 
-  if (config.nodeEnv !== 'production' && err.stack) {
-    response.error.stack = err.stack;
-  }
-
+  // The same safe boundary applies to development servers exposed through a tunnel.
   res.status(statusCode).json(response);
 }
 
