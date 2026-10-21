@@ -9,20 +9,22 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
 
     strategy:
       matrix:
-        node-version: [18.x, 20.x]
+        node-version: [24.x]
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v7
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v7
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-    - name: Validate Knowledge Base JSON Schema
+    - name: Validate Knowledge Base Required Fields
       run: npm run validate-kb
     - name: Run Test Suite
       run: npm test

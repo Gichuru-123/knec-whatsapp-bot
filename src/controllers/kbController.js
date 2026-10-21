@@ -1,40 +1,47 @@
 const kbService = require('../services/kbService');
 
-function getAllArticles(req, res) {
-  const category = req.query.category;
-  if (category) {
-    const articles = kbService.getArticlesByCategory(category);
-    return res.status(200).json({ count: articles.length, data: articles });
-  }
-  const articles = kbService.getAllArticles();
-  return res.status(200).json({ count: articles.length, data: articles });
-}
+class KBController {
+  getAllArticles(req, res) {
+    const { category } = req.query;
+    let articles;
 
-function getArticleById(req, res) {
-  const id = req.params.id;
-  if (!/^[a-zA-Z0-9-]+$/.test(id)) {
-    return res.status(400).json({
-      error: {
-        message: 'Invalid article ID format.',
-        code: 400
-      }
+    if (category) {
+      articles = kbService.getArticlesByCategory(category);
+    } else {
+      articles = kbService.getAllArticles();
+    }
+
+    return res.status(200).json({
+      count: articles.length,
+      data: articles
     });
   }
 
-  const article = kbService.getArticleById(id);
-  if (!article) {
-    return res.status(404).json({
-      error: {
-        message: `Knowledge Base article with ID '${id}' not found.`,
-        code: 404
-      }
-    });
-  }
+  getArticleById(req, res) {
+    const { id } = req.params;
 
-  return res.status(200).json({ data: article });
+    // Validate ID format (alphanumeric with hyphens)
+    if (!id || typeof id !== 'string' || !/^[a-zA-Z0-9-]+$/.test(id)) {
+      return res.status(400).json({
+        error: {
+          code: 400,
+          message: 'Bad Request: Invalid article ID format.'
+        }
+      });
+    }
+
+    const article = kbService.getArticleById(id);
+    if (!article) {
+      return res.status(404).json({
+        error: {
+          code: 404,
+          message: `Not Found: Knowledge base article '${id}' does not exist.`
+        }
+      });
+    }
+
+    return res.status(200).json({ data: article });
+  }
 }
 
-module.exports = {
-  getAllArticles,
-  getArticleById
-};
+module.exports = new KBController();

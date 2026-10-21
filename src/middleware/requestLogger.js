@@ -10,7 +10,9 @@ function requestLogger(req, res, next) {
 
   res.on('finish', () => {
     const duration = Date.now() - startTime;
-    logger.info(`[HTTP] ${req.method} ${req.originalUrl} ${res.statusCode} - ${duration}ms`, {
+    // Log the path only. Query strings can carry secrets (e.g. Meta's hub.verify_token) and are never logged.
+    const pathOnly = (req.originalUrl || '').split('?')[0];
+    logger.info(`[HTTP] ${req.method} ${pathOnly} ${res.statusCode} - ${duration}ms`, {
       requestId,
       ip: req.ip,
       userAgent: req.get('user-agent')
