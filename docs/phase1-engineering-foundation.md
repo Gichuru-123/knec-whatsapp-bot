@@ -57,3 +57,11 @@ No application tests were rerun while writing this document.
 ## Recommended follow-up
 
 Review this report, decide the governing roadmap version, and approve a separate bounded lint/format/secret-scanning work order. Record any accepted deviations and their owner. Do not rewrite the original commit or backdate an approval. This report changes no tooling or source files.
+
+## Dated follow-up: engineering controls, 2026-10-22
+
+The findings above describe the historical checkpoint and are retained as written. Following owner approval, the current work adds ESLint, a Secretlint current-file scanner, local check commands and corresponding CI steps on `codex/engineering-controls`. Small unused-binding edits and narrow safe-error exceptions accompany lint adoption. The application suite passes 77/77 locally with localhost access, and seven KB files pass the existing required-field validator.
+
+See the [implementation and verification record](engineering-controls.md) for exact versions, dependencies, scanner scope, command outcomes and publication status. See the [presentation guide](presentation-guide.md) for explanations and revision questions.
+
+This closes the implementation portion of the linting and explicit current-file scanning gaps locally, subject to final review. It does not backdate the controls to the initial commit or establish a remote CI result for the new branch. A formatter, confirmed branch protections, historical/staged-only credential coverage and formal phase acceptance remain open. The original arithmetic smoke test is unchanged.

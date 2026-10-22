@@ -25,7 +25,7 @@ function parseVerifiedJsonBody(req, res, next) {
   try {
     req.body = JSON.parse(req.rawBody.toString('utf8'));
     return next();
-  } catch (err) {
+  } catch {
     return res.status(400).json({
       error: {
         code: 400,

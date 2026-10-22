@@ -12,7 +12,7 @@ const server = app.listen(config.port, () => {
   logger.info(`Server running in ${config.nodeEnv} mode on port ${config.port}`);
 });
 
-process.on('unhandledRejection', (reason, promise) => {
+process.on('unhandledRejection', (reason) => {
   logger.error('Unhandled Promise Rejection:', reason);
 });
 
