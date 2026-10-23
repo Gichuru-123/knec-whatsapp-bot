@@ -10,7 +10,10 @@
     "start": "node src/index.js",
     "dev": "node --watch src/index.js",
     "test": "node --require ./tests/helpers/testEnv.js --test tests/*.test.js tests/**/*.test.js",
-    "validate-kb": "node scripts/validate-kb.js"
+    "validate-kb": "node scripts/validate-kb.js",
+    "lint": "eslint . --max-warnings=0",
+    "scan:secrets": "node scripts/scan-secrets.js",
+    "check": "npm run lint && npm run scan:secrets && npm run validate-kb && npm test"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -20,6 +23,11 @@
     "helmet": "^7.1.0"
   },
   "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@secretlint/secretlint-rule-preset-recommend": "13.0.7",
+    "eslint": "10.13.0",
+    "globals": "17.13.0",
+    "secretlint": "13.0.7",
     "supertest": "^7.0.0"
   }
 }

@@ -20,7 +20,7 @@ class MockWhatsAppAdapter extends MessagingAdapter {
     return { isValid: false, challenge: null };
   }
 
-  validateSignature(req) {
+  validateSignature() {
     return true; // Mock mode accepts all signatures
   }
 

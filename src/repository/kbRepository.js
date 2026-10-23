@@ -53,6 +53,7 @@ class KBRepository {
             this.kbIndex.set(parsed.id, deepFreeze(parsed));
           } catch (err) {
             logger.error(`Fail-Fast KB Startup Error: Failed to load article at '${fullPath}'`, err);
+            // eslint-disable-next-line preserve-caught-error -- The original parsing error can contain article text; retain the safe error boundary.
             throw new Error(`KB Integrity Failure: Could not safely load '${fullPath}'. System startup aborted.`);
           }
         }

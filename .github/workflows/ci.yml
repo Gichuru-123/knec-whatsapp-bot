@@ -2,7 +2,7 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "main", "feature/*" ]
+    branches: [ "main", "feature/**", "codex/**" ]
   pull_request:
     branches: [ "main" ]
 
@@ -23,7 +23,11 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci
+    - run: npm ci --ignore-scripts
+    - name: Lint JavaScript
+      run: npm run lint
+    - name: Scan Repository Files for Secrets
+      run: npm run scan:secrets
     - name: Validate Knowledge Base Required Fields
       run: npm run validate-kb
     - name: Run Test Suite

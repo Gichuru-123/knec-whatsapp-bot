@@ -101,6 +101,17 @@ Use static event labels and deliberately selected metadata when adding logging. 
 
 ## Tests and validation
 
+### Engineering checks and detailed guides
+
+From the repository directory, run `npm run check` to perform JavaScript linting, current-file secret scanning, KB required-field validation and the existing tests in sequence. Install the locked development dependencies with `npm ci --ignore-scripts` in a new checkout. The checks require Node 24 and Git; application tests require localhost access.
+
+- [Engineering-controls guide](docs/engineering-controls.md): exact tool versions, commands, failure handling, scanner limitations and review evidence.
+- [Presentation and revision guide](docs/presentation-guide.md): phase status, architecture explanation, speaking notes, demonstration steps and likely questions.
+
+The scanner checks current files, including eligible untracked work; it does not audit Git history or staged-only snapshots. Linting does not apply automatic formatting. Review the staged diff before any approved commit. The owner approved publishing these controls and opening a pull request on 2026-10-22; see the guide for the dated record and the pull request for subsequent remote checks. Merge approval remains separate.
+
+### Existing application and knowledge-base checks
+
 Run one command at a time from the project directory and inspect its actual output.
 
 ```powershell
@@ -124,4 +135,4 @@ Expected: seven files pass the existing required-field validator. Its wording ab
 - No menu/state engine, candidate authentication, private record access, GA automation, LLM, RAG, embeddings or vector database.
 - Commits, pushes, deployment, live messages, costs and subsequent phases each require the owner's explicit approval.
 
-The next proposed step is review of the repaired Phase 4 baseline and Twilio plan. Twilio implementation and a later controlled Sandbox exchange require separate approval.
+The Phase 4 baseline has been merged through PR #1. Publication of the engineering-controls change is approved; the next gate is review of its pull request and CI results before a separately approved merge. A bounded offline Twilio implementation and a later controlled Sandbox exchange require their own approvals. Phase 4 remains in progress.
