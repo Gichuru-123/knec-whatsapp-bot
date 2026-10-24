@@ -8,6 +8,7 @@ const errorHandler = require('./middleware/errorHandler');
 const healthRoutes = require('./routes/healthRoutes');
 const kbRoutes = require('./routes/kbRoutes');
 const webhookRoutes = require('./routes/webhookRoutes');
+const twilioWebhookRoutes = require('./routes/twilioWebhookRoutes');
 const kbRepository = require('./repository/kbRepository');
 
 // Initialize and freeze Knowledge Base in memory on app startup (Fail-Fast Boundary)
@@ -26,18 +27,27 @@ app.use(helmet());
 
 // CORS: this API has no browser clients that send data. Meta calls the webhook server-to-server,
 // which CORS does not affect, so browsers are only allowed simple GET requests.
-app.use(cors({
+app.use(cors((req, callback) => callback(null, {
   origin: config.allowedOrigins,
   methods: ['GET', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'x-request-id']
-}));
+  allowedHeaders: ['Content-Type', 'x-request-id'],
+  // Let webhook routers enforce their own allowed methods, including OPTIONS.
+  preflightContinue: /^\/api\/v1\/webhook\/twilio(?:\/|$)/i.test(req.path)
+})));
 
 // Request Correlation & Logging
 app.use(requestLogger);
 
-// WhatsApp webhook: mounted BEFORE the general JSON parser. It reads the raw bytes itself and checks
-// the signature before the message is parsed (see routes/webhookRoutes.js).
-app.use('/api/v1/webhook', webhookRoutes);
+// Provider webhooks precede the general JSON parser. Meta authenticates raw JSON before parsing;
+// Twilio strictly decodes the bounded form before authenticating its scalar parameters.
+const inactiveWebhook = (req, res) => res.status(404).json({ error: { code: 404, message: 'Not Found' } });
+if (config.whatsappProvider === 'twilio') {
+  app.use('/api/v1/webhook/twilio', twilioWebhookRoutes);
+  app.use('/api/v1/webhook/whatsapp', inactiveWebhook);
+} else {
+  app.use('/api/v1/webhook/twilio', inactiveWebhook);
+  app.use('/api/v1/webhook', webhookRoutes);
+}
 
 // All other routes: small JSON bodies only.
 app.use(express.json({ limit: '10kb' }));

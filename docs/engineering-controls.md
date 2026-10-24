@@ -6,6 +6,8 @@ Baseline: merge commit `5d40fdc23c97ef7b374300b36e67f4acb8cad0e8`, which merged 
 
 Status: **implemented and verified locally; owner approved commit, push and pull-request creation on 2026-10-22**. Merge into `main` requires separate approval. This record captures pre-publication verification; subsequent remote CI evidence belongs to the pull request and its exact published revision.
 
+**Post-merge update, 2026-10-23:** the owner subsequently approved the merge. [PR #2](https://github.com/Gichuru-123/knec-whatsapp-bot/pull/2) is merged into `main` at `1dae80e1538ba06b5c853940ff14f919ba5f3baf`, and [post-merge CI](https://github.com/Gichuru-123/knec-whatsapp-bot/actions/runs/39895439867) passed. Local `main` was synchronized and clean. This supersedes the pending merge/remote-CI status in the historical preparation record below; it does not alter its local verification evidence.
+
 [Documentation index](README.md) | [Presentation and revision guide](presentation-guide.md) | [Phase 1 history](phase1-engineering-foundation.md) | [Phase 4 plan](phase4-twilio-plan.md)
 
 ## 1. Why this work exists

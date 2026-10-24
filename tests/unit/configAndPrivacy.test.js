@@ -254,7 +254,7 @@ test('R2a WEBHOOK_BODY_LIMIT: accepts sizes such as 100kb and rejects malformed 
 });
 
 test('Phase 4 repair: provider selection must be explicit', () => {
-  for (const value of [undefined, '', ' ', 'twilio', 'unknown']) {
+  for (const value of [undefined, '', ' ', 'unknown']) {
     assert.throws(() => validateConfig(settings({ WHATSAPP_PROVIDER: value })), /Invalid WHATSAPP_PROVIDER/);
   }
 });
@@ -334,4 +334,59 @@ test('Phase 4 repair: circular error context remains loggable without exposing e
 test('Phase 4 repair: phone redaction preserves UUID correlation identifiers', () => {
   const requestId = '0a4d0cec-ad2f-48c5-9ad8-123456789012';
   assert.ok(logger.formatMessage('info', 'Request finished', { requestId }).includes(requestId));
+});
+
+const TWILIO_ENV = {
+  ...TEST_ENV, WHATSAPP_PROVIDER: 'twilio', ENABLE_DEV_INSPECTION_ROUTES: 'false',
+  META_GRAPH_API_VERSION: '', WHATSAPP_VERIFY_TOKEN: '', WHATSAPP_APP_SECRET: '',
+  TWILIO_ACCOUNT_SID: 'AC' + '1'.repeat(32), TWILIO_AUTH_TOKEN: 'test-fixture-twilio-not-a-secret',
+  TWILIO_WHATSAPP_FROM: 'whatsapp:+15005550006', TWILIO_TEST_RECIPIENT: 'whatsapp:+15005550007',
+  TWILIO_INBOUND_WEBHOOK_URL: 'https://example.test/api/v1/webhook/twilio/whatsapp',
+  TWILIO_STATUS_CALLBACK_URL: 'https://example.test/api/v1/webhook/twilio/status'
+};
+
+test('Twilio configuration: test-only provider needs no Meta credentials and cannot enable sending', () => {
+  const accepted = validateConfig(TWILIO_ENV);
+  assert.equal(accepted.whatsappVerifyToken, '');
+  assert.equal(accepted.twilio.liveSendEnabled, false);
+  for (const NODE_ENV of ['development', 'production']) {
+    assert.throws(() => validateConfig({ ...TWILIO_ENV, NODE_ENV }), /restricted to NODE_ENV=test/);
+  }
+  for (const value of ['true', 'FALSE', '', '1', true]) {
+    assert.throws(() => validateConfig({ ...TWILIO_ENV, TWILIO_LIVE_SEND_ENABLED: value }), /TWILIO_LIVE_SEND_ENABLED/);
+  }
+  assert.equal(validateConfig({ ...TWILIO_ENV, TWILIO_LIVE_SEND_ENABLED: undefined }).twilio.liveSendEnabled, false);
+  assert.equal(validateConfig({ ...TEST_ENV, TWILIO_AUTH_TOKEN: 'ignored inactive value' }).twilio, undefined);
+});
+
+test('Twilio configuration: required fields, numbers and endpoint binding fail without echoing values', () => {
+  for (const name of ['TWILIO_ACCOUNT_SID', 'TWILIO_AUTH_TOKEN', 'TWILIO_WHATSAPP_FROM', 'TWILIO_TEST_RECIPIENT', 'TWILIO_INBOUND_WEBHOOK_URL', 'TWILIO_STATUS_CALLBACK_URL']) {
+    for (const value of [undefined, '', ' ']) assert.throws(() => validateConfig({ ...TWILIO_ENV, [name]: value }), new RegExp(name));
+  }
+  for (const value of ['', '10junk', '1.5', ' 100', '99', '30001', '9007199254740992']) {
+    assert.throws(() => validateConfig({ ...TWILIO_ENV, TWILIO_REQUEST_TIMEOUT_MS: value }), /TWILIO_REQUEST_TIMEOUT_MS/);
+  }
+  // Build a clearly synthetic credential-bearing URL to exercise rejection without storing a Basic Auth literal.
+  const credentialUrl = new URL(TWILIO_ENV.TWILIO_INBOUND_WEBHOOK_URL);
+  credentialUrl.username = 'public-fixture-user';
+  credentialUrl.password = 'public-fixture-password';
+  for (const value of ['http://example.test/api/v1/webhook/twilio/whatsapp', credentialUrl.href,
+    'https://example.test/wrong', 'https://example.test/api/v1/webhook/twilio/whatsapp/',
+    'https://example.test/api/v1/webhook/twilio/whatsapp#fragment', 'https://example.test/api/v1/webhook/twilio/whatsapp?bad=%zz']) {
+    assert.throws(() => validateConfig({ ...TWILIO_ENV, TWILIO_INBOUND_WEBHOOK_URL: value }), err => /TWILIO_INBOUND_WEBHOOK_URL/.test(err.message) && !err.message.includes(value));
+  }
+  for (const value of ['+15005550006', 'whatsapp:+0', 'whatsapp:+1234567890123456', 'whatsapp:+12x']) {
+    assert.throws(() => validateConfig({ ...TWILIO_ENV, TWILIO_WHATSAPP_FROM: value }), /TWILIO_WHATSAPP_FROM/);
+  }
+  const url = TWILIO_ENV.TWILIO_INBOUND_WEBHOOK_URL + '?note=a%20b&x=%2B';
+  assert.equal(validateConfig({ ...TWILIO_ENV, TWILIO_INBOUND_WEBHOOK_URL: url }).twilio.inbound.url, url);
+});
+
+test('Twilio privacy: configured Auth Token is redacted in labels and child context', () => {
+  const previous = process.env.TWILIO_AUTH_TOKEN;
+  process.env.TWILIO_AUTH_TOKEN = TWILIO_ENV.TWILIO_AUTH_TOKEN;
+  try {
+    const line = logger.child({ twilioAuthToken: TWILIO_ENV.TWILIO_AUTH_TOKEN }).formatMessage('info', `Event ${TWILIO_ENV.TWILIO_AUTH_TOKEN}`);
+    assert.ok(!line.includes(TWILIO_ENV.TWILIO_AUTH_TOKEN));
+  } finally { process.env.TWILIO_AUTH_TOKEN = previous; }
 });
