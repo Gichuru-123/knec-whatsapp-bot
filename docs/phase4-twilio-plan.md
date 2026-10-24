@@ -1,6 +1,10 @@
 # Phase 4: Twilio integration plan
 
-Status: **design only**, prepared 2026-10-20. Official documentation was consulted on 2026-10-19. No Twilio adapter, account setup, signature implementation, live message or provider switch is included in the approved repairs.
+Original status: **design only**, prepared 2026-10-20. Official documentation was consulted on 2026-10-19. The original approved repairs did not include a Twilio implementation. The dated update below records the subsequent approved subset.
+
+**2026-10-24 implementation update:** after PR #2 merged, the owner approved the [offline Twilio work order](phase4-twilio-offline-work-order.md). Its protocol subset is now locally implemented on `codex/phase4-twilio-offline`: test-only provider/configuration, separate form routes, SDK signature validation, normalization, safe callbacks and simulated outbound construction. Full local checks pass with 97 tests. Its [completion record](phase4-twilio-offline-work-order.md#17-implementation-and-verification-record) is the authoritative scope/evidence record. Publication still requires approval.
+
+The following sections retain the broader design, including future live transport and storage. The offline subset uses no real transport, persistence, automatic reply or live credentials. SDK URL tolerance and exact path/query binding are described in the work order. Durable processing, Sandbox access and production onboarding remain separate future work.
 
 ## 1. Confirmed platform requirements
 
@@ -23,7 +27,7 @@ Add a separate `TwilioWhatsAppAdapter` implementing the existing `MessagingAdapt
 | `normalizeInboundPayload(body)` | Return the current internal message-array shape after authentication and field validation. |
 | `sendTextMessage(to, text)` | Send one REST message with a bounded timeout and fixed safe errors. |
 
-Extend the factory/configuration only in that later work order. Keep Meta and mock adapters and their tests. Mount provider-specific routes so mock authentication cannot authorize Twilio requests. Accept events only for the explicitly selected provider. Do not silently fall back to Meta or mock.
+The offline work order now implements explicit factory/configuration selection and isolated routes, retaining Meta/mock adapters and tests. Real REST transport in the broader method table remains deferred. Events are accepted only for the selected provider; unknown providers fail configuration.
 
 The current inbound handoff only logs receipt. The first separately approved Sandbox implementation should send a fixed diagnostic acknowledgement. Menus, FAQ routing, conversation state and Phase 5 remain excluded.
 
@@ -34,7 +38,7 @@ The current inbound handoff only logs receipt. The first separately approved San
 | `POST /api/v1/webhook/twilio/whatsapp` | `application/x-www-form-urlencoded` | 200, `text/xml`, `<Response></Response>` |
 | `POST /api/v1/webhook/twilio/status` | `application/x-www-form-urlencoded` | 204, empty body |
 
-These paths are proposed, not present today. Leave the existing Meta path unchanged. GET on either Twilio path should return 404 or 405, never the Meta verification challenge.
+These paths are implemented only in Twilio test mode. The Meta/mock path remains available only for those providers. Unsupported methods on active Twilio paths return 405; inactive paths return fixed 404 responses. No Meta challenge is used for Twilio.
 
 Use a route-scoped, bounded form parser with parameter limits. Preserve values exactly for signature validation, including spaces, Unicode and plus signs. Reject ambiguous duplicate parameter keys. Include newly introduced Twilio fields in validation instead of using a fixed signature allowlist. Validate identity and select normalized fields only after the signature succeeds.
 
@@ -48,7 +52,7 @@ A changed tunnel URL requires updating both local configuration and Twilio's web
 
 ## 4. Proposed settings and secret ownership
 
-None of these Twilio settings is implemented by this work order.
+The offline work order implements the settings below through `TWILIO_TEST_RECIPIENT` with stricter test-only limits. No live-send value can enable sending; the recipient is synthetic. Production API-key settings remain proposed and unimplemented. See the work order's exact configuration contract before using this broader design table.
 
 | Setting | Proposed meaning |
 | --- | --- |

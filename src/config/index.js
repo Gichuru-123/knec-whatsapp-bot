@@ -72,8 +72,8 @@ function validateConfig(env) {
 
   // 6. Phase 4 WhatsApp Configuration
   const whatsappProvider = typeof env.WHATSAPP_PROVIDER === 'string' ? env.WHATSAPP_PROVIDER.toLowerCase() : '';
-  if (!['meta', 'mock'].includes(whatsappProvider)) {
-    errors.push('Invalid WHATSAPP_PROVIDER: explicit selection of "meta" or "mock" is required.');
+  if (!['meta', 'mock', 'twilio'].includes(whatsappProvider)) {
+    errors.push('Invalid WHATSAPP_PROVIDER: explicit selection of "meta", "mock" or "twilio" is required.');
   }
 
   // Strict Mock Mode Boundary: Allowed ONLY in development or test
@@ -96,8 +96,8 @@ function validateConfig(env) {
   const whatsappAccessToken = env.WHATSAPP_ACCESS_TOKEN || '';
   const whatsappPhoneNumberId = env.WHATSAPP_PHONE_NUMBER_ID || '';
 
-  if (!whatsappVerifyToken) {
-    errors.push('Missing WHATSAPP_VERIFY_TOKEN: required in every environment. Choose your own random string (Meta does not issue this value).');
+  if (['meta', 'mock'].includes(whatsappProvider) && !whatsappVerifyToken) {
+    errors.push('Missing WHATSAPP_VERIFY_TOKEN: required for Meta/mock in every environment. Choose your own random string (Meta does not issue this value).');
   }
   if (whatsappProvider === 'meta' && !whatsappAppSecret) {
     errors.push('Missing WHATSAPP_APP_SECRET: required when WHATSAPP_PROVIDER="meta". For local development without Meta credentials, use WHATSAPP_PROVIDER=mock.');
@@ -149,6 +149,48 @@ function validateConfig(env) {
   const rateLimitWindowMs = integerSetting('WEBHOOK_RATE_LIMIT_WINDOW_MS', 60000, 1000, 2147483647);
   const rateLimitMax = integerSetting('WEBHOOK_RATE_LIMIT_MAX', 100, 1);
 
+  // Twilio is an offline protocol foundation. No environment setting enables live sends.
+  let twilioSettings;
+  if (whatsappProvider === 'twilio') {
+    if (nodeEnv !== 'test') errors.push('WHATSAPP_PROVIDER="twilio" is restricted to NODE_ENV=test until live integration is approved.');
+    function required(name, pattern) {
+      const value = env[name];
+      if (typeof value !== 'string' || !value || value !== value.trim() || (pattern && !pattern.test(value))) {
+        errors.push(`Invalid ${name}: a correctly formatted explicit value is required.`);
+      }
+      return value;
+    }
+    function endpoint(name, expectedPath) {
+      const value = required(name);
+      try {
+        const parsed = new URL(value);
+        // Preserve the original string; reject forms that URL() would silently repair.
+        const parts = /^https:\/\/[^/?#]+(\/[^#]*)$/.exec(value);
+        if (!parts || /[\s\\]/.test(value) || [...value].some(char => char.charCodeAt(0) < 32 || char.charCodeAt(0) === 127) || /%(?![\da-fA-F]{2})/.test(value) ||
+            parsed.username || parsed.password || parsed.hash || parts[1].split('?')[0] !== expectedPath) {
+          throw new Error('Invalid endpoint');
+        }
+        return { url: value, target: parts[1] };
+      } catch {
+        errors.push(`Invalid ${name}: an HTTPS URL with the expected route and no credentials or fragment is required.`);
+        return {};
+      }
+    }
+    const addressPattern = /^whatsapp:\+[1-9]\d{0,14}$/;
+    const live = env.TWILIO_LIVE_SEND_ENABLED;
+    if (live !== undefined && live !== 'false') errors.push('TWILIO_LIVE_SEND_ENABLED must be false; live transport is unavailable.');
+    twilioSettings = Object.freeze({
+      accountSid: required('TWILIO_ACCOUNT_SID', /^AC[\da-fA-F]{32}$/),
+      authToken: required('TWILIO_AUTH_TOKEN'),
+      from: required('TWILIO_WHATSAPP_FROM', addressPattern),
+      recipient: required('TWILIO_TEST_RECIPIENT', addressPattern),
+      inbound: Object.freeze(endpoint('TWILIO_INBOUND_WEBHOOK_URL', '/api/v1/webhook/twilio/whatsapp')),
+      status: Object.freeze(endpoint('TWILIO_STATUS_CALLBACK_URL', '/api/v1/webhook/twilio/status')),
+      timeoutMs: integerSetting('TWILIO_REQUEST_TIMEOUT_MS', 10000, 100, 30000),
+      liveSendEnabled: false
+    });
+  }
+
   if (errors.length > 0) {
     throw new Error(`Configuration Error:\n - ${errors.join('\n - ')}`);
   }
@@ -169,7 +211,8 @@ function validateConfig(env) {
     webhookBodyLimit,
     trustProxyHops,
     rateLimitWindowMs,
-    rateLimitMax
+    rateLimitMax,
+    twilio: twilioSettings
   };
 }
 

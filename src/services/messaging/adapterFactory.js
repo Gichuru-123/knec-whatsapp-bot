@@ -1,6 +1,7 @@
 const config = require('../../config');
 const MetaWhatsAppAdapter = require('./metaAdapter');
 const MockWhatsAppAdapter = require('./mockAdapter');
+const TwilioWhatsAppAdapter = require('./twilioAdapter');
 
 class AdapterFactory {
   static getAdapter() {
@@ -8,7 +9,9 @@ class AdapterFactory {
     if (provider === 'mock') {
       return new MockWhatsAppAdapter();
     }
-    return new MetaWhatsAppAdapter();
+    if (provider === 'meta') return new MetaWhatsAppAdapter();
+    if (provider === 'twilio') return new TwilioWhatsAppAdapter();
+    throw new Error('Unsupported messaging provider.');
   }
 }
 

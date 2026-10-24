@@ -4,9 +4,9 @@ A public-information prototype intended for future review by the Kenya National 
 
 ## Current scope
 
-The Phase 3 foundation loads seven JSON knowledge-base articles, indexes them by ID and category, and freezes article objects. Phase 4 provides Meta and mock messaging adapters, webhook authentication, request limits and an inbound handoff stub.
+The Phase 3 foundation loads seven JSON knowledge-base articles, indexes them by ID and category, and freezes article objects. Phase 4 provides Meta/mock adapters and a locally implemented, test-only Twilio adapter, webhook authentication, request limits and an inbound handoff stub.
 
-Incoming messages currently stop at the stub; there is no automatic reply, menu engine or conversation state. Twilio integration is planned in [the Phase 4 Twilio plan](docs/phase4-twilio-plan.md), not implemented. No live provider connection has been demonstrated by the automated tests.
+Incoming messages currently stop at the stub; there is no automatic reply, menu engine or conversation state. The [offline Twilio work order and evidence](docs/phase4-twilio-offline-work-order.md) records the implemented protocol subset. The [broader Phase 4 plan](docs/phase4-twilio-plan.md) covers the remaining integration. No live provider connection has been demonstrated by the automated tests.
 
 The knowledge-base validator checks required fields, not a full JSON schema or factual accuracy. Startup validation is narrower still. Six articles are labelled unverified and one verified_domain; those labels do not establish approved public guidance.
 
@@ -34,7 +34,7 @@ For a **fresh checkout or isolated test copy**, install the exact locked depende
 npm ci
 ```
 
-Expected: successful installation with exit code 0. This command replaces node_modules if it exists; do not use it to experiment on an existing working folder without approval. The repair verification uses a separate temporary copy. Dependency versions were not upgraded by this repair.
+Expected: successful installation with exit code 0. This command replaces node_modules if it exists; do not use it to experiment on an existing working folder without approval. Verification uses a separate temporary copy. The offline Twilio change adds exactly `twilio@6.2.0` and its locked dependencies. A separately approved security repair updates the existing `body-parser` dependency from 1.20.8 to 1.20.9; other existing package versions remain unchanged.
 
 CI uses Node 24 and current [checkout](https://github.com/actions/checkout) / [setup-node](https://github.com/actions/setup-node) actions, whose documented runtime supports Node 24. A local test run does not prove the GitHub workflow has run.
 
@@ -47,8 +47,8 @@ Keep secrets only in the private .env or the runtime's secret store. Never paste
 | Setting | Behavior |
 | --- | --- |
 | NODE_ENV | development, test or production; defaults to development |
-| WHATSAPP_PROVIDER | Explicit meta or mock required; missing/unknown values stop startup |
-| WHATSAPP_VERIFY_TOKEN | Required for the current providers; choose a private random value, never a test fixture |
+| WHATSAPP_PROVIDER | Explicit meta, mock or twilio; twilio is accepted only in test mode; missing/unknown values stop startup |
+| WHATSAPP_VERIFY_TOKEN | Required for Meta/mock; choose a private random value, never a test fixture |
 | WHATSAPP_APP_SECRET | Required for meta |
 | WHATSAPP_ACCESS_TOKEN / WHATSAPP_PHONE_NUMBER_ID | Required to send with Meta; also required at production startup |
 | META_GRAPH_API_VERSION | Required for meta; no built-in version; check [Meta's version information](https://developers.facebook.com/docs/graph-api/changelog/versions/) before live use |
@@ -61,6 +61,8 @@ Keep secrets only in the private .env or the runtime's secret store. Never paste
 | PORT | Defaults to 3000; whole number 1 through 65535 |
 | LOG_LEVEL | debug, info, warn or error; defaults to info |
 | ALLOWED_ORIGINS | Comma-separated browser origins; defaults to http://localhost:3000 |
+
+Twilio's test-only settings are documented in the [configuration table](docs/phase4-twilio-offline-work-order.md#9-proposed-configuration). Tests supply synthetic account/token/sender/recipient and HTTPS endpoint strings; no real credentials are needed. The default outbound transport is absent. `TWILIO_LIVE_SEND_ENABLED=true` is rejected, and the example configuration remains mock.
 
 Numeric values cannot contain spaces, decimal fractions or trailing text. Known public placeholders are rejected; production also rejects test/example credential markers. This validation cannot establish that a credential is genuine or sufficiently strong.
 
@@ -84,14 +86,20 @@ Expected: KB startup and a listening-port message. Missing required configuratio
 | --- | --- |
 | GET /health | Process health, timestamp and uptime |
 | GET /api/v1/kb and /api/v1/kb/:id | Inspection only; 403 unless explicitly enabled |
-| GET /api/v1/webhook/whatsapp | Meta-style verification challenge, returned as plain text |
-| POST /api/v1/webhook/whatsapp | Rate limit, read bounded raw JSON, authenticate, parse, normalize and hand off |
+| GET /api/v1/webhook/whatsapp | Meta/mock only: verification challenge, returned as plain text |
+| POST /api/v1/webhook/whatsapp | Meta/mock only: rate limit, read bounded raw JSON, authenticate, parse, normalize and hand off |
+| POST /api/v1/webhook/twilio/whatsapp | Twilio test mode only: strict form decoding, signature validation and handoff; 200 empty TwiML |
+| POST /api/v1/webhook/twilio/status | Twilio test mode only: authenticate and normalize callback metadata; 204; no persistent delivery record |
 
 Meta authentication uses x-hub-signature-256 on the received body bytes before JSON parsing. Invalid signatures return 401; signed malformed JSON returns 400; excessive bodies return 413; excessive request rates return 429. Other JSON routes have a 10kb body limit.
 
 Meta batches retain valid messages after malformed individual messages. Delivery/status events remain ignored. The mock provider accepts its own senderPhone/textBody fixture format, not the Meta envelope.
 
 Outbound Meta sending uses an abort deadline covering both fetch and response-body parsing. HTTP failures discard provider response bodies; transport and JSON failures use fixed messages without the original cause. This method exists but is not called by the current inbound stub.
+
+Twilio validates all decoded scalar form fields using the pinned official SDK and the configured external URL. It rejects duplicate decoded keys, invalid UTF-8/percent escapes and more than 100 pairs. It binds the raw incoming path/query to configuration and ignores host/proxy headers when selecting the signing URL. The SDK's port/encoding tolerance is covered by characterization tests. Inactive provider routes return fixed 404 responses; Twilio unsupported methods return 405, invalid authentication 401, invalid fields 400 and unsupported content/encoding 415. Body and rate limits also apply.
+
+Twilio outbound tests explicitly inject a recording fake HTTP client. Default sends fail; there is no automatic reply or provider connection. Empty TwiML has no message instruction. Media is acknowledged without fetching or forwarding captions. Callback logs contain selected receipt metadata only. These acknowledgements do not establish durable acceptance or duplicate suppression.
 
 ## Privacy and error contract
 
@@ -126,6 +134,8 @@ npm run validate-kb
 
 Expected: seven files pass the existing required-field validator. Its wording about verification is structural only, not a factual endorsement.
 
+**Offline Twilio local evidence, 2026-10-24:** `npm run check` passed with **97 tests** (the existing 77 plus 20 new top-level scenarios) and seven KB files. The focused Twilio/configuration run passed 44 tests. See the [completion record](docs/phase4-twilio-offline-work-order.md#17-implementation-and-verification-record) for the locked-install result, dependency delta and limitations. These local results do not represent a GitHub CI run for the unpublished changes.
+
 ## Remaining limitations and approval gates
 
 - No durable queue, duplicate suppression, delivery tracking, shared rate-limit store or automatic retry recovery.
@@ -135,4 +145,4 @@ Expected: seven files pass the existing required-field validator. Its wording ab
 - No menu/state engine, candidate authentication, private record access, GA automation, LLM, RAG, embeddings or vector database.
 - Commits, pushes, deployment, live messages, costs and subsequent phases each require the owner's explicit approval.
 
-The Phase 4 baseline has been merged through PR #1. Publication of the engineering-controls change is approved; the next gate is review of its pull request and CI results before a separately approved merge. A bounded offline Twilio implementation and a later controlled Sandbox exchange require their own approvals. Phase 4 remains in progress.
+The Phase 4 baseline and engineering controls have been merged through PR #1 and PR #2. Post-merge CI passed for `main` at `1dae80e`. The offline Twilio implementation is local on `codex/phase4-twilio-offline`, awaiting review and separate publication approval. Durable processing and a controlled Sandbox exchange require later approvals. Phase 4 remains in progress.
