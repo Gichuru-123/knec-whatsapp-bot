@@ -345,6 +345,20 @@ const TWILIO_ENV = {
   TWILIO_STATUS_CALLBACK_URL: 'https://example.test/api/v1/webhook/twilio/status'
 };
 
+test('Sandbox configuration requires explicit development storage and private identity settings', () => {
+  const sandbox = { ...TWILIO_ENV, NODE_ENV: 'development', TWILIO_MODE: 'sandbox', TWILIO_DELIVERY_ENABLED: 'true',
+    DATABASE_URL: 'postgresql://fixture:fixture@127.0.0.1:55418/knec_development',
+    TWILIO_CONVERSATION_SECRET: 'ab'.repeat(32), TWILIO_CONVERSATION_KEY_VERSION: '1',
+    TWILIO_SANDBOX_RUN_ID: '11111111-1111-4111-8111-111111111111', TWILIO_SANDBOX_MAX_ATTEMPTS: '1' };
+  assert.equal(validateConfig(sandbox).twilio.liveSendEnabled, false);
+  assert.equal(validateConfig({ ...sandbox, TWILIO_LIVE_SEND_ENABLED: 'true' }).twilio.liveSendEnabled, true);
+  for (const change of [{ NODE_ENV: 'production' }, { ENABLE_DEV_INSPECTION_ROUTES: 'true' },
+    { TWILIO_DELIVERY_ENABLED: 'false' }, { TWILIO_CONVERSATION_SECRET: 'bad' },
+    { DATABASE_URL: 'invalid-private-database-value' }, { TWILIO_SANDBOX_MAX_ATTEMPTS: '11' }]) {
+    assert.throws(() => validateConfig({ ...sandbox, ...change }));
+  }
+});
+
 test('Twilio configuration: test-only provider needs no Meta credentials and cannot enable sending', () => {
   const accepted = validateConfig(TWILIO_ENV);
   assert.equal(accepted.whatsappVerifyToken, '');

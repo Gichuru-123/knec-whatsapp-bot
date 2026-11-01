@@ -67,3 +67,12 @@ The engineering-controls and presentation guides are now also on `main` through 
 ## Documentation change boundary
 
 The original 2026-10-20 change added this index and three retrospective reports. The 2026-10-22 engineering work has a separate [file-by-file scope](engineering-controls.md#8-file-by-file-review-map), including development tools, small lint-driven source edits, CI and detailed guides. Historical reports retain their original findings, with dated follow-ups where applicable. This work establishes no live integration, deployment or institutional sign-off.
+
+## PostgreSQL delivery implementation
+
+- [Delivery implementation work order](phase4-delivery-work-order.md)
+- [Database operations and isolated setup](database-operations.md)
+- [Controlled Sandbox runbook](phase4-sandbox-runbook.md)
+- [Phase 4 completion evidence checklist](phase4-completion-plan.md)
+
+Implementation is in progress; these links do not constitute live acceptance or a GitHub publication claim.

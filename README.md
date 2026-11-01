@@ -4,9 +4,9 @@ A public-information prototype intended for future review by the Kenya National 
 
 ## Current scope
 
-The Phase 3 foundation loads seven JSON knowledge-base articles, indexes them by ID and category, and freezes article objects. Phase 4 provides Meta/mock adapters and a locally implemented, test-only Twilio adapter, webhook authentication, request limits and an inbound handoff stub.
+The Phase 3 foundation loads seven JSON knowledge-base articles, indexes them by ID and category, and freezes article objects. Phase 4 provides Meta/mock adapters, an offline Twilio adapter and a local PostgreSQL-backed development Sandbox implementation with authentication, durable receipts, reply jobs and delivery tracking.
 
-Incoming messages currently stop at the stub; there is no automatic reply, menu engine or conversation state. The [offline Twilio work order and evidence](docs/phase4-twilio-offline-work-order.md) records the implemented protocol subset. The [broader Phase 4 plan](docs/phase4-twilio-plan.md) covers the remaining integration. No live provider connection has been demonstrated by the automated tests.
+Offline mode retains its handoff stub. Explicit Sandbox mode prepares a fixed diagnostic reply through a gated worker. Menus and the conversation engine remain unimplemented. The [offline Twilio work order and evidence](docs/phase4-twilio-offline-work-order.md) records the implemented protocol subset. The [broader Phase 4 plan](docs/phase4-twilio-plan.md) covers the remaining integration. No live provider connection has been demonstrated by the automated tests.
 
 The knowledge-base validator checks required fields, not a full JSON schema or factual accuracy. Startup validation is narrower still. Six articles are labelled unverified and one verified_domain; those labels do not establish approved public guidance.
 
@@ -62,7 +62,7 @@ Keep secrets only in the private .env or the runtime's secret store. Never paste
 | LOG_LEVEL | debug, info, warn or error; defaults to info |
 | ALLOWED_ORIGINS | Comma-separated browser origins; defaults to http://localhost:3000 |
 
-Twilio's test-only settings are documented in the [configuration table](docs/phase4-twilio-offline-work-order.md#9-proposed-configuration). Tests supply synthetic account/token/sender/recipient and HTTPS endpoint strings; no real credentials are needed. The default outbound transport is absent. `TWILIO_LIVE_SEND_ENABLED=true` is rejected, and the example configuration remains mock.
+Twilio's test-only settings are documented in the [configuration table](docs/phase4-twilio-offline-work-order.md#9-proposed-configuration). Tests supply synthetic account/token/sender/recipient and HTTPS endpoint strings; no real credentials are needed. The default outbound transport is absent. `TWILIO_LIVE_SEND_ENABLED=true` is rejected outside explicitly configured development Sandbox mode. The example remains mock with sending disabled.
 
 Numeric values cannot contain spaces, decimal fractions or trailing text. Known public placeholders are rejected; production also rejects test/example credential markers. This validation cannot establish that a credential is genuine or sufficiently strong.
 
@@ -145,4 +145,10 @@ Expected: seven files pass the existing required-field validator. Its wording ab
 - No menu/state engine, candidate authentication, private record access, GA automation, LLM, RAG, embeddings or vector database.
 - Commits, pushes, deployment, live messages, costs and subsequent phases each require the owner's explicit approval.
 
-The Phase 4 baseline and engineering controls have been merged through PR #1 and PR #2. Post-merge CI passed for `main` at `1dae80e`. The offline Twilio implementation is local on `codex/phase4-twilio-offline`, awaiting review and separate publication approval. Durable processing and a controlled Sandbox exchange require later approvals. Phase 4 remains in progress.
+The Phase 4 baseline and engineering controls have been merged through PR #1 and PR #2. Post-merge CI passed for `main` at `1dae80e`. PR #3 subsequently merged the offline Twilio implementation at `34b4177`. The approved PostgreSQL delivery implementation is local on `codex/phase4-delivery-safeguards`; publication and live activation remain separate decisions. Phase 4 remains in progress.
+
+## Phase 4 PostgreSQL implementation checkpoint
+
+The delivery implementation is in progress on `codex/phase4-delivery-safeguards`. PostgreSQL 18 provides durable receipts, reply jobs, attempts and callbacks. Default configuration remains offline with sending disabled. This checkpoint does not claim a live Sandbox round trip or Phase 4 acceptance.
+
+See [database operations](docs/database-operations.md), [delivery work order](docs/phase4-delivery-work-order.md) and [controlled Sandbox runbook](docs/phase4-sandbox-runbook.md). Database-backed checks now require an explicitly disposable TEST_DATABASE_URL. Migration and runtime credentials are separate.

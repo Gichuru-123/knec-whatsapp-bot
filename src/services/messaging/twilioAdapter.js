@@ -21,9 +21,11 @@ class TwilioWhatsAppAdapter extends MessagingAdapter {
 
   constructor({ settings = config, httpClient, now = Date.now } = {}) {
     super();
-    if (settings.nodeEnv !== 'test' || settings.whatsappProvider !== 'twilio' || !settings.twilio || settings.twilio.liveSendEnabled !== false) {
+    const sandbox = settings.nodeEnv === 'development' && settings.twilio?.mode === 'sandbox' && settings.delivery;
+    if ((!sandbox && (settings.nodeEnv !== 'test' || settings.twilio?.liveSendEnabled !== false)) || settings.whatsappProvider !== 'twilio' || !settings.twilio) {
       throw failure('TWILIO_OFFLINE_ONLY');
     }
+    if (sandbox && httpClient !== undefined) throw failure('TWILIO_INVALID_TEST_TRANSPORT');
     if (httpClient !== undefined && (!httpClient || typeof httpClient.request !== 'function')) throw failure('TWILIO_INVALID_TEST_TRANSPORT');
     this.#settings = settings.twilio;
     this.#httpClient = httpClient;
