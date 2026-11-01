@@ -1,8 +1,8 @@
 # KNEC Digital Assistant: presentation and revision guide
 
-Prepared: **2026-10-22**. Updated: **2026-10-24**. Use alongside the [documentation index](README.md) and [engineering-controls record](engineering-controls.md).
+Prepared: **2026-10-22**. Updated: **2026-10-31**. Use alongside the [documentation index](README.md) and [engineering-controls record](engineering-controls.md).
 
-This guide describes the software foundation, engineering controls and approved offline Twilio implementation. PR #1 and PR #2 are merged into `main`. The engineering-controls merge is `1dae80e`, with [successful post-merge CI](https://github.com/Gichuru-123/knec-whatsapp-bot/actions/runs/39895439867). The Twilio work is local on `codex/phase4-twilio-offline`, awaiting review and publication approval. Its [completion evidence](phase4-twilio-offline-work-order.md#17-implementation-and-verification-record) records the subsequent checks. Earlier verification tables retain their original dates and scope.
+This guide describes the software foundation, engineering controls and approved offline Twilio implementation. PR #1 and PR #2 are merged into `main`. The engineering-controls merge is `1dae80e`, with [successful post-merge CI](https://github.com/Gichuru-123/knec-whatsapp-bot/actions/runs/39895439867). PR #3 merged the offline Twilio foundation at `34b4177`. The PostgreSQL delivery implementation is local on `codex/phase4-delivery-safeguards`, with publication and live activation still pending. Its [completion evidence](phase4-twilio-offline-work-order.md#17-implementation-and-verification-record) records the subsequent checks. Earlier verification tables retain their original dates and scope.
 
 ## 1. Start with a precise project description
 
@@ -20,7 +20,7 @@ Explain the intended value: a consistent way to receive enquiries, retrieve appr
 | 1: Engineering | Make development repeatable and reviewable | Repository, manifests, configuration, tests, CI; new local lint and scanner controls | Formatting, confirmed repository governance and formal acceptance evidence |
 | 2: Knowledge | Store information with provenance metadata | Seven JSON articles and a required-field validator | Full schema, content-owner review and publication rules |
 | 3: Backend | Handle requests through defined components | Express app, health endpoint, repository/service layers, logging and errors | Operational ownership, retention/access decisions and production acceptance |
-| 4: Messaging | Establish provider interfaces and webhook boundaries | Meta/mock foundation; local Twilio protocol handling; authentication, limits, safe errors and offline tests | Publication review, durable processing, real transport, live exchange and production onboarding |
+| 4: Messaging | Establish provider interfaces and webhook boundaries | Meta/mock foundation; local Twilio protocol handling; authentication, limits, safe errors and offline tests | Final delivery verification/publication review, live exchange and production onboarding |
 | 5 onward | Add conversation and information-delivery capabilities | Roadmap and planned interfaces | Menu/state engine, integrated answers, escalation, deployment and stakeholder review |
 
 The Phase 1-3 reports were written retrospectively on 2026-10-20. Describe them as reconstructed implementation evidence, not original sign-off documents.
@@ -260,3 +260,23 @@ Recorded result: **44 passing tests**. It includes existing configuration/privac
 | Safe callback normalization | Persistent delivery records, ordering and reconciliation |
 | No automatic replies | Durable jobs and approved conversation/answer logic |
 | Local checks and locked-install evidence | Separate publication approval and CI for the exact published revision |
+
+## Explaining PostgreSQL in the architecture
+
+The database preserves processing state. The backend authenticates and coordinates requests; the conversation engine will decide the next conversation step; the knowledge base supplies approved service information. These are separate responsibilities.
+
+For Phase 4, an accepted inbound event and its pending reply are saved together. Unique account/message identifiers prevent duplicate jobs. A worker reserves an attempt before contacting Twilio. Callbacks update the matching provider SID. A crash during sending leaves an uncertain outcome, requiring investigation rather than an automatic duplicate reply.
+
+The local PostgreSQL 18 instance is separate from existing projects. Development and disposable test databases have different roles. Migration credentials change schema; runtime credentials perform approved table operations. Synthetic backup/restore evidence demonstrates a basic recovery procedure, not production high availability.
+
+Future conversation sessions and knowledge publishing can add reviewed migrations. Production hosting, capacity, data governance and recovery objectives still require institutional decisions. Current demonstrations must be described as development work: a live KNEC-backend WhatsApp exchange and Phase 4 sign-off remain outstanding.
+
+### Verification status — 2026-10-31
+
+Local fresh-install checks passed 109 tests, lint, secret scanning and KB structure validation. The npm audit also reported seven affected dependency entries, including one high-severity advisory. Security remediation is under review; passing functional tests does not resolve dependency advisories. See the delivery work order for exact packages and proposed fixes.
+
+### Security repair evidence — 2026-10-31
+
+The approved targeted dependency repair passes 109 working-tree tests, lint, secret scanning and KB structure validation. The installation audit reports zero advisories at this checkpoint. Minimatch compatibility was checked against 651 repository-pattern cases and intentional ESLint violations. Earlier advisory counts describe the pre-repair state; consult the delivery work order for fresh-install confirmation and exact versions. These checks do not establish live WhatsApp delivery or institutional production acceptance.
+
+**Final security verification, 2026-10-31:** the repaired fresh lockfile installation passed all 109 tests and all check stages; its final npm audit reported zero advisories. No commit/push or live send occurred.
