@@ -280,3 +280,9 @@ Local fresh-install checks passed 109 tests, lint, secret scanning and KB struct
 The approved targeted dependency repair passes 109 working-tree tests, lint, secret scanning and KB structure validation. The installation audit reports zero advisories at this checkpoint. Minimatch compatibility was checked against 651 repository-pattern cases and intentional ESLint violations. Earlier advisory counts describe the pre-repair state; consult the delivery work order for fresh-install confirmation and exact versions. These checks do not establish live WhatsApp delivery or institutional production acceptance.
 
 **Final security verification, 2026-10-31:** the repaired fresh lockfile installation passed all 109 tests and all check stages; its final npm audit reported zero advisories. No commit/push or live send occurred.
+
+## Actual WhatsApp demonstration — 2026-11-02
+
+We demonstrated the complete messaging path on the development Sandbox: a phone message reached the authenticated backend, PostgreSQL preserved the work, one outbound attempt produced the fixed reply, and Twilio delivery callbacks were correlated to that reply. The owner confirmed handset receipt. The database retained read status even though a delivered callback arrived afterward.
+
+This establishes the Phase 4 channel connection. It does not establish a production business-number deployment, institutionally approved answers, menus or departmental workflows. Sending was disabled and the temporary tunnel stopped after evidence collection. See [the live evidence report](phase4-live-evidence.md) for the exact revision, safeguards, results and owner sign-off recorded on 2026-11-03.
