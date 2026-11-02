@@ -101,3 +101,13 @@ A fresh audit reported seven affected dependency entries (one high, six moderate
 The owner approved the targeted dependency repairs. Exact overrides now select follow-redirects 1.16.2, qs 6.16.1 and minimatch 11.0.1. The repaired working tree passes 109 tests and the lint/scanner/KB checks; the installation audit reports zero advisories. The separate fresh-install confirmation is recorded in the delivery work order. Previous advisory counts above describe the pre-repair snapshot.
 
 **Final security verification, 2026-10-31:** the repaired fresh lockfile installation passed all 109 tests and all check stages; its final npm audit reported zero advisories. No commit/push or live send occurred.
+
+## Live demonstration — 2026-11-02
+
+The approved one-attempt Sandbox exchange succeeded on merged revision `b13c3f7`. The owner confirmed receiving the reply; PostgreSQL recorded one receipt, one attempt and three exactly correlated sent/read/delivered callbacks. Final delivery status was read with no review conflict. Sending is disabled, the run is closed and the tunnel/application are stopped.
+
+See [the sanitized live evidence](phase4-live-evidence.md). The technical demonstration is complete. The owner approved Phase 4 sign-off and publication of this evidence on 2026-11-03. The Sandbox URLs still reference the stopped test endpoint.
+
+## Owner acceptance — 2026-11-03
+
+The owner approved closing the development channel scope of Phase 4 and publishing the evidence update. Next: official KNEC knowledge-base source review. Production onboarding and institutional acceptance remain separate.

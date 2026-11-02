@@ -76,3 +76,5 @@ The original 2026-10-20 change added this index and three retrospective reports.
 - [Phase 4 completion evidence checklist](phase4-completion-plan.md)
 
 Implementation is in progress; these links do not constitute live acceptance or a GitHub publication claim.
+
+- [Phase 4 live demonstration evidence — 2026-11-02](phase4-live-evidence.md): one-attempt exchange succeeded; owner sign-off approved 2026-11-03.
