@@ -53,5 +53,7 @@ jobs:
       run: npm run scan:secrets
     - name: Validate Knowledge Base Required Fields
       run: npm run validate-kb
+    - name: Validate KB evaluation and procedure references
+      run: npm run kb:coverage && npm run kb:procedures
     - name: Run Test Suite
       run: npm test

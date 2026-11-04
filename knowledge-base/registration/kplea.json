@@ -1,0 +1,68 @@
+{
+  "schema_version": 2,
+  "id": "reg-kplea",
+  "service_id": "reg-kplea",
+  "category": "registration",
+  "title": "KPLEA Assessment Registration (2026)",
+  "description": "Draft public-service guidance; review questions must be resolved before publication.",
+  "language": "en",
+  "version": "1.0.0",
+  "status": "draft",
+  "verification_status": "source_checked",
+  "visibility": "public",
+  "scope": {
+    "examinations": [
+      "KPLEA"
+    ],
+    "audiences": [
+      "all"
+    ],
+    "years": [
+      "2026"
+    ]
+  },
+  "intents": [
+    "kplea registration"
+  ],
+  "clarifying_questions": [
+    "Which assessment year?",
+    "Are you a learner, parent or registering institution?"
+  ],
+  "claims": [
+    {
+      "id": "kjsea-window",
+      "kind": "timeline",
+      "text": "The 2026 KJSEA/KPLEA registration window was 2 March to 31 March 2026; it is historical.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "kjsea-2026",
+          "source_sha256": "08bcc6f9520a0f0e3d3f2dd84ff3852c271bab4665d8982a45c018b15e767606",
+          "locator": "p. 1, introduction"
+        }
+      ]
+    },
+    {
+      "id": "kplea-pathway",
+      "kind": "orientation",
+      "text": "For stage-based KPLEA, teachers identify readiness and institutions register learners in the appropriate portal.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "kjsea-2026",
+          "source_sha256": "08bcc6f9520a0f0e3d3f2dd84ff3852c271bab4665d8982a45c018b15e767606",
+          "locator": "section 2"
+        }
+      ]
+    }
+  ],
+  "unresolved_questions": [
+    "Review fee exceptions and transfer rules specifically for KPLEA.",
+    "Check subsequent amendments and obtain named content approval before publication.",
+    "Verify stage-based forms and eligibility; do not import grade-based KPSEA/KJSEA annex requirements."
+  ],
+  "effective_from": null,
+  "effective_to": null,
+  "review_due": "2026-12-03",
+  "approval": null
+}

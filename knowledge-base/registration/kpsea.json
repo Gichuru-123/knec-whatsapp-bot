@@ -1,0 +1,93 @@
+{
+  "schema_version": 2,
+  "id": "reg-kpsea",
+  "service_id": "reg-kpsea",
+  "category": "registration",
+  "title": "KPSEA Assessment Registration (2026)",
+  "description": "Draft public-service guidance; review questions must be resolved before publication.",
+  "language": "en",
+  "version": "1.0.0",
+  "status": "draft",
+  "verification_status": "source_checked",
+  "visibility": "public",
+  "scope": {
+    "examinations": [
+      "KPSEA"
+    ],
+    "audiences": [
+      "all"
+    ],
+    "years": [
+      "2026"
+    ]
+  },
+  "intents": [
+    "kpsea registration"
+  ],
+  "clarifying_questions": [
+    "Which assessment year?",
+    "Are you a learner, parent or registering institution?"
+  ],
+  "claims": [
+    {
+      "id": "kpsea-window",
+      "kind": "timeline",
+      "text": "The 2026 KPSEA/KILEA registration window was 16 February to 16 March 2026; it is historical.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "kpsea-2026",
+          "source_sha256": "d39d00bcaceecb5e6051ae8b2c5cd8550d15df3c9ef84f79d89eafb60a60baa7",
+          "locator": "p. 1, introduction"
+        }
+      ]
+    },
+    {
+      "id": "kpsea-eligibility",
+      "kind": "requirement",
+      "text": "Grade 6 learners require fresh KPSEA registration and an assessment number; missing numbers must be addressed through the Grade 6 portal.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "kpsea-2026",
+          "source_sha256": "d39d00bcaceecb5e6051ae8b2c5cd8550d15df3c9ef84f79d89eafb60a60baa7",
+          "locator": "p. 1, section 1"
+        }
+      ]
+    },
+    {
+      "id": "kpsea-declaration",
+      "kind": "step",
+      "text": "The KPSEA institutional declaration verifies candidate names, assessment numbers and subject entries, including special-needs and religious-education options. It is forwarded through the SCDE.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "kpsea-2026",
+          "source_sha256": "d39d00bcaceecb5e6051ae8b2c5cd8550d15df3c9ef84f79d89eafb60a60baa7",
+          "locator": "PDF p7, institutional declaration"
+        }
+      ]
+    },
+    {
+      "id": "kpsea-special-needs",
+      "kind": "requirement",
+      "text": "The KPSEA special-needs form requires institutional and medical evidence identifying assistance; its notes specify recent detailed medical and EARC reports for listed categories and a full-size photograph for physical disability. Low-vision candidates also require a medical report.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "kpsea-2026",
+          "source_sha256": "d39d00bcaceecb5e6051ae8b2c5cd8550d15df3c9ef84f79d89eafb60a60baa7",
+          "locator": "PDF p8, special-needs form notes ii-iv"
+        }
+      ]
+    }
+  ],
+  "unresolved_questions": [
+    "Review fee exceptions and transfer rules specifically for KPSEA.",
+    "Check subsequent amendments and obtain named content approval before publication."
+  ],
+  "effective_from": null,
+  "effective_to": null,
+  "review_due": "2026-12-03",
+  "approval": null
+}

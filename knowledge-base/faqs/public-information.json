@@ -1,0 +1,52 @@
+{
+  "schema_version": 2,
+  "id": "public-information",
+  "service_id": "public-information",
+  "category": "faqs",
+  "title": "Requests for Information",
+  "description": "Draft public-service guidance; review questions must be resolved before publication.",
+  "language": "en",
+  "version": "2.0.0",
+  "status": "draft",
+  "verification_status": "source_checked",
+  "visibility": "public",
+  "scope": {
+    "examinations": [
+      "all"
+    ],
+    "audiences": [
+      "all"
+    ],
+    "years": [
+      "all"
+    ]
+  },
+  "intents": [
+    "request public information"
+  ],
+  "clarifying_questions": [
+    "Which service and examination does your question concern?"
+  ],
+  "claims": [
+    {
+      "id": "request",
+      "kind": "orientation",
+      "text": "The charter requires a formal information request explaining its purpose and requested data; charges depend on the information.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "charter-2026",
+          "source_sha256": "ede99259c38a3ed9d51ab6ca3479e933abda80c4c3ed9003594196a788726fdc",
+          "locator": "p5 row17"
+        }
+      ]
+    }
+  ],
+  "unresolved_questions": [
+    "Obtain the applicable request procedure, permitted disclosure boundaries and current contact route."
+  ],
+  "effective_from": null,
+  "effective_to": null,
+  "review_due": "2026-12-03",
+  "approval": null
+}

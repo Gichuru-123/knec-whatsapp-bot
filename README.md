@@ -4,7 +4,7 @@ A public-information prototype intended for future review by the Kenya National 
 
 ## Current scope
 
-The Phase 3 foundation loads seven JSON knowledge-base articles, indexes them by ID and category, and freezes article objects. Phase 4 provides Meta/mock adapters, an offline Twilio adapter and a local PostgreSQL-backed development Sandbox implementation with authentication, durable receipts, reply jobs and delivery tracking.
+The Phase 2 follow-up loads 16 draft JSON articles with shared schema/reference validation and an approved-answer selector; no article is yet approved for public answers. It preserves the Phase 3 ID/category index and immutable article objects. Phase 4 provides Meta/mock adapters, an offline Twilio adapter and a local PostgreSQL-backed development Sandbox implementation with authentication, durable receipts, reply jobs and delivery tracking.
 
 Offline mode retains its handoff stub. Explicit Sandbox mode prepares a fixed diagnostic reply through a gated worker. Menus and the conversation engine remain unimplemented. The [offline Twilio work order and evidence](docs/phase4-twilio-offline-work-order.md) records the implemented protocol subset. The [broader Phase 4 plan](docs/phase4-twilio-plan.md) covers the remaining integration. No live provider connection has been demonstrated by the automated tests.
 
@@ -132,7 +132,7 @@ Expected: zero failures. Tests use synthetic credentials and fake localhost HTTP
 npm run validate-kb
 ```
 
-Expected: seven files pass the existing required-field validator. Its wording about verification is structural only, not a factual endorsement.
+Expected: 16 articles and 10 sources pass schema/reference checks. This does not establish factual accuracy. Run `npm run kb:report` for editorial status; see [the Phase 2 implementation report](docs/phase2-kb-implementation.md).
 
 **Offline Twilio local evidence, 2026-10-24:** `npm run check` passed with **97 tests** (the existing 77 plus 20 new top-level scenarios) and seven KB files. The focused Twilio/configuration run passed 44 tests. See the [completion record](docs/phase4-twilio-offline-work-order.md#17-implementation-and-verification-record) for the locked-install result, dependency delta and limitations. These local results do not represent a GitHub CI run for the unpublished changes.
 

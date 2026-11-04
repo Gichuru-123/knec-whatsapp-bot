@@ -1,0 +1,67 @@
+{
+  "schema_version": 2,
+  "id": "results-query",
+  "service_id": "results-query",
+  "category": "queries",
+  "title": "Examination Results Queries",
+  "description": "Draft public-service guidance; review questions must be resolved before publication.",
+  "language": "en",
+  "version": "2.0.0",
+  "status": "draft",
+  "verification_status": "source_checked",
+  "visibility": "public",
+  "scope": {
+    "examinations": [
+      "all"
+    ],
+    "audiences": [
+      "all"
+    ],
+    "years": [
+      "all"
+    ]
+  },
+  "intents": [
+    "missing marks"
+  ],
+  "clarifying_questions": [
+    "Does the issue concern a missing mark, an absentee entry, pending results or cancellation?"
+  ],
+  "claims": [
+    {
+      "id": "service",
+      "kind": "orientation",
+      "text": "The historical manual identifies absentee appeals, missing marks and reinstatement queries.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "qmis-manual-2018",
+          "source_sha256": "4f67a0032187376ec74c7fcf5770735eafa7c13e7dee57e76796ddd19c56d181",
+          "locator": "p6 section2.4(iv)"
+        }
+      ]
+    },
+    {
+      "id": "official-query-route",
+      "kind": "step",
+      "text": "The public query page directs examination queries through heads of institutions and Sub-County Directors of Education.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "queries-page",
+          "source_sha256": "816e8397a02149d7a43c13092e37bf8997a18fc192b83f94fb0d31c12b96b55e",
+          "locator": "Period Of launching queries after release of Results"
+        }
+      ]
+    }
+  ],
+  "unresolved_questions": [
+    "Historical manual: verify current procedure, eligibility, documents and portal behavior.",
+    "Distinguish this service from other similarly named queries before answering.",
+    "Resolve query-page 30-day wording versus charter p3 row10 working-day windows and exam-specific penalties."
+  ],
+  "effective_from": null,
+  "effective_to": null,
+  "review_due": "2026-12-03",
+  "approval": null
+}

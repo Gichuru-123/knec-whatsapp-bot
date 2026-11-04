@@ -1,0 +1,54 @@
+{
+  "schema_version": 2,
+  "id": "qmis-navigation",
+  "service_id": "qmis-navigation",
+  "category": "faqs",
+  "title": "QMIS Navigation and Status Guidance",
+  "description": "Draft public-service guidance; review questions must be resolved before publication.",
+  "language": "en",
+  "version": "2.0.0",
+  "status": "draft",
+  "verification_status": "source_checked",
+  "visibility": "public",
+  "scope": {
+    "examinations": [
+      "all"
+    ],
+    "audiences": [
+      "all"
+    ],
+    "years": [
+      "all"
+    ]
+  },
+  "intents": [
+    "application status",
+    "qmis login"
+  ],
+  "clarifying_questions": [
+    "Which service and examination does your question concern?"
+  ],
+  "claims": [
+    {
+      "id": "status",
+      "kind": "orientation",
+      "text": "The historical manual describes checking query progress through the QMIS Status function.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "qmis-manual-2018",
+          "source_sha256": "4f67a0032187376ec74c7fcf5770735eafa7c13e7dee57e76796ddd19c56d181",
+          "locator": "pp5-6 section2.2"
+        }
+      ]
+    }
+  ],
+  "unresolved_questions": [
+    "Validate current public manual/UI without collecting account credentials.",
+    "This assistant cannot access individual application status."
+  ],
+  "effective_from": null,
+  "effective_to": null,
+  "review_due": "2026-12-03",
+  "approval": null
+}

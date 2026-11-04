@@ -1,0 +1,80 @@
+{
+  "schema_version": 2,
+  "id": "public-complaints",
+  "service_id": "public-complaints",
+  "category": "queries",
+  "title": "Public Complaints and Grievances",
+  "description": "Draft public-service guidance; review questions must be resolved before publication.",
+  "language": "en",
+  "version": "2.0.0",
+  "status": "draft",
+  "verification_status": "source_checked",
+  "visibility": "public",
+  "scope": {
+    "examinations": [
+      "all"
+    ],
+    "audiences": [
+      "all"
+    ],
+    "years": [
+      "all"
+    ]
+  },
+  "intents": [
+    "complaint",
+    "service delay"
+  ],
+  "clarifying_questions": [
+    "Which service and examination does your question concern?"
+  ],
+  "claims": [
+    {
+      "id": "commitment",
+      "kind": "timeline",
+      "text": "The charter lists a free response to public complaints within one working day; this is not a guarantee of final resolution.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "charter-2026",
+          "source_sha256": "ede99259c38a3ed9d51ab6ca3479e933abda80c4c3ed9003594196a788726fdc",
+          "locator": "p2 row4"
+        }
+      ]
+    },
+    {
+      "id": "channels",
+      "kind": "step",
+      "text": "The procedure accepts complaints through approved channels including in person, writing, telephone and email.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "complaints-procedure",
+          "source_sha256": "6f503f89acf9e568a0fcedcd6b614fd6bb4ce4b608fbdf428e6bb3f1666e38bc",
+          "locator": "p1 opening box"
+        }
+      ]
+    },
+    {
+      "id": "escalation",
+      "kind": "orientation",
+      "text": "Unresolved complaints move from frontline handling to investigation, then Corporate Communications and management; dissatisfied clients may seek external help.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "complaints-procedure",
+          "source_sha256": "6f503f89acf9e568a0fcedcd6b614fd6bb4ce4b608fbdf428e6bb3f1666e38bc",
+          "locator": "p1 Stage1 and Stage2 flowchart"
+        }
+      ]
+    }
+  ],
+  "unresolved_questions": [
+    "Verify current submission contacts and named reviewer approval.",
+    "Do not claim the bot submits complaints into KNEC CRM."
+  ],
+  "effective_from": null,
+  "effective_to": null,
+  "review_due": "2026-12-03",
+  "approval": null
+}

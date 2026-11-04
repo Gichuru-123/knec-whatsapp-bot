@@ -1,0 +1,80 @@
+{
+  "schema_version": 2,
+  "id": "biodata-amendment",
+  "service_id": "biodata-amendment",
+  "category": "queries",
+  "title": "Biodata Amendments",
+  "description": "Draft public-service guidance; review questions must be resolved before publication.",
+  "language": "en",
+  "version": "2.1.0",
+  "status": "draft",
+  "verification_status": "source_checked",
+  "visibility": "public",
+  "scope": {
+    "examinations": [
+      "all"
+    ],
+    "audiences": [
+      "all"
+    ],
+    "years": [
+      "all"
+    ]
+  },
+  "intents": [
+    "wrong name"
+  ],
+  "clarifying_questions": [
+    "Which field is wrong, and was it captured incorrectly or changed later?"
+  ],
+  "claims": [
+    {
+      "id": "service",
+      "kind": "orientation",
+      "text": "The historical manual lists name, gender, entry code, birth-certificate number, ID number, birth year and citizenship amendments.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "qmis-manual-2018",
+          "source_sha256": "4f67a0032187376ec74c7fcf5770735eafa7c13e7dee57e76796ddd19c56d181",
+          "locator": "p6 section2.4(i)"
+        }
+      ]
+    },
+    {
+      "id": "official-query-route",
+      "kind": "step",
+      "text": "The public query page directs examination queries through heads of institutions and Sub-County Directors of Education.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "queries-page",
+          "source_sha256": "816e8397a02149d7a43c13092e37bf8997a18fc192b83f94fb0d31c12b96b55e",
+          "locator": "Period Of launching queries after release of Results"
+        }
+      ]
+    },
+    {
+      "id": "historical-submission",
+      "kind": "step",
+      "text": "The September 2017 manual describes selecting biodata amendment, entering examination identity, reviewing the existing details, entering the proposed correction, attaching the requested documents and submitting. This is historical workflow evidence, not confirmation of current eligibility or screens.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "qmis-external-2017",
+          "source_sha256": "4c6a3f796aa72a0025c7aeae2cf7da792e4e1f9d2be40dff0c9d61a9692f966d",
+          "locator": "PDF pp5-6, sections 3.1.1-3.1.9"
+        }
+      ]
+    }
+  ],
+  "unresolved_questions": [
+    "Historical manual: verify current procedure, eligibility, documents and portal behavior.",
+    "Distinguish this service from other similarly named queries before answering.",
+    "Resolve query-page 30-day wording versus charter p3 row10 working-day windows and exam-specific penalties."
+  ],
+  "effective_from": null,
+  "effective_to": null,
+  "review_due": "2026-12-03",
+  "approval": null
+}

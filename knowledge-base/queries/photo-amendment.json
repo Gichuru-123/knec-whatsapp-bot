@@ -1,0 +1,53 @@
+{
+  "schema_version": 2,
+  "id": "photo-amendment",
+  "service_id": "photo-amendment",
+  "category": "queries",
+  "title": "Photo Amendments",
+  "description": "Draft public-service guidance; review questions must be resolved before publication.",
+  "language": "en",
+  "version": "2.0.0",
+  "status": "draft",
+  "verification_status": "source_checked",
+  "visibility": "public",
+  "scope": {
+    "examinations": [
+      "all"
+    ],
+    "audiences": [
+      "all"
+    ],
+    "years": [
+      "all"
+    ]
+  },
+  "intents": [
+    "wrong photo"
+  ],
+  "clarifying_questions": [
+    "Which service and examination does your question concern?"
+  ],
+  "claims": [
+    {
+      "id": "service",
+      "kind": "orientation",
+      "text": "The historical manual identifies photo correction as a separate query.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "qmis-manual-2018",
+          "source_sha256": "4f67a0032187376ec74c7fcf5770735eafa7c13e7dee57e76796ddd19c56d181",
+          "locator": "p6 section2.4(ii)"
+        }
+      ]
+    }
+  ],
+  "unresolved_questions": [
+    "Historical manual: verify current procedure, eligibility, documents and portal behavior.",
+    "Distinguish this service from other similarly named queries before answering."
+  ],
+  "effective_from": null,
+  "effective_to": null,
+  "review_due": "2026-12-03",
+  "approval": null
+}

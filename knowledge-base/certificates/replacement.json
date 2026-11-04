@@ -1,27 +1,243 @@
 {
+  "schema_version": 2,
   "id": "cert-replacement",
+  "service_id": "cert-replacement",
   "category": "certificates",
-  "examination": "General",
-  "department": "Archives and Verification",
-  "title": "Certificate Replacement / Confirmation Letter",
-  "description": "Procedure for requesting a confirmation letter for lost or damaged certificates via QMIS.",
-  "requirements": [
-    "Police Abstract",
-    "Copy of lost certificate or result slip (if available)",
-    "Copy of National ID or Passport",
-    "Recommendation letter from school or institution"
+  "title": "Examination Results Certification Letter",
+  "description": "Draft public-service guidance; review questions must be resolved before publication.",
+  "language": "en",
+  "version": "2.5.0",
+  "status": "draft",
+  "verification_status": "source_checked",
+  "visibility": "public",
+  "scope": {
+    "examinations": [
+      "all"
+    ],
+    "audiences": [
+      "all"
+    ],
+    "years": [
+      "all"
+    ]
+  },
+  "intents": [
+    "lost certificate",
+    "damaged certificate"
   ],
-  "fee": "Subject to official tariff display on QMIS portal - verify active fees inside QMIS prior to payment",
-  "portalUrl": "https://qmis.knec.ac.ke",
-  "source_url": "https://qmis.knec.ac.ke",
-  "source_date": "2026-01-01",
-  "effective_date": "2026-01-01",
-  "review_date": "2026-12-31",
-  "status": "active",
-  "verification_status": "unverified",
-  "authority_tier": "official_portal",
-  "version": "1.0.0",
-  "escalation_required": false,
-  "individual_record_required": true
+  "clarifying_questions": [
+    "Was the certificate lost/damaged, never received, or is an institution requesting confirmation?"
+  ],
+  "claims": [
+    {
+      "id": "purpose",
+      "kind": "orientation",
+      "text": "For applicants who sat KNEC examinations and lost or damaged certificates; applications use QMIS.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "certification-2024",
+          "source_sha256": "b43ea9ce5b197a2f6705f5d39b790fd00f4f3477525aad62be541988c8d38956",
+          "locator": "p1 introductory paragraph and section 1.0"
+        }
+      ]
+    },
+    {
+      "id": "documents",
+      "kind": "requirement",
+      "text": "Provide a certificate/result-slip copy (primary results before 2013 excluded), police abstract, identity evidence, Registrar of Persons confirmation and one colour photograph. Minors require birth-certificate and parent/guardian ID evidence. Upload copies.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "certification-2024",
+          "source_sha256": "b43ea9ce5b197a2f6705f5d39b790fd00f4f3477525aad62be541988c8d38956",
+          "locator": "p1 sections 2.1-2.6"
+        }
+      ]
+    },
+    {
+      "id": "modules",
+      "kind": "requirement",
+      "text": "Post-school modular applicants must attach results slips for all modules/parts.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "certification-2024",
+          "source_sha256": "b43ea9ce5b197a2f6705f5d39b790fd00f4f3477525aad62be541988c8d38956",
+          "locator": "p1 section 5.3"
+        }
+      ]
+    },
+    {
+      "id": "name-evidence",
+      "kind": "exception",
+      "text": "Identity names must match examination names; legal changes need supporting legal documents. Sworn affidavits are not accepted for that name-change evidence.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "certification-2024",
+          "source_sha256": "b43ea9ce5b197a2f6705f5d39b790fd00f4f3477525aad62be541988c8d38956",
+          "locator": "p2 section 5.5"
+        }
+      ]
+    },
+    {
+      "id": "payment",
+      "kind": "step",
+      "text": "Follow the system-issued M-Pesa payment details after document verification.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "certification-2024",
+          "source_sha256": "b43ea9ce5b197a2f6705f5d39b790fd00f4f3477525aad62be541988c8d38956",
+          "locator": "p1 section 3.2"
+        }
+      ]
+    },
+    {
+      "id": "collection",
+      "kind": "step",
+      "text": "Collect in person with original ID/passport; minors attend with a parent/guardian and the specified originals.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "certification-2024",
+          "source_sha256": "b43ea9ce5b197a2f6705f5d39b790fd00f4f3477525aad62be541988c8d38956",
+          "locator": "p1 section 4.1"
+        }
+      ]
+    },
+    {
+      "id": "fee",
+      "kind": "fee",
+      "text": "The charter lists KES 5,220 per certification letter.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "charter-2026",
+          "source_sha256": "ede99259c38a3ed9d51ab6ca3479e933abda80c4c3ed9003594196a788726fdc",
+          "locator": "p5 row 16"
+        }
+      ]
+    },
+    {
+      "id": "timeline-conflict",
+      "kind": "timeline",
+      "text": "Processing-time conflict: the guideline says 15 working days after requirements are fulfilled; the charter says 10 after complete, accurate documentation.",
+      "evidence_status": "unresolved",
+      "citations": [
+        {
+          "source_id": "certification-2024",
+          "source_sha256": "b43ea9ce5b197a2f6705f5d39b790fd00f4f3477525aad62be541988c8d38956",
+          "locator": "p1 section 5.2"
+        },
+        {
+          "source_id": "charter-2026",
+          "source_sha256": "ede99259c38a3ed9d51ab6ca3479e933abda80c4c3ed9003594196a788726fdc",
+          "locator": "p5 row16"
+        }
+      ]
+    },
+    {
+      "id": "uncollected",
+      "kind": "exception",
+      "text": "The guideline says letters uncollected two years after application are disposed of without further notice or refund.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "certification-2024",
+          "source_sha256": "b43ea9ce5b197a2f6705f5d39b790fd00f4f3477525aad62be541988c8d38956",
+          "locator": "p1 section 4.2"
+        }
+      ]
+    },
+    {
+      "id": "non-replaceable",
+      "kind": "exception",
+      "text": "A certification letter cannot itself be replaced once issued.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "certification-2024",
+          "source_sha256": "b43ea9ce5b197a2f6705f5d39b790fd00f4f3477525aad62be541988c8d38956",
+          "locator": "p1 section 5.1"
+        }
+      ]
+    },
+    {
+      "id": "loss-proof",
+      "kind": "requirement",
+      "text": "Applicants must establish that the certificate was lost or destroyed.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "certification-2024",
+          "source_sha256": "b43ea9ce5b197a2f6705f5d39b790fd00f4f3477525aad62be541988c8d38956",
+          "locator": "p2 section 5.4"
+        }
+      ]
+    },
+    {
+      "id": "incomplete-application",
+      "kind": "exception",
+      "text": "Applications with inconsistent examination details or unmet requirements are declined.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "certification-2024",
+          "source_sha256": "b43ea9ce5b197a2f6705f5d39b790fd00f4f3477525aad62be541988c8d38956",
+          "locator": "p2 section 5.6"
+        }
+      ]
+    },
+    {
+      "id": "online-only",
+      "kind": "step",
+      "text": "Apply online; manual and emailed applications are not accepted. Visit for collection after the SMS notification.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "certification-2024",
+          "source_sha256": "b43ea9ce5b197a2f6705f5d39b790fd00f4f3477525aad62be541988c8d38956",
+          "locator": "p2 sections 6.0-7.0"
+        }
+      ]
+    },
+    {
+      "id": "archives-contact",
+      "kind": "contact",
+      "text": "The guideline lists archives@knec.ac.ke and ceo@knec.ac.ke for further enquiries.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "certification-2024",
+          "source_sha256": "b43ea9ce5b197a2f6705f5d39b790fd00f4f3477525aad62be541988c8d38956",
+          "locator": "p2 section 8.0"
+        }
+      ]
+    },
+    {
+      "id": "portal-sequence",
+      "kind": "step",
+      "text": "The public poster directs users from the KNEC website to QMIS, then registration/login, service details and attachments, submission for verification, and status checking for payment.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "qmis-procedure-poster",
+          "source_sha256": "36180572aedc32d94e7dca95cc6afc0b0e91a659ea3473ca9a450d184cf510e6",
+          "locator": "Poster steps 1-6, respective service column"
+        }
+      ]
+    }
+  ],
+  "unresolved_questions": [
+    "Resolve timeline conflict against charter p5 row16.",
+    "Confirm current portal requirements and legal-name-change edge cases with reviewer.",
+    "Section 5.7 instructs deletion and resubmission of a pended application. Verify current portal behavior and payment implications before advising this irreversible action; never generalize to any pending status.",
+    "Poster says seven documents without enumerating them; reconcile with the detailed guideline and current portal before giving a universal attachment count."
+  ],
+  "effective_from": null,
+  "effective_to": null,
+  "review_due": "2026-12-03",
+  "approval": null
 }
-
