@@ -1,0 +1,69 @@
+{
+  "schema_version": 2,
+  "id": "tvet-series-2027-07",
+  "service_id": "tvet-series-2027-07",
+  "category": "registration",
+  "title": "Business and Technical Registration: 2027-07",
+  "description": "Draft public-service guidance; review questions must be resolved before publication.",
+  "language": "en",
+  "version": "1.0.0",
+  "status": "draft",
+  "verification_status": "source_checked",
+  "visibility": "public",
+  "scope": {
+    "examinations": [
+      "Business and Technical"
+    ],
+    "audiences": [
+      "all"
+    ],
+    "years": [
+      "2027"
+    ],
+    "series": [
+      "2027-07"
+    ]
+  },
+  "intents": [
+    "business technical registration 2027-07"
+  ],
+  "clarifying_questions": [
+    "Which examination, year and series?",
+    "Which candidate type, programme or assessment pathway?"
+  ],
+  "claims": [
+    {
+      "id": "series-windows",
+      "kind": "timeline",
+      "text": "Table 1 sets the July 2027 series registration window at 1 March to 7 May 2027. Confirm subsequent amendments before advising that registration is open.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "tvet-2026-2027",
+          "source_sha256": "20edd2615912f611a29c9d2ff780527574a67f0690d266153ccc42e029a1eb73",
+          "locator": "p. 1, Table 1"
+        }
+      ]
+    },
+    {
+      "id": "institution-route",
+      "kind": "step",
+      "text": "Institutions handle registration. Online upload and payment alone do not complete registration; submission of registration materials is also required.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "tvet-2026-2027",
+          "source_sha256": "20edd2615912f611a29c9d2ff780527574a67f0690d266153ccc42e029a1eb73",
+          "locator": "p. 2, section 3"
+        }
+      ]
+    }
+  ],
+  "unresolved_questions": [
+    "Check subsequent amendments and obtain named content approval before publication."
+  ],
+  "effective_from": null,
+  "effective_to": null,
+  "review_due": "2026-12-03",
+  "approval": null
+}

@@ -1,0 +1,355 @@
+{
+  "version": "1.0.0",
+  "purpose": "Offline editorial procedure plans, not executable workflows or approved public responses.",
+  "procedures": [
+    {
+      "id": "certification",
+      "title": "Lost or damaged certificate",
+      "status": "draft",
+      "language": "en",
+      "clarifying_questions": [
+        "Was your certificate lost or damaged, or have you never received it?",
+        "Which examination and year?",
+        "Is the applicant under 18?",
+        "Is this a modular qualification, and do the identity names match the examination record?"
+      ],
+      "steps": [
+        {
+          "id": "confirm-service",
+          "prompt": "Confirm that certification is the appropriate service before preparing an application.",
+          "applies_when": "Always",
+          "claim_refs": [
+            "cert-replacement:purpose"
+          ],
+          "review_gate": null
+        },
+        {
+          "id": "prepare-documents",
+          "prompt": "Prepare the evidence listed in the official guideline: certificate or accepted result-slip copy, police abstract, identity evidence, Registrar of Persons confirmation and a colour passport-size photograph. Upload copies through the official application channel, not this chat.",
+          "applies_when": "Always",
+          "claim_refs": [
+            "cert-replacement:documents"
+          ],
+          "review_gate": null
+        },
+        {
+          "id": "minor-evidence",
+          "prompt": "For an applicant under 18, prepare the birth certificate and the ID of a parent or official guardian.",
+          "applies_when": "Applicant is under 18",
+          "claim_refs": [
+            "cert-replacement:documents"
+          ],
+          "review_gate": null
+        },
+        {
+          "id": "module-evidence",
+          "prompt": "Include the result slips for every module or part.",
+          "applies_when": "Post-school modular qualification",
+          "claim_refs": [
+            "cert-replacement:modules"
+          ],
+          "review_gate": null
+        },
+        {
+          "id": "name-difference",
+          "prompt": "Check the legal-name evidence requirements before submitting if names differ.",
+          "applies_when": "Identity and examination names differ",
+          "claim_refs": [
+            "cert-replacement:name-evidence"
+          ],
+          "review_gate": "Reviewer must confirm applicability to the specific name-change circumstances."
+        },
+        {
+          "id": "apply-online",
+          "prompt": "Use the official QMIS application route. Manual or emailed applications are not accepted by this guideline. The public poster describes registration/login, service details and attachments, submission for verification, then checking status for payment.",
+          "applies_when": "Always",
+          "claim_refs": [
+            "cert-replacement:purpose",
+            "cert-replacement:online-only",
+            "cert-replacement:portal-sequence"
+          ],
+          "review_gate": "Verify current portal screens before giving button-by-button instructions."
+        },
+        {
+          "id": "payment",
+          "prompt": "The recorded charter fee is KES 5,220 per letter. Follow the system-issued payment instructions after document verification.",
+          "applies_when": "Always",
+          "claim_refs": [
+            "cert-replacement:fee",
+            "cert-replacement:payment"
+          ],
+          "review_gate": "Confirm current payment prompt before release; do not supply a guessed paybill or account."
+        },
+        {
+          "id": "processing",
+          "prompt": "A processing-time answer requires clarification of the conflict between the guideline and charter. Do not promise a completion date.",
+          "applies_when": "User asks how long processing takes",
+          "claim_refs": [
+            "cert-replacement:timeline-conflict"
+          ],
+          "review_gate": "Unresolved timing conflict; escalate this question."
+        },
+        {
+          "id": "collect",
+          "prompt": "Wait for the collection notification. The owner collects in person with original ID or passport; a minor attends with a parent or official guardian and the specified originals.",
+          "applies_when": "Always",
+          "claim_refs": [
+            "cert-replacement:online-only",
+            "cert-replacement:collection"
+          ],
+          "review_gate": null
+        },
+        {
+          "id": "help",
+          "prompt": "For further enquiries, the guideline lists archives@knec.ac.ke and ceo@knec.ac.ke. General telephone support is 0719093000.",
+          "applies_when": "User is stuck or requests human assistance",
+          "claim_refs": [
+            "cert-replacement:archives-contact",
+            "faq-general:switchboard"
+          ],
+          "review_gate": null
+        }
+      ],
+      "completion": "Guidance finished; the assistant has not submitted, paid for or approved an application."
+    },
+    {
+      "id": "confirmation",
+      "title": "Institution or employer confirmation",
+      "status": "draft",
+      "language": "en",
+      "clarifying_questions": [
+        "Which institution or employer needs confirmation?",
+        "Which examination, year and, where applicable, Business or Technical series?",
+        "Is the destination within Kenya or abroad?",
+        "Does the request cover modules or Single and Group stages?"
+      ],
+      "steps": [
+        {
+          "id": "confirm-recipient",
+          "prompt": "Confirm the receiving institution address. The statement goes to the employer or institution, cannot be redirected and is not a replacement certificate.",
+          "applies_when": "Always",
+          "claim_refs": [
+            "ver-results:recipient",
+            "ver-results:apply"
+          ],
+          "review_gate": null
+        },
+        {
+          "id": "prepare-details",
+          "prompt": "Prepare the examination identity, school or centre details and certificate evidence. Include the series for Business or Technical examinations.",
+          "applies_when": "Always",
+          "claim_refs": [
+            "ver-results:apply"
+          ],
+          "review_gate": null
+        },
+        {
+          "id": "missing-copy",
+          "prompt": "If the certificate or result slip is missing, obtain an appropriate certified results printout; check the primary-examination year restrictions.",
+          "applies_when": "Applicant lacks certificate or accepted result-slip evidence",
+          "claim_refs": [
+            "ver-results:missing-copy"
+          ],
+          "review_gate": "Verify the exact year-specific evidence before giving a complete checklist."
+        },
+        {
+          "id": "separate-applications",
+          "prompt": "Submit each examination separately with its supporting evidence.",
+          "applies_when": "Always",
+          "claim_refs": [
+            "ver-results:separate-examinations"
+          ],
+          "review_gate": null
+        },
+        {
+          "id": "apply",
+          "prompt": "Use QMIS and provide contact details for any clarification. The public poster describes registration/login, service details and attachments, submission for verification, then checking status for payment.",
+          "applies_when": "Always",
+          "claim_refs": [
+            "ver-results:apply",
+            "ver-results:applicant-contact",
+            "ver-results:portal-sequence"
+          ],
+          "review_gate": "Verify current portal screens before button-by-button instructions."
+        },
+        {
+          "id": "fee-context",
+          "prompt": "Check destination, modules and stages before quoting. The charter lists KES 2,320 within Kenya and KES 3,480 outside Kenya per certificate; module and stage charging rules can affect the total.",
+          "applies_when": "Always",
+          "claim_refs": [
+            "ver-results:fees",
+            "ver-results:modular-charging",
+            "ver-results:single-group-charging"
+          ],
+          "review_gate": "Resolve dispatch terminology and overseas-payment instructions before presenting a total or payment directions."
+        },
+        {
+          "id": "delivery",
+          "prompt": "Explain that the recipient institution receives the statement. Historical examinations from 1926 to 1984 may take longer.",
+          "applies_when": "Always",
+          "claim_refs": [
+            "ver-results:recipient",
+            "ver-results:historical-results"
+          ],
+          "review_gate": "Confirm applicable current delivery channel and timing; do not promise tracking access."
+        },
+        {
+          "id": "help",
+          "prompt": "Use the published archives enquiry address or general telephone support when assistance is needed.",
+          "applies_when": "User requests assistance",
+          "claim_refs": [
+            "ver-results:archives-contact",
+            "faq-general:switchboard"
+          ],
+          "review_gate": null
+        }
+      ],
+      "completion": "Guidance finished; the assistant has not submitted, paid for or approved an application."
+    },
+    {
+      "id": "equation",
+      "title": "Foreign qualification equation",
+      "status": "draft",
+      "language": "en",
+      "clarifying_questions": [
+        "Which qualification, awarding country and intended purpose?",
+        "Which institution will receive the equation letter?",
+        "What language is the certificate in?"
+      ],
+      "steps": [
+        {
+          "id": "check-eligibility",
+          "prompt": "Check qualification eligibility first; the guideline excludes institutional-based certificates.",
+          "applies_when": "Always",
+          "claim_refs": [
+            "foreign-equation:scope",
+            "foreign-equation:awarding-body",
+            "foreign-equation:advanced-level",
+            "foreign-equation:kcse-subjects",
+            "foreign-equation:study-duration"
+          ],
+          "review_gate": "An authorized reviewer must confirm eligibility for the actual qualification; do not infer an equivalence outcome."
+        },
+        {
+          "id": "authentication",
+          "prompt": "Ask the issuing examination body to send verification directly to ceo@knec.ac.ke. For a certificate outside English or Kiswahili, the guideline names the relevant Embassy, Alliance Francaise for French, or another recognized institution for other languages for translation.",
+          "applies_when": "Always",
+          "claim_refs": [
+            "foreign-equation:authentication",
+            "foreign-equation:translation",
+            "foreign-equation:authentication-route"
+          ],
+          "review_gate": "Verify current applicability; do not declare a particular unverified translation provider recognized."
+        },
+        {
+          "id": "prepare-evidence",
+          "prompt": "Prepare the request explaining purpose and destination, qualification evidence and identity documentation. Ordinary and Advanced Level applicants also need primary-level evidence.",
+          "applies_when": "Always",
+          "claim_refs": [
+            "foreign-equation:application",
+            "foreign-equation:learner-evidence"
+          ],
+          "review_gate": null
+        },
+        {
+          "id": "extra-evidence",
+          "prompt": "Where equation criteria do not exist, further syllabus, assessment, sample-paper, grading and certificate evidence is required.",
+          "applies_when": "KNEC requires evidence because equation criteria do not exist",
+          "claim_refs": [
+            "foreign-equation:additional-evidence"
+          ],
+          "review_gate": null
+        },
+        {
+          "id": "apply",
+          "prompt": "Submit through the official QMIS route.",
+          "applies_when": "Always",
+          "claim_refs": [
+            "foreign-equation:application"
+          ],
+          "review_gate": "Verify current portal screens before button-by-button instructions."
+        },
+        {
+          "id": "fees",
+          "prompt": "The guideline lists KES 3,480 per letter including registered mail and KES 928 additional for email dispatch. The guideline directs M-Pesa payment through the prompt in the applicant QMIS status.",
+          "applies_when": "Always",
+          "claim_refs": [
+            "foreign-equation:fee",
+            "foreign-equation:payment-prompt"
+          ],
+          "review_gate": "Confirm the current payment prompt and requested dispatch method; timeline start remains unresolved."
+        },
+        {
+          "id": "recipient",
+          "prompt": "The equation letter is for its addressed institution and cannot be copied or redirected to the applicant or another institution.",
+          "applies_when": "Always",
+          "claim_refs": [
+            "foreign-equation:recipient"
+          ],
+          "review_gate": null
+        },
+        {
+          "id": "help",
+          "prompt": "Offer equation@knec.ac.ke, archives@knec.ac.ke or ceo@knec.ac.ke from the guideline, or the verified general support telephone.",
+          "applies_when": "User requests assistance",
+          "claim_refs": [
+            "faq-general:switchboard",
+            "foreign-equation:enquiries"
+          ],
+          "review_gate": null
+        }
+      ],
+      "completion": "Guidance finished; the assistant has not submitted, paid for or approved an application."
+    },
+    {
+      "id": "biodata-amendment",
+      "title": "Biodata correction: review-gated guidance",
+      "status": "draft",
+      "language": "en",
+      "clarifying_questions": [
+        "Which field is incorrect?",
+        "Was the detail recorded incorrectly, or did it change legally after the examination?",
+        "Which examination and year, and which document contains the error?"
+      ],
+      "steps": [
+        {
+          "id": "identify-query",
+          "prompt": "Identify the field and the nature of the correction; do not infer eligibility from the existence of an amendment category.",
+          "applies_when": "Always",
+          "claim_refs": [
+            "biodata-amendment:service"
+          ],
+          "review_gate": "Confirm current eligibility, especially legal changes versus original recording errors."
+        },
+        {
+          "id": "confirm-route",
+          "prompt": "The public query page identifies institutional and education-office channels. Confirm which route applies to this applicant before directing submission.",
+          "applies_when": "Always",
+          "claim_refs": [
+            "biodata-amendment:official-query-route"
+          ],
+          "review_gate": "Resolve self-service versus institution-assisted submission for the specific case."
+        },
+        {
+          "id": "prepare-and-submit",
+          "prompt": "Historical QMIS guidance describes reviewing existing examination details, proposing the correction, attaching required evidence and submitting. Obtain a current approved checklist before giving document or payment instructions.",
+          "applies_when": "After eligibility and route are confirmed",
+          "claim_refs": [
+            "biodata-amendment:historical-submission"
+          ],
+          "review_gate": "Current documents, screens, fees and deadlines are unverified; do not use the old screenshot attachment list as a current checklist."
+        },
+        {
+          "id": "support",
+          "prompt": "Offer general KNEC telephone support for unresolved requirements.",
+          "applies_when": "Guidance cannot proceed from verified evidence",
+          "claim_refs": [
+            "faq-general:switchboard"
+          ],
+          "review_gate": null
+        }
+      ],
+      "completion": "Review-gated orientation only; no application, payment or amendment has been performed."
+    }
+  ]
+}

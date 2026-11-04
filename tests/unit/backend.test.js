@@ -5,9 +5,9 @@ const kbRepository = require('../../src/repository/kbRepository');
 const kbService = require('../../src/services/kbService');
 const logger = require('../../src/logger');
 
-test('KBRepository: Loads all 7 KB articles into memory', () => {
+test('KBRepository: Loads all 33 KB articles into memory', () => {
   const count = kbRepository.loadKBData();
-  assert.strictEqual(count, 7);
+  assert.strictEqual(count, 33);
 });
 
 test('KBRepository: Enforces object immutability (deep freeze)', () => {
@@ -26,7 +26,7 @@ test('KBService: Retrieves article by ID', () => {
 
 test('KBService: Filters articles by category', () => {
   const regArticles = kbService.getArticlesByCategory('registration');
-  assert.strictEqual(regArticles.length, 3);
+  assert.strictEqual(regArticles.length, 20);
   assert.ok(regArticles.every(a => a.category === 'registration'));
 });
 

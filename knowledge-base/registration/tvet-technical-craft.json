@@ -1,0 +1,78 @@
+{
+  "schema_version": 2,
+  "id": "tvet-technical-craft",
+  "service_id": "tvet-technical-craft",
+  "category": "registration",
+  "title": "Technical Craft Examination Fee Components",
+  "description": "Draft public-service guidance; review questions must be resolved before publication.",
+  "language": "en",
+  "version": "1.0.0",
+  "status": "draft",
+  "verification_status": "source_checked",
+  "visibility": "public",
+  "scope": {
+    "examinations": [
+      "Business and Technical"
+    ],
+    "audiences": [
+      "all"
+    ],
+    "years": [
+      "2026",
+      "2027"
+    ],
+    "programmes": [
+      "technical-craft"
+    ],
+    "series": [
+      "2026-11",
+      "2027-03",
+      "2027-07"
+    ]
+  },
+  "intents": [
+    "technical craft examination fee"
+  ],
+  "clarifying_questions": [
+    "Which examination series and year?",
+    "Which programme, level and syllabus?",
+    "Which papers and additional components appear on the institution invoice?"
+  ],
+  "claims": [
+    {
+      "id": "fee-technical-craft",
+      "kind": "fee",
+      "text": "For Technical/TEP/TVET Craft, Table 3 lists a basic fee of KES 1,200 per candidate and a paper fee of KES 1,000. These components are not a complete individual invoice; confirm papers and any applicable additional charges.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "tvet-2026-2027",
+          "source_sha256": "20edd2615912f611a29c9d2ff780527574a67f0690d266153ccc42e029a1eb73",
+          "locator": "PDF p7, Table 3"
+        }
+      ]
+    },
+    {
+      "id": "payment-route",
+      "kind": "step",
+      "text": "Principals generate an examination-fee invoice and follow the registration-platform link for payment through eCitizen.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "tvet-2026-2027",
+          "source_sha256": "20edd2615912f611a29c9d2ff780527574a67f0690d266153ccc42e029a1eb73",
+          "locator": "p. 6, section 9"
+        }
+      ]
+    }
+  ],
+  "unresolved_questions": [
+    "Independently review fee transcription and programme applicability.",
+    "Verify subsequent amendments and applicable additional charges; components are not a total invoice.",
+    "Obtain named content approval before publication."
+  ],
+  "effective_from": null,
+  "effective_to": null,
+  "review_due": "2026-12-03",
+  "approval": null
+}

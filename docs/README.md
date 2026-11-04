@@ -1,5 +1,8 @@
 # Project documentation and phase status
 
+> Current consolidated status: [Phase 2 handover](phase2-kb-handover.md). Dated checkpoints below retain the history of this work.
+
+
 Originally prepared: 2026-10-20. Updated: **2026-10-24**. Historical code checkpoint reviewed: [`11d6c33`](https://github.com/Gichuru-123/knec-whatsapp-bot/commit/11d6c338965075bf17b4cdbb59b281eb37ac313a).
 
 This index separates implementation evidence, outstanding requirements and approval records. It is intended to support institutional review of the KNEC Digital Assistant; it does not establish KNEC endorsement, production readiness or access to candidate records.
@@ -78,3 +81,29 @@ The original 2026-10-20 change added this index and three retrospective reports.
 Implementation is in progress; these links do not constitute live acceptance or a GitHub publication claim.
 
 - [Phase 4 live demonstration evidence — 2026-11-02](phase4-live-evidence.md): one-attempt exchange succeeded; owner sign-off approved 2026-11-03.
+
+## Knowledge-base review — 2026-11-03
+
+- [Audit and implementation plan](kb-foundation-plan.md): current gaps, service coverage, content contract, Phase 5 and future LLM design.
+- [Public source register](kb-public-source-register.md): 20 discovered official sources, access limitations and unresolved evidence.
+- [Draft service cards](kb-service-cards-draft.md): six routing examples and starter evaluation cases; not approved public answers.
+
+This package is local research until separately published. Existing runtime articles remain unchanged; full procedure review and the approved-answer gate remain outstanding.
+
+- [Phase 2 implementation checkpoint](phase2-kb-implementation.md): 16 draft records, shared schemas, exact source references and approved-answer controls; current local status supersedes the research-only checkpoint above.
+
+
+## 3 November 2026: coverage and question-design follow-up
+
+The working corpus now contains 16 draft articles and 13 source records, with 12 inspected to the extent documented in their notes. Registration records include scoped 2026 guidance and the 2026-2027 Business and Technical circular. None is approved for public answers.
+
+The [coverage report](kb-coverage-report.md) lists gaps and conflicts. The [question-design guide](kb-question-design.md) explains 112 authored examples (64 development, 48 reserved), evidence labels, multilingual review and future evaluation. These examples are not measured model performance. General support includes the independently corroborated switchboard number 0719093000.
+
+- [KB review decisions and remaining dependencies](kb-review-decisions.md)
+
+- [Step-by-step guidance design](kb-step-by-step-guidance.md)
+
+- [TVET programme and series guidance](kb-tvet-scope.md)
+
+
+4 November 2026 QMIS review: retrieved the September 2017 external manual and inspected the official procedure poster. Added three evidence-linked workflow claims and a fourth, review-gated biodata procedure plan. Corpus: 33 records, 15 sources; question bank: 137 examples. See [review package](kb-review-package.md) for journey walkthroughs, source limits and precise questions for KNEC.

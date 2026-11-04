@@ -1,4 +1,4 @@
-const fs = require('fs');
+const { loadCorpus } = require('../services/kbValidation');
 const path = require('path');
 const logger = require('../logger');
 
@@ -19,55 +19,33 @@ function deepFreeze(obj) {
 }
 
 class KBRepository {
-  constructor() {
+  constructor(directory = kbDir) {
+    this.directory = directory;
+    this.sources = [];
     this.kbIndex = new Map();
     this.isLoaded = false;
   }
 
   loadKBData() {
+    this.isLoaded = false;
     this.kbIndex.clear();
-
-    const readDirectory = (dir) => {
-      if (!fs.existsSync(dir)) {
-        throw new Error(`Critical KB Startup Error: Knowledge base directory missing at '${dir}'`);
-      }
-
-      const items = fs.readdirSync(dir);
-      for (const item of items) {
-        const fullPath = path.join(dir, item);
-        const stat = fs.statSync(fullPath);
-
-        if (stat.isDirectory()) {
-          if (item === 'schema') continue;
-          readDirectory(fullPath);
-        } else if (item.endsWith('.json')) {
-          try {
-            const content = fs.readFileSync(fullPath, 'utf8');
-            const parsed = JSON.parse(content);
-            if (!parsed || !parsed.id || !parsed.title || !parsed.category) {
-              throw new Error(`Missing required KB top-level fields (id, title, category) in '${fullPath}'`);
-            }
-            if (this.kbIndex.has(parsed.id)) {
-              throw new Error(`Duplicate KB Article ID '${parsed.id}' detected in '${fullPath}'`);
-            }
-            this.kbIndex.set(parsed.id, deepFreeze(parsed));
-          } catch (err) {
-            logger.error(`Fail-Fast KB Startup Error: Failed to load article at '${fullPath}'`, err);
-            // eslint-disable-next-line preserve-caught-error -- The original parsing error can contain article text; retain the safe error boundary.
-            throw new Error(`KB Integrity Failure: Could not safely load '${fullPath}'. System startup aborted.`);
-          }
-        }
-      }
-    };
-
-    readDirectory(kbDir);
-    if (this.kbIndex.size === 0) {
-      throw new Error(`Fail-Fast KB Startup Error: No valid Knowledge Base articles were found in '${kbDir}'.`);
+    this.sources = [];
+    try {
+      const corpus = loadCorpus(this.directory);
+      for (const article of corpus.articles) this.kbIndex.set(article.id, deepFreeze(article));
+      this.sources = deepFreeze(corpus.sources);
+    } catch {
+      throw new Error('KB integrity failure: schema, references or approval records are invalid.');
     }
 
     this.isLoaded = true;
     logger.info(`KBRepository successfully indexed ${this.kbIndex.size} articles.`);
     return this.kbIndex.size;
+  }
+
+  getSources() {
+    if (!this.isLoaded) this.loadKBData();
+    return this.sources;
   }
 
   findAll() {
@@ -87,3 +65,5 @@ class KBRepository {
 }
 
 module.exports = new KBRepository();
+
+module.exports.KBRepository = KBRepository;

@@ -1,5 +1,8 @@
 # KNEC Digital Assistant: presentation and revision guide
 
+> Current consolidated status: [Phase 2 handover](phase2-kb-handover.md). Dated checkpoints below retain the history of this work.
+
+
 Prepared: **2026-10-22**. Updated: **2026-10-31**. Use alongside the [documentation index](README.md) and [engineering-controls record](engineering-controls.md).
 
 This guide describes the software foundation, engineering controls and approved offline Twilio implementation. PR #1 and PR #2 are merged into `main`. The engineering-controls merge is `1dae80e`, with [successful post-merge CI](https://github.com/Gichuru-123/knec-whatsapp-bot/actions/runs/39895439867). PR #3 merged the offline Twilio foundation at `34b4177`. The PostgreSQL delivery implementation is local on `codex/phase4-delivery-safeguards`, with publication and live activation still pending. Its [completion evidence](phase4-twilio-offline-work-order.md#17-implementation-and-verification-record) records the subsequent checks. Earlier verification tables retain their original dates and scope.
@@ -286,3 +289,22 @@ The approved targeted dependency repair passes 109 working-tree tests, lint, sec
 We demonstrated the complete messaging path on the development Sandbox: a phone message reached the authenticated backend, PostgreSQL preserved the work, one outbound attempt produced the fixed reply, and Twilio delivery callbacks were correlated to that reply. The owner confirmed handset receipt. The database retained read status even though a delivered callback arrived afterward.
 
 This establishes the Phase 4 channel connection. It does not establish a production business-number deployment, institutionally approved answers, menus or departmental workflows. Sending was disabled and the temporary tunnel stopped after evidence collection. See [the live evidence report](phase4-live-evidence.md) for the exact revision, safeguards, results and owner sign-off recorded on 2026-11-03.
+
+## Knowledge preparation before Phase 5 — 2026-11-03
+
+The next stage connects a citizen's question to the correct public service. The research package maps official sources and proposes separate service records with applicability, requirements, source evidence, approval and review dates. This lets a future menu and an LLM use the same maintained knowledge instead of duplicating policy in prompts and menu code.
+
+For a presentation example, “I need a new certificate” is not precise enough to select a procedure. The conversation must distinguish a lost document, a document never received and an organisation requesting confirmation. It then uses an applicable approved service record, or clearly states that a detail is not yet verified.
+
+Current evidence: seven existing runtime articles remain unchanged; 20 official sources have been discovered and six draft routing cards prepared. Several source pages failed to load, and complete current procedure/charter review is still required. No new public answers, schema migration, retrieval engine or LLM integration has been implemented. See the [KB plan](kb-foundation-plan.md), [source register](kb-public-source-register.md) and [draft cards](kb-service-cards-draft.md).
+
+## Phase 2 implementation follow-up — 2026-11-03
+
+The follow-up now has 16 draft article records and 10 source records. Six official PDFs and a query page were retrieved and inspected. Shared schemas validate the backend corpus; an internal selector rejects unapproved, stale, conflicted or mismatched content. The full check passed 116 tests. These are engineering and source-review results, not factual approval of every procedure. Zero public articles are approved. [Implementation and review workflow](phase2-kb-implementation.md).
+
+
+## 3 November 2026: coverage and question-design follow-up
+
+The working corpus now contains 16 draft articles and 13 source records, with 12 inspected to the extent documented in their notes. Registration records include scoped 2026 guidance and the 2026-2027 Business and Technical circular. None is approved for public answers.
+
+The [coverage report](kb-coverage-report.md) lists gaps and conflicts. The [question-design guide](kb-question-design.md) explains 112 authored examples (64 development, 48 reserved), evidence labels, multilingual review and future evaluation. These examples are not measured model performance. General support includes the independently corroborated switchboard number 0719093000.

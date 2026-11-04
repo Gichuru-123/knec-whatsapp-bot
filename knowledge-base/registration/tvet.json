@@ -1,26 +1,276 @@
 {
+  "schema_version": 2,
   "id": "reg-tvet",
+  "service_id": "reg-tvet",
   "category": "registration",
-  "examination": "TVET/Business",
-  "department": "TVET Examinations",
-  "title": "TVET and Business Examinations Registration",
-  "description": "General guidance for candidates enrolling in Technical and Vocational Education and Training (TVET) certificate and diploma examinations.",
-  "requirements": [
-    "Course module completion prerequisites",
-    "Institutional registration code",
-    "National ID or Passport details"
-  ],
-  "fee": "Module-dependent fees apply - check the official CBATE portal or current KNEC fee schedules before applying",
-  "portalUrl": "https://cbate.knec.ac.ke",
-  "source_url": "https://cbate.knec.ac.ke",
-  "source_date": "2026-01-01",
-  "effective_date": "2026-01-01",
-  "review_date": "2026-12-31",
+  "title": "Business and Technical Examination Registration",
+  "description": "Internal comparison of Business and Technical programmes and series. Use scoped records for future public answers.",
+  "language": "en",
+  "version": "2.4.0",
   "status": "draft",
-  "verification_status": "unverified",
-  "authority_tier": "official_portal",
-  "version": "1.0.0",
-  "escalation_required": false,
-  "individual_record_required": true
+  "verification_status": "source_checked",
+  "visibility": "internal",
+  "scope": {
+    "examinations": [
+      "Business and Technical"
+    ],
+    "audiences": [
+      "all"
+    ],
+    "years": [
+      "2026",
+      "2027"
+    ]
+  },
+  "intents": [
+    "business and technical examination registration"
+  ],
+  "clarifying_questions": [
+    "Which examination, year and series?",
+    "Which candidate type, programme or assessment pathway?"
+  ],
+  "claims": [
+    {
+      "id": "series-windows",
+      "kind": "timeline",
+      "text": "Registration windows: November 2026 series, 6 July-11 September 2026; March 2027, 2 November 2026-8 January 2027; July 2027, 1 March-7 May 2027. Check subsequent amendments.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "tvet-2026-2027",
+          "source_sha256": "20edd2615912f611a29c9d2ff780527574a67f0690d266153ccc42e029a1eb73",
+          "locator": "p. 1, Table 1"
+        }
+      ]
+    },
+    {
+      "id": "institution-route",
+      "kind": "step",
+      "text": "Institutions handle registration. Online upload and payment alone do not complete registration; submission of registration materials is also required.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "tvet-2026-2027",
+          "source_sha256": "20edd2615912f611a29c9d2ff780527574a67f0690d266153ccc42e029a1eb73",
+          "locator": "p. 2, section 3"
+        }
+      ]
+    },
+    {
+      "id": "course-eligibility",
+      "kind": "requirement",
+      "text": "Entry requirements depend on programme and level. Confirm the specific syllabus and prerequisite qualification.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "tvet-2026-2027",
+          "source_sha256": "20edd2615912f611a29c9d2ff780527574a67f0690d266153ccc42e029a1eb73",
+          "locator": "pp. 3-5, sections 6-7"
+        }
+      ]
+    },
+    {
+      "id": "payment-route",
+      "kind": "step",
+      "text": "Principals generate an examination-fee invoice and follow the registration-platform link for payment through eCitizen.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "tvet-2026-2027",
+          "source_sha256": "20edd2615912f611a29c9d2ff780527574a67f0690d266153ccc42e029a1eb73",
+          "locator": "p. 6, section 9"
+        }
+      ]
+    },
+    {
+      "id": "referral-route",
+      "kind": "exception",
+      "text": "Referred Business TEP candidates may register at their former institution or another KNEC centre approved to offer the referred papers.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "tvet-2026-2027",
+          "source_sha256": "20edd2615912f611a29c9d2ff780527574a67f0690d266153ccc42e029a1eb73",
+          "locator": "p. 6, section 8.2"
+        }
+      ]
+    },
+    {
+      "id": "query-route",
+      "kind": "step",
+      "text": "The circular directs Business and Technical results and certificate queries through QMIS.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "tvet-2026-2027",
+          "source_sha256": "20edd2615912f611a29c9d2ff780527574a67f0690d266153ccc42e029a1eb73",
+          "locator": "p. 9, section 15"
+        }
+      ]
+    },
+    {
+      "id": "fee-business-stage-i",
+      "kind": "fee",
+      "text": "For Business Single and Group Stage I, Table 3 lists a basic fee of KES 1,200 per candidate and a paper fee of KES 500. These components are not a complete individual invoice; confirm papers and any applicable additional charges.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "tvet-2026-2027",
+          "source_sha256": "20edd2615912f611a29c9d2ff780527574a67f0690d266153ccc42e029a1eb73",
+          "locator": "PDF p7, Table 3"
+        }
+      ]
+    },
+    {
+      "id": "fee-business-stage-ii",
+      "kind": "fee",
+      "text": "For Business Single and Group Stage II, Table 3 lists a basic fee of KES 1,200 per candidate and a paper fee of KES 550. These components are not a complete individual invoice; confirm papers and any applicable additional charges.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "tvet-2026-2027",
+          "source_sha256": "20edd2615912f611a29c9d2ff780527574a67f0690d266153ccc42e029a1eb73",
+          "locator": "PDF p7, Table 3"
+        }
+      ]
+    },
+    {
+      "id": "fee-business-stage-iii",
+      "kind": "fee",
+      "text": "For Business Single and Group Stage III, Table 3 lists a basic fee of KES 1,200 per candidate and a paper fee of KES 650. These components are not a complete individual invoice; confirm papers and any applicable additional charges.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "tvet-2026-2027",
+          "source_sha256": "20edd2615912f611a29c9d2ff780527574a67f0690d266153ccc42e029a1eb73",
+          "locator": "PDF p7, Table 3"
+        }
+      ]
+    },
+    {
+      "id": "fee-business-tep-certificate",
+      "kind": "fee",
+      "text": "For Business TEP Certificate, Table 3 lists a basic fee of KES 1,200 per candidate and a paper fee of KES 500. These components are not a complete individual invoice; confirm papers and any applicable additional charges.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "tvet-2026-2027",
+          "source_sha256": "20edd2615912f611a29c9d2ff780527574a67f0690d266153ccc42e029a1eb73",
+          "locator": "PDF p7, Table 3"
+        }
+      ]
+    },
+    {
+      "id": "fee-business-tep-diploma",
+      "kind": "fee",
+      "text": "For Business TEP Diploma, Table 3 lists a basic fee of KES 1,200 per candidate and a paper fee of KES 1,350. These components are not a complete individual invoice; confirm papers and any applicable additional charges.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "tvet-2026-2027",
+          "source_sha256": "20edd2615912f611a29c9d2ff780527574a67f0690d266153ccc42e029a1eb73",
+          "locator": "PDF p7, Table 3"
+        }
+      ]
+    },
+    {
+      "id": "fee-technical-artisan",
+      "kind": "fee",
+      "text": "For Technical/TEP/TVET Artisan, Table 3 lists a basic fee of KES 480 per candidate and a paper fee of KES 500. These components are not a complete individual invoice; confirm papers and any applicable additional charges.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "tvet-2026-2027",
+          "source_sha256": "20edd2615912f611a29c9d2ff780527574a67f0690d266153ccc42e029a1eb73",
+          "locator": "PDF p7, Table 3"
+        }
+      ]
+    },
+    {
+      "id": "fee-technical-craft",
+      "kind": "fee",
+      "text": "For Technical/TEP/TVET Craft, Table 3 lists a basic fee of KES 1,200 per candidate and a paper fee of KES 1,000. These components are not a complete individual invoice; confirm papers and any applicable additional charges.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "tvet-2026-2027",
+          "source_sha256": "20edd2615912f611a29c9d2ff780527574a67f0690d266153ccc42e029a1eb73",
+          "locator": "PDF p7, Table 3"
+        }
+      ]
+    },
+    {
+      "id": "fee-technical-diploma",
+      "kind": "fee",
+      "text": "For Technical/TEP/TVET Diploma, Table 3 lists a basic fee of KES 1,500 per candidate and a paper fee of KES 1,350. These components are not a complete individual invoice; confirm papers and any applicable additional charges.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "tvet-2026-2027",
+          "source_sha256": "20edd2615912f611a29c9d2ff780527574a67f0690d266153ccc42e029a1eb73",
+          "locator": "PDF p7, Table 3"
+        }
+      ]
+    },
+    {
+      "id": "fee-technical-higher-diploma",
+      "kind": "fee",
+      "text": "For Technical/TEP/TVET Higher Diploma, Table 3 lists a basic fee of KES 1,600 per candidate and a paper fee of KES 1,600. These components are not a complete individual invoice; confirm papers and any applicable additional charges.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "tvet-2026-2027",
+          "source_sha256": "20edd2615912f611a29c9d2ff780527574a67f0690d266153ccc42e029a1eb73",
+          "locator": "PDF p7, Table 3"
+        }
+      ]
+    },
+    {
+      "id": "fee-technical-old-higher-diploma",
+      "kind": "fee",
+      "text": "For Technical Higher Diploma, old syllabus, Table 3 lists a basic fee of KES 1,600 per candidate and a paper fee of KES 1,700. These components are not a complete individual invoice; confirm papers and any applicable additional charges.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "tvet-2026-2027",
+          "source_sha256": "20edd2615912f611a29c9d2ff780527574a67f0690d266153ccc42e029a1eb73",
+          "locator": "PDF p7, Table 3"
+        }
+      ]
+    },
+    {
+      "id": "fee-project-practical",
+      "kind": "fee",
+      "text": "Table 3 lists Artisan project and practical charges of KES 400 each; Craft/Diploma/Higher Diploma project and practical charges are KES 450 each. Apply only the relevant components.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "tvet-2026-2027",
+          "source_sha256": "20edd2615912f611a29c9d2ff780527574a67f0690d266153ccc42e029a1eb73",
+          "locator": "PDF p7, Table 3 section 10.4"
+        }
+      ]
+    },
+    {
+      "id": "fee-repeater-search",
+      "kind": "fee",
+      "text": "The circular lists a KES 450 search fee per repeated paper.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "tvet-2026-2027",
+          "source_sha256": "20edd2615912f611a29c9d2ff780527574a67f0690d266153ccc42e029a1eb73",
+          "locator": "PDF p7, section 10.5.1"
+        }
+      ]
+    }
+  ],
+  "unresolved_questions": [
+    "Internal comparison only. Programme and series records require review before public use.",
+    "Additional-charge applicability, query deadline conflicts and programme-specific eligibility remain under review."
+  ],
+  "effective_from": null,
+  "effective_to": null,
+  "review_due": "2026-12-03",
+  "approval": null
 }
-

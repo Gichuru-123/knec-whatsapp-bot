@@ -1,25 +1,198 @@
 {
+  "schema_version": 2,
   "id": "reg-kcse",
+  "service_id": "reg-kcse",
   "category": "registration",
-  "examination": "KCSE",
-  "department": "Test Administration",
   "title": "KCSE Examination Registration",
-  "description": "Guidelines and general information for KCSE candidate registration.",
-  "requirements": [
-    "Birth Certificate / National ID copy",
-    "KPSEA/KJSEA or equivalent prior exam record",
-    "Passport-size photograph"
-  ],
-  "fee": "To be confirmed via official KNEC circulars for the specific exam cohort",
-  "portalUrl": "https://www.knec.ac.ke",
-  "source_url": "https://www.knec.ac.ke",
-  "source_date": "2026-01-01",
-  "effective_date": "2026-01-01",
-  "review_date": "2026-12-31",
+  "description": "Draft public-service guidance; review questions must be resolved before publication.",
+  "language": "en",
+  "version": "2.3.0",
   "status": "draft",
-  "verification_status": "unverified",
-  "authority_tier": "official_portal",
-  "version": "1.0.0",
-  "escalation_required": false,
-  "individual_record_required": true
+  "verification_status": "source_checked",
+  "visibility": "public",
+  "scope": {
+    "examinations": [
+      "KCSE"
+    ],
+    "audiences": [
+      "all"
+    ],
+    "years": [
+      "2026"
+    ]
+  },
+  "intents": [
+    "kcse examination registration"
+  ],
+  "clarifying_questions": [
+    "Which examination, year and series?",
+    "Which candidate type, programme or assessment pathway?"
+  ],
+  "claims": [
+    {
+      "id": "registration-window",
+      "kind": "timeline",
+      "text": "The 2026 circular set registration for 16 February to 31 March 2026. This historical window must not be presented as currently open.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "kcse-2026",
+          "source_sha256": "9fb558a1f0df8d7df81e0c783fdc21f5fe84b213813fe531d9bccddc512e4b9b",
+          "locator": "pp. 1 and 6, sections 1 and 9"
+        }
+      ]
+    },
+    {
+      "id": "school-route",
+      "kind": "step",
+      "text": "Heads of institutions register school candidates online using centre credentials. Candidates should verify their recorded particulars and subjects.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "kcse-2026",
+          "source_sha256": "9fb558a1f0df8d7df81e0c783fdc21f5fe84b213813fe531d9bccddc512e4b9b",
+          "locator": "pp. 1-2, section 1"
+        }
+      ]
+    },
+    {
+      "id": "private-route",
+      "kind": "step",
+      "text": "For 2026 KCSE, private candidates register through the Sub-County Director of Education office.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "kcse-2026",
+          "source_sha256": "9fb558a1f0df8d7df81e0c783fdc21f5fe84b213813fe531d9bccddc512e4b9b",
+          "locator": "p. 3, section 2.1"
+        }
+      ]
+    },
+    {
+      "id": "special-needs",
+      "kind": "requirement",
+      "text": "Special-needs registration requires the prescribed form and supporting medical and assessment evidence; institutions document relevant interventions.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "kcse-2026",
+          "source_sha256": "9fb558a1f0df8d7df81e0c783fdc21f5fe84b213813fe531d9bccddc512e4b9b",
+          "locator": "p. 2, section 1.4"
+        }
+      ]
+    },
+    {
+      "id": "fee-exceptions",
+      "kind": "fee",
+      "text": "The circular lists repeaters, non-citizens and private candidates as exceptions to government fee payment, with KES 7,200 payable through eCitizen.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "kcse-2026",
+          "source_sha256": "9fb558a1f0df8d7df81e0c783fdc21f5fe84b213813fe531d9bccddc512e4b9b",
+          "locator": "p. 3, section 3"
+        }
+      ]
+    },
+    {
+      "id": "private-identity",
+      "kind": "requirement",
+      "text": "The private-candidate annex requires identity evidence: national ID, passport or alien card; where unavailable, a birth certificate and evidence of an ID application are required.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "kcse-2026",
+          "source_sha256": "9fb558a1f0df8d7df81e0c783fdc21f5fe84b213813fe531d9bccddc512e4b9b",
+          "locator": "PDF p9, annex section 1.5"
+        }
+      ]
+    },
+    {
+      "id": "private-practical-confirmation",
+      "kind": "requirement",
+      "text": "Private candidates require confirmation from the SCDE or head of the approved centre where practical papers will be taken.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "kcse-2026",
+          "source_sha256": "9fb558a1f0df8d7df81e0c783fdc21f5fe84b213813fe531d9bccddc512e4b9b",
+          "locator": "PDF p9, annex section 1.4"
+        }
+      ]
+    },
+    {
+      "id": "partial-repeat",
+      "kind": "exception",
+      "text": "Partial repeaters take one to six previously attempted subjects still offered in the current curriculum. They cannot introduce new subjects; the supplementary slip does not change the earlier mean grade.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "kcse-2026",
+          "source_sha256": "9fb558a1f0df8d7df81e0c783fdc21f5fe84b213813fe531d9bccddc512e4b9b",
+          "locator": "PDF p10, annex sections 3.2-3.4"
+        }
+      ]
+    },
+    {
+      "id": "whole-repeat",
+      "kind": "exception",
+      "text": "Repeating for a mean grade requires the entire examination with seven to nine subjects, subject to the prescribed subject combinations.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "kcse-2026",
+          "source_sha256": "9fb558a1f0df8d7df81e0c783fdc21f5fe84b213813fe531d9bccddc512e4b9b",
+          "locator": "PDF p9, annex section 3.1"
+        }
+      ]
+    },
+    {
+      "id": "withdrawal",
+      "kind": "exception",
+      "text": "The private-candidate annex states that examination withdrawal does not entitle the candidate to a refund.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "kcse-2026",
+          "source_sha256": "9fb558a1f0df8d7df81e0c783fdc21f5fe84b213813fe531d9bccddc512e4b9b",
+          "locator": "PDF p10, annex section 6.0"
+        }
+      ]
+    },
+    {
+      "id": "special-needs-annex",
+      "kind": "requirement",
+      "text": "The special-needs annex asks the institution for headteacher and medical reports identifying assistance. For the listed physical, mental and psychomotor categories it specifies a recent detailed medical report, EARC assessment and a full-size photograph for physical disability. Low-vision candidates also need a medical report.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "kcse-2026",
+          "source_sha256": "9fb558a1f0df8d7df81e0c783fdc21f5fe84b213813fe531d9bccddc512e4b9b",
+          "locator": "PDF p14, special-needs form notes ii-iv"
+        }
+      ]
+    },
+    {
+      "id": "late-entry-conflict",
+      "kind": "timeline",
+      "text": "The main circular mentions a late-registration penalty, while the private-candidate annex says entries after 31 March 2026 will not be accepted regardless of payment date. Do not promise a late-entry route.",
+      "evidence_status": "unresolved",
+      "citations": [
+        {
+          "source_id": "kcse-2026",
+          "source_sha256": "9fb558a1f0df8d7df81e0c783fdc21f5fe84b213813fe531d9bccddc512e4b9b",
+          "locator": "PDF p6 section 9 and p10 annex section 7"
+        }
+      ]
+    }
+  ],
+  "unresolved_questions": [
+    "Clarify main-circular versus private-annex late-entry and amendment rules for the relevant candidate type.",
+    "Confirm practical venue with SCDE; annex references to an approved practical centre and county headquarters must not be treated as a personal venue assignment.",
+    "Check subsequent amendments and obtain named content approval before publication."
+  ],
+  "effective_from": null,
+  "effective_to": null,
+  "review_due": "2026-12-03",
+  "approval": null
 }

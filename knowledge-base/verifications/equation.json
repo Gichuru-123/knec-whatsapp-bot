@@ -1,0 +1,237 @@
+{
+  "schema_version": 2,
+  "id": "foreign-equation",
+  "service_id": "foreign-equation",
+  "category": "verifications",
+  "title": "Equation of Foreign Qualifications",
+  "description": "Draft public-service guidance; review questions must be resolved before publication.",
+  "language": "en",
+  "version": "2.1.0",
+  "status": "draft",
+  "verification_status": "source_checked",
+  "visibility": "public",
+  "scope": {
+    "examinations": [
+      "all"
+    ],
+    "audiences": [
+      "all"
+    ],
+    "years": [
+      "all"
+    ]
+  },
+  "intents": [
+    "foreign qualification",
+    "equate certificate"
+  ],
+  "clarifying_questions": [
+    "Which qualification, awarding country and intended purpose does your question concern?"
+  ],
+  "claims": [
+    {
+      "id": "scope",
+      "kind": "orientation",
+      "text": "KNEC evaluates school and post-school qualifications under specified eligibility conditions; institutional-based certificates are excluded by this guideline.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "equation-2025",
+          "source_sha256": "b89882318fafeec6e3d1eb1d49d51094a9c7909505f60d45cf90c4a68204023e",
+          "locator": "p1 sections 1.0-1.3"
+        }
+      ]
+    },
+    {
+      "id": "authentication",
+      "kind": "requirement",
+      "text": "The awarding body must send authentication directly to KNEC before processing begins. Certificates outside English/Kiswahili require an accepted translation.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "equation-2025",
+          "source_sha256": "b89882318fafeec6e3d1eb1d49d51094a9c7909505f60d45cf90c4a68204023e",
+          "locator": "p1 sections 1.9-1.10"
+        }
+      ]
+    },
+    {
+      "id": "application",
+      "kind": "step",
+      "text": "Upload a request explaining purpose and destination, qualification evidence and identity documentation through QMIS. Ordinary/Advanced Level applicants also provide primary-level evidence.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "equation-2025",
+          "source_sha256": "b89882318fafeec6e3d1eb1d49d51094a9c7909505f60d45cf90c4a68204023e",
+          "locator": "p2 sections 2.1-2.3"
+        }
+      ]
+    },
+    {
+      "id": "additional-evidence",
+      "kind": "exception",
+      "text": "Where equation criteria do not exist, further syllabus, assessment, sample-paper, grading and certificate evidence is required.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "equation-2025",
+          "source_sha256": "b89882318fafeec6e3d1eb1d49d51094a9c7909505f60d45cf90c4a68204023e",
+          "locator": "p2 section 2.6"
+        }
+      ]
+    },
+    {
+      "id": "recipient",
+      "kind": "exception",
+      "text": "The equation letter is restricted to its addressed institution; it is not for copying or redirecting to the applicant or another institution.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "equation-2025",
+          "source_sha256": "b89882318fafeec6e3d1eb1d49d51094a9c7909505f60d45cf90c4a68204023e",
+          "locator": "p2 section 3.0"
+        }
+      ]
+    },
+    {
+      "id": "fee",
+      "kind": "fee",
+      "text": "The guideline lists KES 3,480 per letter including registered mail, with an additional KES 928 for email dispatch.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "equation-2025",
+          "source_sha256": "b89882318fafeec6e3d1eb1d49d51094a9c7909505f60d45cf90c4a68204023e",
+          "locator": "p2 section 2.4"
+        }
+      ]
+    },
+    {
+      "id": "awarding-body",
+      "kind": "requirement",
+      "text": "The awarding board must be accredited, or the institution legally authorized to examine and issue certificates. Applicants must meet the corresponding KNEC course entry requirements.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "equation-2025",
+          "source_sha256": "b89882318fafeec6e3d1eb1d49d51094a9c7909505f60d45cf90c4a68204023e",
+          "locator": "p1 sections 1.1 and 1.3"
+        }
+      ]
+    },
+    {
+      "id": "advanced-level",
+      "kind": "requirement",
+      "text": "Advanced Level applicants submit both Ordinary and Advanced Level certificates, authenticated directly by the awarding institution. The guideline requires at least Division II at Ordinary Level or KCSE mean grade C (Plain).",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "equation-2025",
+          "source_sha256": "b89882318fafeec6e3d1eb1d49d51094a9c7909505f60d45cf90c4a68204023e",
+          "locator": "p1 sections 1.4-1.5"
+        }
+      ]
+    },
+    {
+      "id": "kcse-subjects",
+      "kind": "requirement",
+      "text": "For equation to KCSE, the 2025 guideline specifies at least seven subjects including Mathematics, a language and five other subjects. This is one eligibility condition, not a guarantee of equation.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "equation-2025",
+          "source_sha256": "b89882318fafeec6e3d1eb1d49d51094a9c7909505f60d45cf90c4a68204023e",
+          "locator": "p1 section 1.6"
+        }
+      ]
+    },
+    {
+      "id": "study-duration",
+      "kind": "requirement",
+      "text": "The applicant must have completed the required study years or contact hours at the relevant level.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "equation-2025",
+          "source_sha256": "b89882318fafeec6e3d1eb1d49d51094a9c7909505f60d45cf90c4a68204023e",
+          "locator": "p1 section 1.7"
+        }
+      ]
+    },
+    {
+      "id": "translation",
+      "kind": "requirement",
+      "text": "For certificates outside English or Kiswahili, the guideline names the relevant Embassy, Alliance Francaise for French, or another recognized institution for other languages as translation providers.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "equation-2025",
+          "source_sha256": "b89882318fafeec6e3d1eb1d49d51094a9c7909505f60d45cf90c4a68204023e",
+          "locator": "p1 section 1.9"
+        }
+      ]
+    },
+    {
+      "id": "authentication-route",
+      "kind": "step",
+      "text": "The issuing examination body sends verification directly to the KNEC Chief Executive Officer at ceo@knec.ac.ke. Processing begins only after that confirmation is received.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "equation-2025",
+          "source_sha256": "b89882318fafeec6e3d1eb1d49d51094a9c7909505f60d45cf90c4a68204023e",
+          "locator": "p1 section 1.10"
+        }
+      ]
+    },
+    {
+      "id": "learner-evidence",
+      "kind": "requirement",
+      "text": "The request includes purpose, recipient institution postal address and applicant contact details. For primary qualifications, the institution head also states entry year, entry level and current level; learners joining CBC provide the last two years of progress reports.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "equation-2025",
+          "source_sha256": "b89882318fafeec6e3d1eb1d49d51094a9c7909505f60d45cf90c4a68204023e",
+          "locator": "p2 sections 2.1-2.2"
+        }
+      ]
+    },
+    {
+      "id": "payment-prompt",
+      "kind": "step",
+      "text": "The guideline requires M-Pesa payment following the system-generated prompt in the applicant QMIS status. It states that other payment methods are invalid and manual applications or bank deposit slips are not accepted.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "equation-2025",
+          "source_sha256": "b89882318fafeec6e3d1eb1d49d51094a9c7909505f60d45cf90c4a68204023e",
+          "locator": "p2 sections 2.5 and 5.0"
+        }
+      ]
+    },
+    {
+      "id": "enquiries",
+      "kind": "contact",
+      "text": "The guideline lists ceo@knec.ac.ke, equation@knec.ac.ke and archives@knec.ac.ke for further enquiries.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "equation-2025",
+          "source_sha256": "b89882318fafeec6e3d1eb1d49d51094a9c7909505f60d45cf90c4a68204023e",
+          "locator": "p2 closing enquiry paragraph"
+        }
+      ]
+    }
+  ],
+  "unresolved_questions": [
+    "Resolve timeline start: guideline p2 section6 uses receipt of payment; charter p4 row14 uses complete accurate documentation.",
+    "Confirm qualification-specific eligibility with an authorized reviewer; the assistant must not decide equivalence.",
+    "Confirm present portal behavior, later amendments and named content approval."
+  ],
+  "effective_from": null,
+  "effective_to": null,
+  "review_due": "2026-12-03",
+  "approval": null
+}

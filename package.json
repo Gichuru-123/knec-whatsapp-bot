@@ -13,12 +13,16 @@
     "validate-kb": "node scripts/validate-kb.js",
     "lint": "eslint . --max-warnings=0",
     "scan:secrets": "node scripts/scan-secrets.js",
-    "check": "npm run lint && npm run scan:secrets && npm run validate-kb && npm test",
+    "check": "npm run lint && npm run scan:secrets && npm run validate-kb && npm run kb:coverage && npm run kb:procedures && npm test",
     "db:migrate": "node scripts/migrate-db.js",
     "delivery:status": "node scripts/delivery-status.js",
-    "test:database": "node --require ./tests/helpers/testEnv.js --test tests/integration/databaseMigrations.test.js tests/integration/deliveryStore.test.js tests/integration/deliveryLifecycle.test.js"
+    "test:database": "node --require ./tests/helpers/testEnv.js --test tests/integration/databaseMigrations.test.js tests/integration/deliveryStore.test.js tests/integration/deliveryLifecycle.test.js",
+    "kb:report": "node scripts/kb-report.js",
+    "kb:coverage": "node scripts/kb-coverage.js",
+    "kb:procedures": "node scripts/kb-procedures.js"
   },
   "dependencies": {
+    "ajv": "8.20.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.21.0",

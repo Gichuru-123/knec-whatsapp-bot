@@ -1,29 +1,84 @@
 {
+  "schema_version": 2,
   "id": "faq-general",
+  "service_id": "faq-general",
   "category": "faqs",
-  "examination": "General",
-  "department": "Customer Experience",
-  "title": "General Frequently Asked Questions",
-  "description": "Official KNEC helpline and portal access details.",
-  "faqs": [
+  "title": "General Support and Official Contacts",
+  "description": "Draft public-service guidance; review questions must be resolved before publication.",
+  "language": "en",
+  "version": "2.1.0",
+  "status": "draft",
+  "verification_status": "source_checked",
+  "visibility": "public",
+  "scope": {
+    "examinations": [
+      "all"
+    ],
+    "audiences": [
+      "all"
+    ],
+    "years": [
+      "all"
+    ]
+  },
+  "intents": [
+    "customer care number",
+    "call centre",
+    "contact KNEC",
+    "namba ya KNEC",
+    "support",
+    "speak to a person"
+  ],
+  "clarifying_questions": [
+    "Do you need general assistance or help with a specific service?"
+  ],
+  "claims": [
     {
-      "question": "How do I log into the KNEC QMIS portal?",
-      "answer": "Visit https://qmis.knec.ac.ke to access services such as confirmation of results and candidate queries."
+      "id": "switchboard",
+      "kind": "contact",
+      "text": "KNEC lists 0719 093 000 as its switchboard for general telephone contact.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "knec-contact",
+          "source_sha256": "d9b69b7ed07a6ef182e4d73fd951f8f503a903bae9c38ff9aab6f672ac87003b",
+          "locator": "Call us today / Switch Board"
+        }
+      ]
     },
     {
-      "question": "What is the official KNEC helpline?",
-      "answer": "You can reach KNEC support via official channels listed on https://www.knec.ac.ke."
+      "id": "email",
+      "kind": "contact",
+      "text": "KNEC lists info@knec.ac.ke for general email contact.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "knec-contact",
+          "source_sha256": "d9b69b7ed07a6ef182e4d73fd951f8f503a903bae9c38ff9aab6f672ac87003b",
+          "locator": "CONTACT INFO"
+        }
+      ]
+    },
+    {
+      "id": "office",
+      "kind": "contact",
+      "text": "The contact page identifies the head office as New Mitihani House, South C.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "knec-contact",
+          "source_sha256": "d9b69b7ed07a6ef182e4d73fd951f8f503a903bae9c38ff9aab6f672ac87003b",
+          "locator": "Head Office"
+        }
+      ]
     }
   ],
-  "portalUrl": "https://www.knec.ac.ke",
-  "source_url": "https://www.knec.ac.ke",
-  "source_date": "2026-01-01",
-  "effective_date": "2026-01-01",
-  "review_date": "2026-12-31",
-  "status": "active",
-  "verification_status": "unverified",
-  "authority_tier": "official_portal",
-  "version": "1.0.0",
-  "escalation_required": false,
-  "individual_record_required": false
+  "unresolved_questions": [
+    "Named content reviewer approval is still required.",
+    "Office hours, call charges and WhatsApp support are not established by this page; do not assert them."
+  ],
+  "effective_from": null,
+  "effective_to": null,
+  "review_due": "2026-12-03",
+  "approval": null
 }

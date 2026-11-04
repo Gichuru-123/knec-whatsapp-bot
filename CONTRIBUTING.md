@@ -47,4 +47,4 @@ When documenting a change, explain its purpose, actual behaviour, file/dependenc
 
 ## Knowledge-base changes
 
-All additions must include the required metadata, including `source_url`, `source_date`, `status` and `verification_status`. The current validator checks required fields; a pass does not establish full schema compliance or factual verification. Content changes and promotion to approved public answers require the separately agreed content-review process.
+Articles must conform to `knowledge-base/schema/article.schema.json`; sources belong in `knowledge-base/sources/catalog.json` and follow its source schema. Claims require exact source hashes and page/section locators. Shared validation enforces structure and references, not truth. Public answers require the reviewed approval record and eligibility checks described in [the Phase 2 implementation guide](docs/phase2-kb-implementation.md). Use `npm run kb:report` to inspect editorial gaps. Never promote content merely because tests pass.
