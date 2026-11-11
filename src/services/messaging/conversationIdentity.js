@@ -17,4 +17,15 @@ function createConversationIdentity({ secret, version, accountSid, sender, parti
   return `v${version}:${digest}`;
 }
 
-module.exports = { createConversationIdentity };
+function createConversationEventIdentity({ secret, accountSid, messageSid }) {
+  if (!Buffer.isBuffer(secret) || secret.length < 32 ||
+      typeof accountSid !== 'string' || !/^AC[0-9a-fA-F]{32}$/.test(accountSid) ||
+      typeof messageSid !== 'string' || !/^(SM|MM)[0-9a-fA-F]{32}$/.test(messageSid)) {
+    throw new Error('Invalid conversation event identity configuration');
+  }
+  return createHmac('sha256', secret)
+    .update(JSON.stringify(['twilio-event-v1', accountSid, messageSid]))
+    .digest('hex');
+}
+
+module.exports = { createConversationIdentity, createConversationEventIdentity };

@@ -1,11 +1,11 @@
 'use strict';
-const { createPool, databaseError, migrationSource } = require('../src/repository/deliveryStore');
+const { createPool, databaseError, migrationSources } = require('../src/repository/deliveryStore');
 
 async function migrate(pool) {
   let client;
   let broken = false;
   try {
-    const { sql, checksum } = await migrationSource();
+    const sources = await migrationSources();
     client = await pool.connect();
     await client.query('BEGIN');
     await client.query('SELECT pg_advisory_xact_lock(418, 1)');
@@ -13,10 +13,10 @@ async function migrate(pool) {
       version integer PRIMARY KEY, checksum text NOT NULL,
       applied_at timestamptz NOT NULL DEFAULT clock_timestamp())`);
     const applied = await client.query('SELECT version, checksum FROM public.knec_migrations ORDER BY version');
-    if (applied.rows.length > 1 || applied.rows.some(row => row.version !== 1 || row.checksum !== checksum)) throw new Error();
-    if (applied.rows.length === 0) {
-      await client.query(sql);
-      await client.query('INSERT INTO public.knec_migrations(version, checksum) VALUES(1,$1)', [checksum]);
+    if (applied.rows.length > sources.length || applied.rows.some((row, i) => row.version !== sources[i].version || row.checksum !== sources[i].checksum)) throw new Error();
+    for (const source of sources.slice(applied.rows.length)) {
+      await client.query(source.sql);
+      await client.query('INSERT INTO public.knec_migrations(version, checksum) VALUES($1,$2)', [source.version, source.checksum]);
     }
     await client.query('COMMIT');
   } catch {

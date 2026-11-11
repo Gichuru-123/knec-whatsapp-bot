@@ -43,7 +43,9 @@ app.use(requestLogger);
 const inactiveWebhook = (req, res) => res.status(404).json({ error: { code: 404, message: 'Not Found' } });
 if (config.whatsappProvider === 'twilio') {
   app.use('/api/v1/webhook/twilio', (req, res, next) => {
-    if (config.delivery && !app.locals.deliveryService) return res.status(503).json({ error: { code: 503, message: 'Service Unavailable' } });
+    if (config.delivery && !app.locals.deliveryService && !app.locals.conversationRuntime) {
+      return res.status(503).json({ error: { code: 503, message: 'Service Unavailable' } });
+    }
     return next();
   });
   app.use('/api/v1/webhook/twilio', twilioWebhookRoutes);
