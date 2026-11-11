@@ -3,6 +3,7 @@ const app = require('./app');
 const config = require('./config');
 const logger = require('./logger');
 const { createDeliveryRuntime } = require('./services/messaging/deliveryRuntime');
+const { createConversationApplicationRuntime } = require('./services/conversation/applicationRuntime');
 
 async function start() {
   let runtime;
@@ -17,8 +18,11 @@ async function start() {
   }
   try {
     if (config.delivery) {
-      runtime = await createDeliveryRuntime(config);
-      app.locals.deliveryService = runtime.service;
+      runtime = config.conversation?.enabled
+        ? await createConversationApplicationRuntime(config)
+        : await createDeliveryRuntime(config);
+      if (config.conversation?.enabled) app.locals.conversationRuntime = runtime.service;
+      else app.locals.deliveryService = runtime.service;
     }
     await new Promise((resolve, reject) => {
       server = app.listen(config.port, config.delivery ? '127.0.0.1' : undefined, resolve);

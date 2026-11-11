@@ -1,6 +1,6 @@
 # PostgreSQL operating guide
 
-Status: implementation in progress, 2026-10-27. The separate PostgreSQL 18.6 setup is complete; verification is in progress.
+Status: development foundation active, updated 2026-11-11. The separate PostgreSQL 18.6 setup and migrations 001–002 are complete; production recovery and deployment decisions remain open.
 
 ## Local discovery
 
@@ -40,7 +40,7 @@ PostgreSQL **18.6** was downloaded from the Windows archive linked by the offici
 - Disposable test database: `knec_disposable_test_phase4`.
 - Roles: `knec_migration` owns the development schema; `knec_runtime` has schema usage, table DML and migration-history read access; `knec_test` owns only the disposable test database. The bootstrap administrator is reserved for local provisioning.
 - Generated connection values are in the restricted setup directory, outside the repository. Do not display that file or include it in a presentation.
-- Migration version 1 applied successfully. Runtime INSERT permission and denial of schema CREATE were checked.
+- Migrations 1 and 2 applied successfully. The `conversation` schema contains `sessions`, `events`, `outbox` and `callbacks`. Runtime schema usage and table DML were granted; denial of schema CREATE was checked.
 - A logical development backup was restored into a newly created isolated database and its migration version was checked. This first exercise contains no real messages and does not establish production recovery objectives or populated-message recovery coverage.
 
 ### Start and stop the dedicated instance
@@ -63,6 +63,12 @@ Supply the private migration URL in DATABASE_MIGRATION_URL, then run `npm run db
 Supply TEST_DATABASE_URL for a loopback database whose name starts with `knec_disposable_test_`, then run `npm run check` or `npm run test:database`. Tests erase only the dedicated fixture schema and migration table. They fail if the test connection is absent; they do not silently skip database coverage. CI provisions its own disposable PostgreSQL service.
 
 Pool limit: 4; acquisition timeout: 3 seconds; statement timeout: 5 seconds; lock timeout: 1 second; idle transaction timeout: 5 seconds. Remote TLS verifies certificates and hostnames; URL query parameters cannot disable this policy. The current runtime uses the system trust store.
+
+### Conversation runtime controls
+
+`TWILIO_CONVERSATION_ENABLED=false` is the safe default. Set it to `true` only in the controlled development Sandbox configuration to select the Phase 5 runtime. `TWILIO_CONVERSATION_TTL_SECONDS` controls session expiry (60–2,592,000 seconds) and `TWILIO_CONVERSATION_POLL_MS` controls the response-worker interval (100–60,000 ms). Live provider submission still requires the independent `TWILIO_LIVE_SEND_ENABLED=true` switch.
+
+Turning conversation mode off stops new Phase 5 processing but does not erase records. If a send outcome is `uncertain`, inspect it and the provider console; do not reset it to pending or resend automatically. Stop the application before stopping PostgreSQL. A schema rollback is not automatic because dropping migration 002 would destroy evidence; recovery is forward-only unless an explicitly reviewed restore plan is approved.
 
 ### Backup and isolated restore
 
