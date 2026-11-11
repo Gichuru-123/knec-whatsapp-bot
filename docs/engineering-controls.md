@@ -1,5 +1,7 @@
 # Engineering controls: implementation, operation and review
 
+**2026-11-03 KB update:** the historical required-field checker described below has been replaced by shared schema/reference validation. Current inventory: 16 draft articles, 10 sources. See [Phase 2 implementation](phase2-kb-implementation.md); historical test reports below retain their original counts.
+
 Prepared: **2026-10-22**. Work branch: `codex/engineering-controls`.
 
 Baseline: merge commit `5d40fdc23c97ef7b374300b36e67f4acb8cad0e8`, which merged [PR #1](https://github.com/Gichuru-123/knec-whatsapp-bot/pull/1).

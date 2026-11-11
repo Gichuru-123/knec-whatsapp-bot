@@ -1,0 +1,93 @@
+{
+  "schema_version": 2,
+  "id": "reg-kjsea",
+  "service_id": "reg-kjsea",
+  "category": "registration",
+  "title": "KJSEA Assessment Registration (2026)",
+  "description": "Draft public-service guidance; review questions must be resolved before publication.",
+  "language": "en",
+  "version": "1.0.0",
+  "status": "draft",
+  "verification_status": "source_checked",
+  "visibility": "public",
+  "scope": {
+    "examinations": [
+      "KJSEA"
+    ],
+    "audiences": [
+      "all"
+    ],
+    "years": [
+      "2026"
+    ]
+  },
+  "intents": [
+    "kjsea registration"
+  ],
+  "clarifying_questions": [
+    "Which assessment year?",
+    "Are you a learner, parent or registering institution?"
+  ],
+  "claims": [
+    {
+      "id": "kjsea-window",
+      "kind": "timeline",
+      "text": "The 2026 KJSEA/KPLEA registration window was 2 March to 31 March 2026; it is historical.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "kjsea-2026",
+          "source_sha256": "08bcc6f9520a0f0e3d3f2dd84ff3852c271bab4665d8982a45c018b15e767606",
+          "locator": "p. 1, introduction"
+        }
+      ]
+    },
+    {
+      "id": "kjsea-eligibility",
+      "kind": "requirement",
+      "text": "KJSEA registration is not automatic. Requirements include the Grade 9 database entry, KPSEA performance or equivalent, and Grade 7 and 8 school-based assessment scores.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "kjsea-2026",
+          "source_sha256": "08bcc6f9520a0f0e3d3f2dd84ff3852c271bab4665d8982a45c018b15e767606",
+          "locator": "p. 1, section 1"
+        }
+      ]
+    },
+    {
+      "id": "kjsea-declaration",
+      "kind": "step",
+      "text": "The KJSEA institutional declaration verifies candidate names, assessment numbers and subject entries, including special-needs and religious-education options. It is forwarded through the SCDE.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "kjsea-2026",
+          "source_sha256": "08bcc6f9520a0f0e3d3f2dd84ff3852c271bab4665d8982a45c018b15e767606",
+          "locator": "PDF p7, institutional declaration"
+        }
+      ]
+    },
+    {
+      "id": "kjsea-special-needs",
+      "kind": "requirement",
+      "text": "The KJSEA special-needs form requires institutional and medical evidence identifying assistance; its notes specify recent detailed medical and EARC reports for listed categories and a full-size photograph for physical disability. Low-vision candidates also require a medical report.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "kjsea-2026",
+          "source_sha256": "08bcc6f9520a0f0e3d3f2dd84ff3852c271bab4665d8982a45c018b15e767606",
+          "locator": "PDF p8, special-needs form notes ii-iv"
+        }
+      ]
+    }
+  ],
+  "unresolved_questions": [
+    "Review fee exceptions and transfer rules specifically for KJSEA.",
+    "Check subsequent amendments and obtain named content approval before publication."
+  ],
+  "effective_from": null,
+  "effective_to": null,
+  "review_due": "2026-12-03",
+  "approval": null
+}

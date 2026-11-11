@@ -1,26 +1,185 @@
 {
+  "schema_version": 2,
   "id": "ver-results",
+  "service_id": "ver-results",
   "category": "verifications",
-  "examination": "General",
-  "department": "Archives and Verification",
   "title": "Confirmation of Results",
-  "description": "Process for verifying examination results through the official KNEC Quality Management Information System (QMIS).",
-  "requirements": [
-    "Copy of certificate or result slip",
-    "National ID copy",
-    "Official request details"
+  "description": "Draft public-service guidance; review questions must be resolved before publication.",
+  "language": "en",
+  "version": "2.5.0",
+  "status": "draft",
+  "verification_status": "source_checked",
+  "visibility": "public",
+  "scope": {
+    "examinations": [
+      "all"
+    ],
+    "audiences": [
+      "all"
+    ],
+    "years": [
+      "all"
+    ]
+  },
+  "intents": [
+    "employer verification",
+    "confirmation of results"
   ],
-  "fee": "Subject to official tariff display on QMIS portal - verify current rates via QMIS before submitting",
-  "portalUrl": "https://qmis.knec.ac.ke",
-  "source_url": "https://qmis.knec.ac.ke",
-  "source_date": "2026-01-01",
-  "effective_date": "2026-01-01",
-  "review_date": "2026-12-31",
-  "status": "active",
-  "verification_status": "unverified",
-  "authority_tier": "official_portal",
-  "version": "1.0.0",
-  "escalation_required": false,
-  "individual_record_required": true
+  "clarifying_questions": [
+    "Is an employer or institution requesting confirmation, or do you need help with a lost certificate?"
+  ],
+  "claims": [
+    {
+      "id": "apply",
+      "kind": "step",
+      "text": "Apply through the Query Management Information System. Supply examination identity, school/centre, certificate evidence and the receiving institution address; business/technical requests also need the series.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "confirmation-2024",
+          "source_sha256": "ac0ed5fea71e10fc00c21286b9cf709e52a78b3d0ceeb8a2d646a432199f383c",
+          "locator": "p1 sections 1.0-1.8"
+        }
+      ]
+    },
+    {
+      "id": "missing-copy",
+      "kind": "exception",
+      "text": "If certificate/results-slip evidence is missing, obtain a certified results printout through the appropriate former institution or education office. Primary results-slip year restrictions apply.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "confirmation-2024",
+          "source_sha256": "ac0ed5fea71e10fc00c21286b9cf709e52a78b3d0ceeb8a2d646a432199f383c",
+          "locator": "p1 sections 1.4-1.5"
+        }
+      ]
+    },
+    {
+      "id": "recipient",
+      "kind": "exception",
+      "text": "The statement is for the employer/institution, not the candidate or family; it cannot be redirected and is not a certificate.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "confirmation-2024",
+          "source_sha256": "ac0ed5fea71e10fc00c21286b9cf709e52a78b3d0ceeb8a2d646a432199f383c",
+          "locator": "p2 sections 6.1-6.2"
+        }
+      ]
+    },
+    {
+      "id": "fees",
+      "kind": "fee",
+      "text": "The charter lists KES 2,320 per certificate for confirmation within Kenya and KES 3,480 outside Kenya.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "charter-2026",
+          "source_sha256": "ede99259c38a3ed9d51ab6ca3479e933abda80c4c3ed9003594196a788726fdc",
+          "locator": "p4 row15(a)-(b)"
+        }
+      ]
+    },
+    {
+      "id": "modular-charging",
+      "kind": "fee",
+      "text": "The guideline charges modular courses per certificate and per module; do not treat one displayed tariff as the total for all modules.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "confirmation-2024",
+          "source_sha256": "ac0ed5fea71e10fc00c21286b9cf709e52a78b3d0ceeb8a2d646a432199f383c",
+          "locator": "p1 section 3.0"
+        }
+      ]
+    },
+    {
+      "id": "single-group-charging",
+      "kind": "fee",
+      "text": "Single and Group certificates are charged per stage when all or part of that stage is submitted together in one application.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "confirmation-2024",
+          "source_sha256": "ac0ed5fea71e10fc00c21286b9cf709e52a78b3d0ceeb8a2d646a432199f383c",
+          "locator": "p2 section 7.0"
+        }
+      ]
+    },
+    {
+      "id": "historical-results",
+      "kind": "exception",
+      "text": "The guideline warns that examinations from 1926 to 1984 may require longer processing.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "confirmation-2024",
+          "source_sha256": "ac0ed5fea71e10fc00c21286b9cf709e52a78b3d0ceeb8a2d646a432199f383c",
+          "locator": "p2 section 8.1"
+        }
+      ]
+    },
+    {
+      "id": "separate-examinations",
+      "kind": "requirement",
+      "text": "Submit each examination in its own application with its certificate, result slip or certified results printout.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "confirmation-2024",
+          "source_sha256": "ac0ed5fea71e10fc00c21286b9cf709e52a78b3d0ceeb8a2d646a432199f383c",
+          "locator": "p1 section 1.8"
+        }
+      ]
+    },
+    {
+      "id": "applicant-contact",
+      "kind": "requirement",
+      "text": "Provide the applicant contact address and mobile number for clarification.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "confirmation-2024",
+          "source_sha256": "ac0ed5fea71e10fc00c21286b9cf709e52a78b3d0ceeb8a2d646a432199f383c",
+          "locator": "p2 section 8.3"
+        }
+      ]
+    },
+    {
+      "id": "archives-contact",
+      "kind": "contact",
+      "text": "The guideline lists archives@knec.ac.ke and ceo@knec.ac.ke for further enquiries.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "confirmation-2024",
+          "source_sha256": "ac0ed5fea71e10fc00c21286b9cf709e52a78b3d0ceeb8a2d646a432199f383c",
+          "locator": "p2 section 9.0"
+        }
+      ]
+    },
+    {
+      "id": "portal-sequence",
+      "kind": "step",
+      "text": "The public poster directs users from the KNEC website to QMIS, then registration/login, service details and attachments, submission for verification, and status checking for payment.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "qmis-procedure-poster",
+          "source_sha256": "36180572aedc32d94e7dca95cc6afc0b0e91a659ea3473ca9a450d184cf510e6",
+          "locator": "Poster steps 1-6, respective service column"
+        }
+      ]
+    }
+  ],
+  "unresolved_questions": [
+    "Resolve fax/email dispatch terminology and overseas-payment instructions before publishing fees as a full quote.",
+    "Confirm current portal and payment prompts; retain destination and module/stage context when quoting.",
+    "Named content approval and current applicability review remain required."
+  ],
+  "effective_from": null,
+  "effective_to": null,
+  "review_due": "2026-12-03",
+  "approval": null
 }
-

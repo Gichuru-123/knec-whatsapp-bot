@@ -33,14 +33,14 @@ test('Request Correlation ID: Preserves client-supplied x-request-id', async () 
 test('GET /api/v1/kb - Returns all articles when enabled', async () => {
   const res = await request(app).get('/api/v1/kb');
   assert.strictEqual(res.status, 200);
-  assert.strictEqual(res.body.count, 7);
+  assert.strictEqual(res.body.count, 33);
   assert.ok(Array.isArray(res.body.data));
 });
 
 test('GET /api/v1/kb?category=registration - Returns filtered category results', async () => {
   const res = await request(app).get('/api/v1/kb?category=registration');
   assert.strictEqual(res.status, 200);
-  assert.strictEqual(res.body.count, 3);
+  assert.strictEqual(res.body.count, 20);
 });
 
 test('GET /api/v1/kb/:id - Returns specific article', async () => {
