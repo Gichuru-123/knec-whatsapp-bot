@@ -10,6 +10,12 @@ async function migrationSource() {
   return { sql, checksum: createHash('sha256').update(sql).digest('hex') };
 }
 
+async function migrationSources() {
+  const first = await migrationSource();
+  const sql = (await fs.readFile(path.join(__dirname, '../../db/migrations/002_conversation.sql'), 'utf8')).replace(/\r\n/g, '\n');
+  return [{ version: 1, ...first }, { version: 2, sql, checksum: createHash('sha256').update(sql).digest('hex') }];
+}
+
 function databaseError(code = 'DATABASE_OPERATION_FAILED') {
   const error = new Error(code);
   error.code = code;
@@ -213,12 +219,14 @@ class DeliveryStore {
   async health() {
     try {
       const result = await this.pool.query('SELECT version,checksum FROM public.knec_migrations ORDER BY version');
-      const source = await migrationSource();
-      if (result.rows.length !== 1 || result.rows[0].version !== 1 || result.rows[0].checksum !== source.checksum) throw new Error();
+      const sources = await migrationSources();
+      if (result.rows.length !== sources.length || result.rows.some((row, i) => row.version !== sources[i].version || row.checksum !== sources[i].checksum)) throw new Error();
       const role = await this.pool.query('SELECT rolsuper, rolcreatedb, rolcreaterole FROM pg_roles WHERE rolname=current_user');
       if (!role.rows[0] || Object.values(role.rows[0]).some(Boolean)) throw new Error();
-      const privilege = await this.pool.query("SELECT has_schema_privilege(current_user,'delivery','CREATE') AS can_create");
-      if (privilege.rows[0].can_create) throw new Error();
+      const privilege = await this.pool.query(`SELECT
+        has_schema_privilege(current_user,'delivery','CREATE') AS can_create_delivery,
+        has_schema_privilege(current_user,'conversation','CREATE') AS can_create_conversation`);
+      if (privilege.rows[0].can_create_delivery || privilege.rows[0].can_create_conversation) throw new Error();
     } catch { throw databaseError('DATABASE_NOT_READY'); }
   }
 
@@ -247,4 +255,4 @@ class DeliveryStore {
   async close() { await this.pool.end(); }
 }
 
-module.exports = { DeliveryStore, createPool, connectionOptions, databaseError, migrationSource };
+module.exports = { DeliveryStore, createPool, connectionOptions, databaseError, migrationSource, migrationSources };

@@ -1,7 +1,7 @@
 'use strict';
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { createConversationIdentity } = require('../../src/services/messaging/conversationIdentity');
+const { createConversationIdentity, createConversationEventIdentity } = require('../../src/services/messaging/conversationIdentity');
 const { connectionOptions, DeliveryStore } = require('../../src/repository/deliveryStore');
 
 test('conversation identity is stable and separates account, sender, participant and key', () => {
@@ -15,6 +15,17 @@ test('conversation identity is stable and separates account, sender, participant
   }
   assert.match(original, /^v1:[a-f0-9]{64}$/);
   assert.throws(() => createConversationIdentity({ ...input, secret: Buffer.alloc(8) }));
+});
+
+test('conversation event identity is private, stable and provider-message scoped', () => {
+  const input = { secret: Buffer.alloc(32, 7), accountSid: 'AC' + '1'.repeat(32), messageSid: 'SM' + '3'.repeat(32) };
+  const original = createConversationEventIdentity(input);
+  assert.match(original, /^[a-f0-9]{64}$/);
+  assert.equal(createConversationEventIdentity(input), original);
+  assert.notEqual(createConversationEventIdentity({ ...input, messageSid: 'SM' + '4'.repeat(32) }), original);
+  assert.notEqual(createConversationEventIdentity({ ...input, secret: Buffer.alloc(32, 8) }), original);
+  assert.ok(!original.includes(input.messageSid));
+  assert.throws(() => createConversationEventIdentity({ ...input, messageSid: 'invalid' }));
 });
 
 test('database connection policy rejects URL overrides and verifies remote TLS', () => {

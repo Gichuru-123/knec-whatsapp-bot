@@ -2,6 +2,8 @@
 
 > Current consolidated status: [Phase 2 handover](phase2-kb-handover.md). Dated checkpoints below retain the history of this work.
 
+> Phase 5 working-tree foundation: [conversation foundation](phase5-conversation-foundation.md). This is an offline, uncommitted navigation slice; it does not yet establish live WhatsApp menu delivery or approved-answer integration.
+
 
 Originally prepared: 2026-10-20. Updated: **2026-10-24**. Historical code checkpoint reviewed: [`11d6c33`](https://github.com/Gichuru-123/knec-whatsapp-bot/commit/11d6c338965075bf17b4cdbb59b281eb37ac313a).
 
@@ -28,7 +30,7 @@ PR #1 merged the Phase 4 foundation and Phase 1-3 reports into `main` at `5d40fd
 | 2: Knowledge-base foundation | [Retrospective report](phase2-knowledge-base-foundation.md) | Seven articles and a required-field validator exist. Full schema validation, factual verification and content approval remain incomplete. |
 | 3: Backend foundation | [Retrospective report](phase3-backend-foundation.md) | Backend components exist and current tests pass. Later security repairs, scope deviations and missing historical sign-off are documented. |
 | 4: WhatsApp integration | [Twilio plan and repair record](phase4-twilio-plan.md) | Meta/mock foundation is merged. Twilio protocol handling is locally implemented and tested with synthetic data; durable processing, live exchange and production onboarding remain open. |
-| 5 onward | No implementation report yet | No menu/conversation engine, integrated public-answer flow, deployment or stakeholder acceptance is established by this checkpoint. Future work needs its own approval. |
+| 5: Conversation foundation | [Conversation foundation](phase5-conversation-foundation.md) | A validated 44-node offline menu, versioned state contract, commands and bounded fallback are implemented on the Phase 5 working branch. PostgreSQL session persistence, WhatsApp response rendering, approved-answer integration, durable outbound delivery and stakeholder acceptance remain open. |
 
 Also see the [application README](../README.md), [contribution guide](../CONTRIBUTING.md) and [knowledge-base changelog](../knowledge-base/CHANGELOG.md).
 

@@ -21,6 +21,7 @@ async function prepareDatabase() {
     await guard.query('SELECT pg_advisory_lock(418, 2)');
     try {
       await guard.query('DROP SCHEMA IF EXISTS delivery CASCADE');
+      await guard.query('DROP SCHEMA IF EXISTS conversation CASCADE');
       await guard.query('DROP TABLE IF EXISTS public.knec_migrations');
       await migrate(pool);
     } catch (error) {
