@@ -2,7 +2,7 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const http = require('node:http');
-const { createSender } = require('../../src/services/messaging/twilioHttpClient');
+const { createSender, createConversationSender } = require('../../src/services/messaging/twilioHttpClient');
 const { DIAGNOSTIC_REPLY } = require('../../src/services/messaging/deliveryService');
 
 test('restricted SDK transport classifies local responses and never follows redirects', async () => {
@@ -36,6 +36,12 @@ test('restricted SDK transport classifies local responses and never follows redi
     }
     await assert.rejects(send(settings.recipient, 'unapproved text'));
     assert.equal(calls, 8);
+    response = { status: 201, body: { account_sid: settings.accountSid, sid: 'SM' + '2'.repeat(32), status: 'queued' } };
+    const sendMenu = createConversationSender(settings, { testTarget: `http://127.0.0.1:${server.address().port}` });
+    assert.equal((await sendMenu(settings.recipient, 'KNEC menu\n1. Registration')).kind, 'accepted');
+    await assert.rejects(sendMenu(settings.recipient, ''));
+    await assert.rejects(sendMenu(settings.recipient, 'x'.repeat(1601)));
+    assert.equal(calls, 9);
   } finally {
     server.closeAllConnections();
     await new Promise(resolve => server.close(resolve));

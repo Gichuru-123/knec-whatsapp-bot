@@ -152,6 +152,7 @@ function validateConfig(env) {
   // Sandbox is explicit and isolated from the default offline protocol mode.
   let twilioSettings;
   let delivery;
+  let conversation;
   if (whatsappProvider === 'twilio') {
     const mode = env.TWILIO_MODE || 'offline';
     const sandbox = mode === 'sandbox' && nodeEnv === 'development';
@@ -192,6 +193,11 @@ function validateConfig(env) {
         version: integerSetting('TWILIO_CONVERSATION_KEY_VERSION', 1, 1),
         runId: required('TWILIO_SANDBOX_RUN_ID', /^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$/),
         maxAttempts: integerSetting('TWILIO_SANDBOX_MAX_ATTEMPTS', 0, 0, 10) });
+      const conversationEnabled = env.TWILIO_CONVERSATION_ENABLED === 'true';
+      if (!['false','true'].includes(env.TWILIO_CONVERSATION_ENABLED || 'false')) errors.push('TWILIO_CONVERSATION_ENABLED must be false or true.');
+      conversation = Object.freeze({ enabled: conversationEnabled,
+        ttlSeconds: integerSetting('TWILIO_CONVERSATION_TTL_SECONDS', 86400, 60, 2592000),
+        pollIntervalMs: integerSetting('TWILIO_CONVERSATION_POLL_MS', 1000, 100, 60000) });
     }
     twilioSettings = Object.freeze({
       mode,
@@ -228,7 +234,8 @@ function validateConfig(env) {
     rateLimitWindowMs,
     rateLimitMax,
     twilio: twilioSettings,
-    delivery
+    delivery,
+    conversation
   };
 }
 

@@ -7,7 +7,7 @@ const { DIAGNOSTIC_REPLY } = require('./deliveryService');
 
 // A fresh client/outcome is owned by each send. Neither provider response bodies
 // nor SDK exceptions escape this boundary. Test targets require NODE_ENV=test.
-function createSender(settings, { testTarget } = {}) {
+function createRestrictedSender(settings, validateText, { testTarget } = {}) {
   const endpoint = `https://api.twilio.com/2010-04-01/Accounts/${settings.accountSid}/Messages.json`;
   if (testTarget) {
     const target = new URL(testTarget);
@@ -16,7 +16,7 @@ function createSender(settings, { testTarget } = {}) {
     }
   }
   return async (to, text) => {
-    if (to !== settings.recipient || text !== DIAGNOSTIC_REPLY) throw new Error('Invalid diagnostic reply');
+    if (to !== settings.recipient || !validateText(text)) throw new Error('Invalid outbound reply');
     let outcome = { kind: 'uncertain' };
     const httpClient = { request: async options => {
       const expected = { To: to, From: settings.from, Body: text, StatusCallback: settings.status.url };
@@ -86,4 +86,13 @@ function createSender(settings, { testTarget } = {}) {
   };
 }
 
-module.exports = { createSender };
+function createSender(settings, options) {
+  return createRestrictedSender(settings, text => text === DIAGNOSTIC_REPLY, options);
+}
+
+function createConversationSender(settings, options) {
+  return createRestrictedSender(settings,
+    text => typeof text === 'string' && text.length >= 1 && text.length <= 1600, options);
+}
+
+module.exports = { createSender, createConversationSender };
