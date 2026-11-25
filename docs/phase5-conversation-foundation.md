@@ -8,6 +8,12 @@ That separation is deliberate. The menu must remain testable and predictable bef
 
 ## Current implementation
 
+### KNEC NURU working brand and Sandbox participants
+
+The WhatsApp presentation uses **KNEC NURU** as a working brand pending institutional authorization. NURU identifies itself as a digital assistant, while repository names, database identifiers, API paths and knowledge article IDs remain unchanged. `Hi`, `Hello` and `Start` produce the first-time NURU greeting; `MAIN MENU` produces a shorter returning-user heading.
+
+Controlled Sandbox conversation mode accepts a bounded local allowlist of one to five unique `whatsapp:+E164` participants through `TWILIO_TEST_RECIPIENTS`. The legacy single `TWILIO_TEST_RECIPIENT` remains supported when the list is absent. Invalid, empty, duplicate or oversized lists fail closed. Each participant receives a separate HMAC-derived conversation identity and PostgreSQL session. Outbound jobs are routed by matching their non-reversible conversation identity against the configured allowlist; raw participant numbers are not added to conversation tables. Every participant must separately join the Twilio Sandbox before use.
+
 The navigation core is in `src/services/conversation/navigation.js`. The menu definition is in `src/services/conversation/config/menuTree.js`, and the tree validator/index is in `src/services/conversation/config/menuIndex.js`.
 
 The current tree contains 44 validated nodes beneath the root menu:
@@ -69,7 +75,9 @@ Responses are semantic objects (`menu`, `help`, `invalid`, `fallback`, `knowledg
 
 ## Knowledge boundary
 
-A leaf currently returns a hook containing its stable article ID. The hook is not an answer. Phase 6 must call the existing approved-answer policy with the user’s examination, audience, language and year context. If no current approved article matches, the runtime must return a controlled clarification or escalation response. It must never fall back to draft KB records or raw source text.
+A leaf returns a hook containing its stable article ID. The hook is not an answer. The final Phase 5 core milestone connects that hook to the existing approved-answer policy with the user’s required examination, audience, language, year, programme or series context. This wording supersedes the earlier assignment of approved-answer integration to Phase 6 because the Phase 5 completion definition requires clarification and approved-information retrieval.
+
+The deterministic resolver reads only approval-qualified requirement metadata, asks one question at a time, and persists its versioned workflow context in the existing PostgreSQL session JSON. `BACK` and `MAIN MENU` clear the active workflow. Two invalid answers exhaust a clarification field and produce controlled escalation. If no current approved article matches, the runtime escalates without exposing draft records or raw source text and provides the verified KNEC switchboard, 0719 093 000, for clarification. It does not represent that telephone number as a WhatsApp line or assert unverified hours or call charges. The real corpus currently has no institutionally approved article, so real knowledge selections remain fail-closed; approved-answer tests use isolated synthetic fixtures only.
 
 ## Controlled activation status and remaining work
 
@@ -78,7 +86,7 @@ Migration 002 was applied to the isolated `knec_development` database on 2026-11
 1. Commit and independently review the runtime-activation slice before enabling Sandbox traffic.
 2. Run one controlled Sandbox menu exchange and reconcile its callback/outbox evidence.
 3. Add the provider capability adapter for interactive controls while retaining the verified text renderer as fallback.
-4. Connect knowledge hooks to `kbService.getApprovedAnswer` only after content approval, with clarification for unresolved procedure facts.
+4. Obtain institutional content approval before any real article can pass the integrated approved-answer policy. The runtime integration itself is implemented and remains fail-closed while approval is absent.
 5. Establish monitoring, backup/restore objectives, content ownership and stakeholder acceptance before broader activation.
 
 An LLM can later help classify free-text intent or phrase a verified answer, but it must sit behind this state machine and the approved-answer policy. It must not be allowed to invent a procedure, bypass a menu guard, or publish an unverified KB claim.

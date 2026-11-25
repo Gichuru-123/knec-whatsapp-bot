@@ -29,7 +29,8 @@ class ConversationSessionStore {
     validateState(state);
     if (!Number.isInteger(expectedRevision) || expectedRevision < 0) throw new Error('INVALID_SESSION_REVISION');
     // Persist only the explicitly approved navigation fields, never arbitrary input.
-    const clean = { version: state.version, currentNodeId: state.currentNodeId, path: [...state.path], invalidAttempts: state.invalidAttempts };
+    const clean = { version: state.version, currentNodeId: state.currentNodeId, path: [...state.path],
+      invalidAttempts: state.invalidAttempts, workflow: state.workflow ? structuredClone(state.workflow) : null };
     try {
       let result;
       if (expectedRevision === 0) {
@@ -145,6 +146,20 @@ class ConversationSessionStore {
         WHERE id=$1 AND claim_owner=$2 AND claim_token=$3 AND state='sending'
         AND lease_until>clock_timestamp()`, [claim?.id, claim?.owner, claim?.token]);
       return rows.length === 1;
+    } catch { throw databaseError(); }
+  }
+
+  async isWithinOutboxLimit(claim, limit) {
+    if (!claim || typeof claim.conversation_id !== 'string' || !Number.isInteger(limit) || limit < 1 || limit > 25) {
+      throw new Error('INVALID_OUTBOX_LIMIT');
+    }
+    try {
+      const { rows } = await this.pool.query(`SELECT count(*)::integer AS ordinal
+        FROM conversation.outbox
+        WHERE conversation_id=$1 AND (created_at,id) <= (
+          SELECT created_at,id FROM conversation.outbox WHERE id=$2
+        )`, [claim.conversation_id, claim.id]);
+      return rows.length === 1 && rows[0].ordinal <= limit;
     } catch { throw databaseError(); }
   }
 

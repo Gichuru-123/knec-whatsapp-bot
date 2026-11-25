@@ -1,0 +1,276 @@
+{
+  "version": "1.0.0",
+  "conflicts": [
+    {
+      "id": "certification-processing-time",
+      "status": "open",
+      "topic": "processing timeline",
+      "article_ids": [
+        "cert-replacement"
+      ],
+      "competing_claims": [
+        {
+          "source_id": "certification-2024",
+          "locator": "p1 section 5.2",
+          "claim": "15 working days after all requirements have been fulfilled."
+        },
+        {
+          "source_id": "charter-2026",
+          "locator": "p5 row 16",
+          "claim": "10 working days after receipt of complete, accurate documentation."
+        }
+      ],
+      "scope": {
+        "examinations": [
+          "all"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "all"
+        ],
+        "programmes": [],
+        "series": []
+      },
+      "unresolved_question": "Will the KNEC Archives/Certification service owner confirm the proposed indicative range of 10–15 working days, and which verified event starts that estimate?",
+      "required_reviewer": "KNEC Archives/Certification service owner",
+      "decision_history": [
+        {
+          "recorded_on": "2026-11-16",
+          "authority": "project_owner",
+          "decision_type": "proposed_consolidation",
+          "proposal": "Communicate certification processing as an estimated range of 10–15 working days, not a guaranteed service-level commitment.",
+          "constraints": [
+            "Preserve both the 10-working-day and 15-working-day source references.",
+            "Establish the event that starts the estimate before publication.",
+            "Use working days, not calendar days.",
+            "Preserve documented certification-specific exceptions.",
+            "Do not extend this proposal to equation, confirmation or another service."
+          ],
+          "institutional_status": "pending KNEC reviewer confirmation"
+        }
+      ]
+    },
+    {
+      "id": "equation-processing-start",
+      "status": "open",
+      "topic": "processing timeline",
+      "article_ids": [
+        "foreign-equation"
+      ],
+      "competing_claims": [
+        {
+          "source_id": "equation-2025",
+          "locator": "p2 section 6.0",
+          "claim": "Processing takes ten working days from receipt of payment."
+        },
+        {
+          "source_id": "charter-2026",
+          "locator": "p4 row 14",
+          "claim": "Ten working days from receipt of complete, accurate documentation."
+        }
+      ],
+      "scope": {
+        "examinations": [
+          "all"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "all"
+        ],
+        "programmes": [],
+        "series": []
+      },
+      "unresolved_question": "Does the current processing clock begin after payment, complete documentation, authentication, or all applicable conditions?",
+      "required_reviewer": "KNEC Equation/Archives service owner",
+      "decision_history": []
+    },
+    {
+      "id": "confirmation-delivery-payment",
+      "status": "open",
+      "topic": "fees and delivery channel",
+      "article_ids": [
+        "ver-results"
+      ],
+      "competing_claims": [
+        {
+          "source_id": "confirmation-2024",
+          "locator": "p1 sections 3.0-5.0",
+          "claim": "Lists fax tariffs and overseas EFT instructions."
+        },
+        {
+          "source_id": "charter-2026",
+          "locator": "p4 row 15",
+          "claim": "Lists domestic/outside-Kenya confirmation and email dispatch tariffs."
+        }
+      ],
+      "scope": {
+        "examinations": [
+          "all"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "all"
+        ],
+        "programmes": [],
+        "series": []
+      },
+      "unresolved_question": "Which delivery channels, tariffs and overseas payment instructions are currently valid?",
+      "required_reviewer": "KNEC Confirmation/Archives service owner",
+      "decision_history": []
+    },
+    {
+      "id": "query-deadline-basis",
+      "status": "open",
+      "topic": "deadline",
+      "article_ids": [
+        "biodata-amendment",
+        "results-query",
+        "direct-recovery"
+      ],
+      "competing_claims": [
+        {
+          "source_id": "queries-page",
+          "locator": "Period Of launching queries after release of Results",
+          "claim": "Thirty days after release of results/certificates."
+        },
+        {
+          "source_id": "charter-2026",
+          "locator": "p3 row 10.3-10.4",
+          "claim": "Thirty working days after results; sixty working days after certificate dispatch."
+        }
+      ],
+      "scope": {
+        "examinations": [
+          "all"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "all"
+        ],
+        "programmes": [],
+        "series": []
+      },
+      "unresolved_question": "Which period applies to each examination, query type and triggering event?",
+      "required_reviewer": "KNEC Examinations Administration service owner",
+      "decision_history": []
+    },
+    {
+      "id": "query-penalty-scope",
+      "status": "open",
+      "topic": "penalty",
+      "article_ids": [
+        "biodata-amendment",
+        "results-query",
+        "direct-recovery"
+      ],
+      "competing_claims": [
+        {
+          "source_id": "queries-page",
+          "locator": "Charges on Queries after Release of Examination Results",
+          "claim": "KES 3,000 for specified late biodata amendments."
+        },
+        {
+          "source_id": "charter-2026",
+          "locator": "p3 row 10",
+          "claim": "KES 5,000 for KCSE/Post School/Teacher Education; KES 3,000 for listed basic assessments."
+        }
+      ],
+      "scope": {
+        "examinations": [
+          "all"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "all"
+        ],
+        "programmes": [],
+        "series": []
+      },
+      "unresolved_question": "Which penalty applies to each examination, service, year and late-submission event?",
+      "required_reviewer": "KNEC Examinations Administration and Finance service owners",
+      "decision_history": []
+    },
+    {
+      "id": "kcse-late-entry",
+      "status": "open",
+      "topic": "registration deadline",
+      "article_ids": [
+        "reg-kcse"
+      ],
+      "competing_claims": [
+        {
+          "source_id": "kcse-2026",
+          "locator": "p6 section 9",
+          "claim": "Main circular says late registration after portal closure attracts a penalty."
+        },
+        {
+          "source_id": "kcse-2026",
+          "locator": "p10 annex section 7",
+          "claim": "Private-candidate annex says entries after 31 March 2026 are not accepted regardless of payment date."
+        }
+      ],
+      "scope": {
+        "examinations": [
+          "KCSE"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "2026"
+        ],
+        "programmes": [],
+        "series": []
+      },
+      "unresolved_question": "Is any late-entry route available, and does the answer differ for institutional and private candidates?",
+      "required_reviewer": "KNEC KCSE Registration service owner",
+      "decision_history": []
+    },
+    {
+      "id": "certification-document-count",
+      "status": "open",
+      "topic": "required documents",
+      "article_ids": [
+        "cert-replacement"
+      ],
+      "competing_claims": [
+        {
+          "source_id": "certification-2024",
+          "locator": "p1 sections 2.1-2.6",
+          "claim": "Enumerates document categories and conditional evidence."
+        },
+        {
+          "source_id": "qmis-procedure-poster",
+          "locator": "certification service column",
+          "claim": "States seven documents without enumerating or scoping them."
+        }
+      ],
+      "scope": {
+        "examinations": [
+          "all"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "all"
+        ],
+        "programmes": [],
+        "series": []
+      },
+      "unresolved_question": "What exact attachment checklist applies by examination, applicant age and name-change circumstance?",
+      "required_reviewer": "KNEC Certification and QMIS service owners",
+      "decision_history": []
+    }
+  ]
+}

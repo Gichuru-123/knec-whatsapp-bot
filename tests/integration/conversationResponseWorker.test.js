@@ -15,14 +15,14 @@ test('durable response worker sends one committed body and preserves provider ac
       eventId: '8'.repeat(64), accountSid: ACCOUNT, input: 'main menu' });
     const sent = [];
     const worker = new ConversationResponseWorker({ store, participant: 'whatsapp:+254700000007',
-      async send(to, body) { sent.push([to, body]); return { messageId: 'SM' + '9'.repeat(32), status: 'queued' }; } });
+      async send(to, body) { sent.push([to, body]); return { kind: 'accepted', messageId: 'SM' + '9'.repeat(32), status: 'queued' }; } });
     const competitor = new ConversationResponseWorker({ store, participant: 'whatsapp:+254700000007',
-      async send(to, body) { sent.push([to, body]); return { messageId: 'SM' + '9'.repeat(32), status: 'queued' }; } });
+      async send(to, body) { sent.push([to, body]); return { kind: 'accepted', messageId: 'SM' + '9'.repeat(32), status: 'queued' }; } });
     const claims = await Promise.all([worker.tick(), competitor.tick()]);
     assert.equal(claims.filter(Boolean).length, 1);
     assert.equal(await worker.tick(), false);
     assert.equal(sent.length, 1);
-    assert.match(sent[0][1], /KNEC DIGITAL ASSISTANT/);
+    assert.match(sent[0][1], /KNEC NURU — Main Menu/);
     const row = (await fixture.pool.query('SELECT state,provider_sid,provider_status,attempts FROM conversation.outbox')).rows[0];
     assert.deepEqual(row, { state: 'accepted', provider_sid: 'SM' + '9'.repeat(32), provider_status: 'queued', attempts: 1 });
   } finally { await fixture.close(); }
@@ -36,12 +36,24 @@ test('expired sending lease becomes uncertain and is never resent automatically'
       eventId: 'b'.repeat(64), accountSid: ACCOUNT, input: '1' });
     const claim = await store.claimOutbox('11111111-1111-4111-8111-111111111111');
     assert.ok(claim);
+    const owned = (await fixture.pool.query(`SELECT state,attempts,claim_owner::text,claim_token::text
+      FROM conversation.outbox`)).rows[0];
+    assert.equal(owned.state, 'sending');
+    assert.equal(owned.attempts, 1);
+    assert.equal(owned.claim_owner, claim.owner);
+    assert.equal(owned.claim_token, claim.token);
     await fixture.pool.query("UPDATE conversation.outbox SET lease_until=clock_timestamp()-interval '1 second'");
+    await assert.rejects(store.finishOutbox(claim,
+      { kind: 'accepted', messageId: 'SM' + 'f'.repeat(32), status: 'queued' }), /DATABASE_OPERATION_FAILED/);
+    assert.equal((await fixture.pool.query('SELECT state FROM conversation.outbox')).rows[0].state, 'sending');
     let sends = 0;
     const worker = new ConversationResponseWorker({ store, participant: 'whatsapp:+254700000007', async send() { sends += 1; } });
     assert.equal(await worker.tick(), false);
     assert.equal(sends, 0);
-    assert.equal((await fixture.pool.query('SELECT state FROM conversation.outbox')).rows[0].state, 'uncertain');
+    const recovered = (await fixture.pool.query(`SELECT state,outcome,attempts,claim_owner,claim_token,lease_until
+      FROM conversation.outbox`)).rows[0];
+    assert.deepEqual(recovered, { state: 'uncertain', outcome: 'lease_expired', attempts: 1,
+      claim_owner: null, claim_token: null, lease_until: null });
   } finally { await fixture.close(); }
 });
 
@@ -54,7 +66,12 @@ test('early and out-of-order callbacks reconcile without regressing delivery pro
     const claim = await store.claimOutbox('22222222-2222-4222-8222-222222222222');
     const sid = 'SM' + 'e'.repeat(32);
     await store.recordCallback({ accountSid: ACCOUNT, messageSid: sid, status: 'delivered' });
+    const early = await fixture.pool.query(`SELECT status FROM conversation.callbacks
+      WHERE account_sid=$1 AND message_sid=$2`, [ACCOUNT, sid]);
+    assert.deepEqual(early.rows, [{ status: 'delivered' }]);
     await store.finishOutbox(claim, { kind: 'accepted', messageId: sid, status: 'queued' });
+    const reconciled = (await fixture.pool.query('SELECT state,provider_status,review_required FROM conversation.outbox')).rows[0];
+    assert.deepEqual(reconciled, { state: 'accepted', provider_status: 'delivered', review_required: false });
     await store.recordCallback({ accountSid: ACCOUNT, messageSid: sid, status: 'sent' });
     await store.recordCallback({ accountSid: ACCOUNT, messageSid: sid, status: 'failed', errorCode: 63000 });
     const row = (await fixture.pool.query('SELECT provider_status,review_required FROM conversation.outbox')).rows[0];

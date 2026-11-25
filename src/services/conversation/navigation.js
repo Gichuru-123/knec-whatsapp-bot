@@ -10,12 +10,18 @@ const MAX_INPUT_LENGTH = 200;
 const MAX_INVALID_ATTEMPTS = 2;
 
 const COMMANDS = Object.freeze({
+  WELCOME: 'welcome',
   MAIN_MENU: 'main_menu',
   BACK: 'back',
   HELP: 'help'
 });
 
 const COMMAND_ALIASES = Object.freeze({
+  hi: COMMANDS.WELCOME,
+  hello: COMMANDS.WELCOME,
+  hey: COMMANDS.WELCOME,
+  start: COMMANDS.WELCOME,
+
   menu: COMMANDS.MAIN_MENU,
   'main menu': COMMANDS.MAIN_MENU,
   main: COMMANDS.MAIN_MENU,
@@ -32,7 +38,8 @@ function createInitialState() {
     version: STATE_VERSION,
     currentNodeId: MENU_INDEX.rootId,
     path: [MENU_INDEX.rootId],
-    invalidAttempts: 0
+    invalidAttempts: 0,
+    workflow: null
   };
 }
 
@@ -41,7 +48,8 @@ function normalizeInput(input) {
     return '';
   }
 
-  return input.trim().replace(/\s+/g, ' ').toLowerCase();
+  return input.normalize('NFKC').replace(/[\u200B-\u200D\u2060\uFEFF]/g, '')
+    .trim().replace(/\s+/g, ' ').toLowerCase();
 }
 
 function validateState(state) {
@@ -108,6 +116,8 @@ function validateState(state) {
     throw new Error('Conversation invalid-attempt counter is invalid.');
   }
 
+  validateWorkflow(state.workflow);
+
   return state;
 }
 
@@ -116,8 +126,30 @@ function cloneState(state) {
     version: state.version,
     currentNodeId: state.currentNodeId,
     path: [...state.path],
-    invalidAttempts: state.invalidAttempts
+    invalidAttempts: state.invalidAttempts,
+    workflow: state.workflow ? structuredClone(state.workflow) : null
   };
+}
+
+function validateWorkflow(workflow) {
+  if (workflow === undefined || workflow === null) return;
+  const workflowNode = workflow && typeof workflow.nodeId === 'string' ? MENU_INDEX.get(workflow.nodeId) : null;
+  if (!workflow || typeof workflow !== 'object' || Array.isArray(workflow) ||
+      workflow.version !== 1 || typeof workflow.nodeId !== 'string' ||
+      !workflowNode || workflowNode.type !== 'knowledge_hook' || typeof workflow.articleId !== 'string' ||
+      !/^[a-z][a-z0-9-]*$/.test(workflow.articleId) ||
+      workflowNode.action.articleId !== workflow.articleId ||
+      (workflow.pendingField !== null && !['examination', 'audience', 'year', 'programme', 'series'].includes(workflow.pendingField)) ||
+      !workflow.context || typeof workflow.context !== 'object' || Array.isArray(workflow.context) ||
+      !Number.isInteger(workflow.invalidAttempts) || workflow.invalidAttempts < 0 || workflow.invalidAttempts >= MAX_INVALID_ATTEMPTS) {
+    throw new Error('Conversation knowledge workflow is invalid.');
+  }
+  const allowed = new Set(['examination', 'audience', 'year', 'language', 'programme', 'series']);
+  for (const [field, value] of Object.entries(workflow.context)) {
+    if (!allowed.has(field) || typeof value !== 'string' || !value.trim() || value.length > 100) {
+      throw new Error('Conversation knowledge context is invalid.');
+    }
+  }
 }
 
 function renderMenu(node) {
@@ -128,11 +160,13 @@ function renderMenu(node) {
   return {
     nodeId: node.id,
     title: node.title,
+    ...(node.emoji ? { emoji: node.emoji } : {}),
     breadcrumb: buildPathToNode(node.id).map((nodeId) => MENU_INDEX.get(nodeId).title),
     options: node.children.map((child, index) => ({
       number: index + 1,
       nodeId: child.id,
       title: child.title,
+      ...(child.emoji ? { emoji: child.emoji } : {}),
       ...(child.description ? { description: child.description } : {}),
       type: child.type
     })),
@@ -150,19 +184,19 @@ function getHelpResponse(state) {
   return {
     type: 'help',
     message:
-      'Choose one of the numbered options. You can also use BACK, MAIN MENU, or HELP.',
+      '🧭 Choose one of the numbered options. You can also use BACK, MAIN MENU, or HELP. ☎️ For telephone assistance, call the KNEC switchboard on 0719 093 000. WhatsApp availability is not established.',
     menu: renderMenu(node)
   };
 }
 
-function resetToMainMenu() {
+function resetToMainMenu(reason = 'main_menu') {
   const state = createInitialState();
 
   return {
     state,
     response: {
       type: 'menu',
-      reason: 'main_menu',
+      reason,
       menu: renderMenu(MENU_INDEX.get(MENU_INDEX.rootId))
     }
   };
@@ -192,7 +226,8 @@ function goBack(state) {
       version: STATE_VERSION,
       currentNodeId: nextNodeId,
       path: nextPath,
-      invalidAttempts: 0
+      invalidAttempts: 0,
+      workflow: null
     },
     response: {
       type: 'menu',
@@ -233,7 +268,8 @@ function handleMenuNode(state, selectedNode) {
     version: STATE_VERSION,
     currentNodeId: selectedNode.id,
     path: [...state.path, selectedNode.id],
-    invalidAttempts: 0
+    invalidAttempts: 0,
+    workflow: null
   };
 
   return {
@@ -292,7 +328,8 @@ function handlePlaceholder(selectedNode) {
       version: STATE_VERSION,
       currentNodeId: returnNode.id,
       path: buildPathToNode(returnNode.id),
-      invalidAttempts: 0
+      invalidAttempts: 0,
+      workflow: null
     },
     response: {
       type: 'placeholder',
@@ -359,6 +396,10 @@ function handleInput(input, state = createInitialState()) {
 
   if (command === COMMANDS.MAIN_MENU) {
     return resetToMainMenu();
+  }
+
+  if (command === COMMANDS.WELCOME) {
+    return resetToMainMenu('welcome');
   }
 
   if (command === COMMANDS.BACK) {

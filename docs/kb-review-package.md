@@ -4,7 +4,11 @@ Checkpoint: 4 November 2026. This package supports engineering and content revie
 
 ## What is ready to review
 
-The corpus has 33 draft records, 15 source records and 137 authored question examples. Two comparison articles are internal-only. Four offline procedure plans cover certification, confirmation, equation and biodata amendment. Programme, assessment, year and series checks reduce cross-service mixing. Evidence hashes and source locations make individual claims traceable.
+The corpus has 33 registered articles, 17 source records and 159 authored evaluation questions. Two comparison articles are internal-only. Ten offline procedure plans cover certification, confirmation, equation, biodata amendment, QMIS navigation, KCSE, KPSEA, KJSEA, KILEA and KPLEA. Programme, assessment, year and series checks reduce cross-service mixing. Evidence hashes and source locations make individual claims traceable.
+
+There are 32 active menu mappings for 33 articles. The single unmapped article, `reg-kpsea-kjsea`, is intentionally internal-only: it preserves comparison evidence used to verify separation of KPSEA, KJSEA, KILEA and KPLEA, while the four public articles each have their own active menu hook. This is an intentional governance boundary, not missing navigation.
+
+The authored evaluation questions are label-controlled examples and are not automated tests or measured model results. Automated unit and integration tests execute separately. Governance assertions validate inventories, hashes, conflicts, historical-source boundaries, approval state and personal-information restrictions.
 
 Read `kb-coverage-report.md` for gaps, `kb-step-by-step-guidance.md` for conversation design, `kb-tvet-scope.md` for programme/series boundaries, and `evaluation/kb/procedures.json` for the ordered plans. Tests establish structural and policy behavior, not institutional correctness or conversational accuracy.
 

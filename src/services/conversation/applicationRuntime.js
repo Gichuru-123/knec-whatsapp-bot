@@ -7,6 +7,7 @@ const { ConversationService } = require('./conversationService');
 const { ConversationResponseWorker } = require('./responseWorker');
 const { ConversationRuntime } = require('./conversationRuntime');
 const logger = require('../../logger');
+const { createConversationIdentity } = require('../messaging/conversationIdentity');
 
 async function createConversationApplicationRuntime(settings, { senderFactory = createConversationSender } = {}) {
   if (!settings.delivery || !settings.conversation?.enabled || settings.nodeEnv !== 'development' ||
@@ -19,12 +20,18 @@ async function createConversationApplicationRuntime(settings, { senderFactory = 
     await new DeliveryStore(pool).health();
     const store = new ConversationSessionStore(pool, { ttlSeconds: settings.conversation.ttlSeconds });
     const conversationService = new ConversationService({ store });
+    const recipientByConversation = new Map(settings.twilio.recipients.map(participant => [
+      createConversationIdentity({ secret: settings.delivery.secret, version: settings.delivery.version,
+        accountSid: settings.twilio.accountSid, sender: settings.twilio.from, participant }), participant
+    ]));
     const responseWorker = settings.twilio.liveSendEnabled
-      ? new ConversationResponseWorker({ store, send: senderFactory(settings.twilio), participant: settings.twilio.recipient })
+      ? new ConversationResponseWorker({ store, send: senderFactory(settings.twilio),
+        recipientForConversation: conversationId => recipientByConversation.get(conversationId),
+        messagesPerParticipant: settings.conversation.messagesPerParticipant })
       : null;
     const service = new ConversationRuntime({ service: conversationService, store,
       worker: responseWorker || { tick: async () => false }, accountSid: settings.twilio.accountSid,
-      sender: settings.twilio.from, participant: settings.twilio.recipient,
+      sender: settings.twilio.from, participants: settings.twilio.recipients,
       secret: settings.delivery.secret, version: settings.delivery.version });
 
     const schedule = () => {

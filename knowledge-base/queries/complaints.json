@@ -6,7 +6,7 @@
   "title": "Public Complaints and Grievances",
   "description": "Draft public-service guidance; review questions must be resolved before publication.",
   "language": "en",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "status": "draft",
   "verification_status": "source_checked",
   "visibility": "public",
@@ -26,7 +26,9 @@
     "service delay"
   ],
   "clarifying_questions": [
-    "Which service and examination does your question concern?"
+    "Which KNEC service or decision does the complaint concern?",
+    "Has the matter already been handled at the frontline or department level?",
+    "Do you need the complaint channel, escalation stages or expected response commitment?"
   ],
   "claims": [
     {
@@ -67,10 +69,46 @@
           "locator": "p1 Stage1 and Stage2 flowchart"
         }
       ]
+    },
+    {
+      "id": "frontline-stage",
+      "kind": "step",
+      "text": "At Stage 1, KNEC records and indexes the complaint, refers the customer to the office responsible for the issue, records it in CRM and the departmental complaints register, handles it and closes it if the customer is satisfied.",
+      "evidence_status": "supported",
+      "citations": [{"source_id":"complaints-procedure","source_sha256":"6f503f89acf9e568a0fcedcd6b614fd6bb4ce4b608fbdf428e6bb3f1666e38bc","locator":"p1 Stage 1 Frontline Resolution flow"}]
+    },
+    {
+      "id": "investigation-stage",
+      "kind": "step",
+      "text": "If the customer is not satisfied, Stage 2 routes the matter to the head of department to approve investigations, gives findings to the customer and closes the complaint if the customer is satisfied.",
+      "evidence_status": "supported",
+      "citations": [{"source_id":"complaints-procedure","source_sha256":"6f503f89acf9e568a0fcedcd6b614fd6bb4ce4b608fbdf428e6bb3f1666e38bc","locator":"p1 Stage 2 Investigations flow"}]
+    },
+    {
+      "id": "management-stage",
+      "kind": "step",
+      "text": "If dissatisfaction continues, investigation records go to Corporate Communications, which tables the matter to management; the customer receives the management decision and may seek external help if still dissatisfied.",
+      "evidence_status": "supported",
+      "citations": [{"source_id":"complaints-procedure","source_sha256":"6f503f89acf9e568a0fcedcd6b614fd6bb4ce4b608fbdf428e6bb3f1666e38bc","locator":"p1 Stage 2 management escalation flow"}]
+    },
+    {
+      "id": "support-contact",
+      "kind": "contact",
+      "text": "The verified KNEC contact page lists the switchboard as 0719 093 000 and info@knec.ac.ke; the procedure does not establish office hours, call charges or WhatsApp support.",
+      "evidence_status": "supported",
+      "citations": [{"source_id":"knec-contact","source_sha256":"d9b69b7ed07a6ef182e4d73fd951f8f503a903bae9c38ff9aab6f672ac87003b","locator":"Head Office contact block"}]
+    },
+    {
+      "id": "assistant-boundary",
+      "kind": "exception",
+      "text": "The complaints procedure describes KNEC's internal CRM and registers. The WhatsApp assistant may explain the process but does not create, investigate, close or retrieve a complaint record.",
+      "evidence_status": "supported",
+      "citations": [{"source_id":"complaints-procedure","source_sha256":"6f503f89acf9e568a0fcedcd6b614fd6bb4ce4b608fbdf428e6bb3f1666e38bc","locator":"p1 complete flowchart"}]
     }
   ],
   "unresolved_questions": [
-    "Verify current submission contacts and named reviewer approval.",
+    "Confirm which approved written, email, walk-in or other channel should be used for each complaint type.",
+    "Confirm whether the charter's one-working-day commitment is acknowledgement or substantive response, and establish its starting event.",
     "Do not claim the bot submits complaints into KNEC CRM."
   ],
   "effective_from": null,

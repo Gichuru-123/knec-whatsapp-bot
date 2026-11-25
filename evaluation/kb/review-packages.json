@@ -1,0 +1,526 @@
+{
+  "version": "1.0.0",
+  "purpose": "Priority 1 factual-review packages; not public answers or institutional approvals.",
+  "packages": [
+    {
+      "article_id": "cert-replacement",
+      "service_summary": "Draft public-service guidance; review questions must be resolved before publication.",
+      "applicable_scope": {
+        "examinations": [
+          "all"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "all"
+        ]
+      },
+      "source_ids": [
+        "certification-2024",
+        "charter-2026",
+        "qmis-procedure-poster"
+      ],
+      "supported_claims": [
+        "cert-replacement:purpose",
+        "cert-replacement:documents",
+        "cert-replacement:modules",
+        "cert-replacement:name-evidence",
+        "cert-replacement:payment",
+        "cert-replacement:collection",
+        "cert-replacement:fee",
+        "cert-replacement:uncollected",
+        "cert-replacement:non-replaceable",
+        "cert-replacement:loss-proof",
+        "cert-replacement:incomplete-application",
+        "cert-replacement:online-only",
+        "cert-replacement:archives-contact",
+        "cert-replacement:portal-sequence"
+      ],
+      "evidence_sections": {
+        "orientation": [
+          "cert-replacement:purpose"
+        ],
+        "requirement": [
+          "cert-replacement:documents",
+          "cert-replacement:modules",
+          "cert-replacement:loss-proof"
+        ],
+        "step": [
+          "cert-replacement:payment",
+          "cert-replacement:collection",
+          "cert-replacement:online-only",
+          "cert-replacement:portal-sequence"
+        ],
+        "fee": [
+          "cert-replacement:fee"
+        ],
+        "timeline": [
+          "cert-replacement:timeline-conflict"
+        ],
+        "exception": [
+          "cert-replacement:name-evidence",
+          "cert-replacement:uncollected",
+          "cert-replacement:non-replaceable",
+          "cert-replacement:incomplete-application"
+        ],
+        "contact": [
+          "cert-replacement:archives-contact"
+        ]
+      },
+      "review_gaps": [
+        "Current portal attachment checklist by examination, age and legal-name circumstance.",
+        "Current pended/resubmission workflow and payment consequences.",
+        "Confirm the current KES 5,220 tariff and payment prompt.",
+        "Review the project-owner proposal of an estimated 10–15 working-day range, confirm that it is not a guarantee, and establish the event that starts the estimate.",
+        "Confirm name-change and uncollected-letter edge cases."
+      ],
+      "open_conflicts": [
+        "certification-processing-time",
+        "certification-document-count"
+      ],
+      "pii_boundary": "Do not collect or store candidate names, index numbers, credentials, identity documents or personal records; provide generic guidance only.",
+      "reviewer_brief": "Review every cited claim and resolve the listed gaps for Examination Results Certification Letter; record scope, effective date and source version.",
+      "publication_authorized": false
+    },
+    {
+      "article_id": "ver-results",
+      "service_summary": "Draft public-service guidance; review questions must be resolved before publication.",
+      "applicable_scope": {
+        "examinations": [
+          "all"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "all"
+        ]
+      },
+      "source_ids": [
+        "confirmation-2024",
+        "charter-2026",
+        "qmis-external-2017",
+        "qmis-manual-2018",
+        "qmis-procedure-poster"
+      ],
+      "supported_claims": [
+        "ver-results:purpose",
+        "ver-results:eligible-requesters",
+        "ver-results:apply",
+        "ver-results:historical-qmis-sequence",
+        "ver-results:missing-copy",
+        "ver-results:recipient",
+        "ver-results:payment-prompt",
+        "ver-results:fees",
+        "ver-results:outside-email-courier",
+        "ver-results:modular-charging",
+        "ver-results:single-group-charging",
+        "ver-results:processing-clock",
+        "ver-results:historical-results",
+        "ver-results:delivery-conflict",
+        "ver-results:separate-examinations",
+        "ver-results:applicant-contact",
+        "ver-results:archives-contact",
+        "ver-results:portal-sequence"
+      ],
+      "evidence_sections": {
+        "orientation": [],
+        "requirement": [
+          "ver-results:separate-examinations",
+          "ver-results:applicant-contact"
+        ],
+        "step": [
+          "ver-results:apply",
+          "ver-results:portal-sequence"
+        ],
+        "fee": [
+          "ver-results:fees",
+          "ver-results:modular-charging",
+          "ver-results:single-group-charging"
+        ],
+        "timeline": [],
+        "exception": [
+          "ver-results:missing-copy",
+          "ver-results:recipient",
+          "ver-results:historical-results"
+        ],
+        "contact": [
+          "ver-results:archives-contact"
+        ]
+      },
+      "review_gaps": [
+        "Current destination and evidence requirements by examination and series.",
+        "Confirm whether the guide-documented QMIS screens and delivery options remain applicable to the live portal.",
+        "Resolve fax/email and overseas payment applicability.",
+        "Confirm current processing trigger and historical-results exception.",
+        "Confirm modular and stage charging boundaries."
+      ],
+      "open_conflicts": [
+        "confirmation-delivery-payment"
+      ],
+      "pii_boundary": "Do not collect or store candidate names, index numbers, credentials, identity documents or personal records; provide generic guidance only.",
+      "reviewer_brief": "Review every cited claim and resolve the listed gaps for Confirmation of Results; record scope, effective date and source version.",
+      "publication_authorized": false
+    },
+    {
+      "article_id": "foreign-equation",
+      "service_summary": "Draft public-service guidance; review questions must be resolved before publication.",
+      "applicable_scope": {
+        "examinations": [
+          "all"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "all"
+        ]
+      },
+      "source_ids": [
+        "equation-2025"
+      ],
+      "supported_claims": [
+        "foreign-equation:scope",
+        "foreign-equation:authentication",
+        "foreign-equation:application",
+        "foreign-equation:additional-evidence",
+        "foreign-equation:recipient",
+        "foreign-equation:fee",
+        "foreign-equation:awarding-body",
+        "foreign-equation:advanced-level",
+        "foreign-equation:kcse-subjects",
+        "foreign-equation:study-duration",
+        "foreign-equation:translation",
+        "foreign-equation:authentication-route",
+        "foreign-equation:learner-evidence",
+        "foreign-equation:payment-prompt",
+        "foreign-equation:enquiries"
+      ],
+      "evidence_sections": {
+        "orientation": [
+          "foreign-equation:scope"
+        ],
+        "requirement": [
+          "foreign-equation:authentication",
+          "foreign-equation:awarding-body",
+          "foreign-equation:advanced-level",
+          "foreign-equation:kcse-subjects",
+          "foreign-equation:study-duration",
+          "foreign-equation:translation",
+          "foreign-equation:learner-evidence"
+        ],
+        "step": [
+          "foreign-equation:application",
+          "foreign-equation:authentication-route",
+          "foreign-equation:payment-prompt"
+        ],
+        "fee": [
+          "foreign-equation:fee"
+        ],
+        "timeline": [],
+        "exception": [
+          "foreign-equation:additional-evidence",
+          "foreign-equation:recipient"
+        ],
+        "contact": [
+          "foreign-equation:enquiries"
+        ]
+      },
+      "review_gaps": [
+        "Qualification-specific eligibility must be decided by an authorized reviewer.",
+        "Confirm current portal and authentication sequence.",
+        "Confirm current dispatch/email components and payment prompt.",
+        "Resolve payment-versus-complete-documentation trigger.",
+        "Define evidence path where standard equation criteria do not exist."
+      ],
+      "open_conflicts": [
+        "equation-processing-start"
+      ],
+      "pii_boundary": "Do not collect or store candidate names, index numbers, credentials, identity documents or personal records; provide generic guidance only.",
+      "reviewer_brief": "Review every cited claim and resolve the listed gaps for Equation of Foreign Qualifications; record scope, effective date and source version.",
+      "publication_authorized": false
+    },
+    {
+      "article_id": "reg-kcse",
+      "service_summary": "Draft public-service guidance; review questions must be resolved before publication.",
+      "applicable_scope": {
+        "examinations": [
+          "KCSE"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "2026"
+        ]
+      },
+      "source_ids": [
+        "kcse-2026"
+      ],
+      "supported_claims": [
+        "reg-kcse:registration-window",
+        "reg-kcse:school-route",
+        "reg-kcse:private-route",
+        "reg-kcse:special-needs",
+        "reg-kcse:fee-exceptions",
+        "reg-kcse:private-identity",
+        "reg-kcse:private-practical-confirmation",
+        "reg-kcse:partial-repeat",
+        "reg-kcse:whole-repeat",
+        "reg-kcse:withdrawal",
+        "reg-kcse:special-needs-annex"
+      ],
+      "evidence_sections": {
+        "orientation": [],
+        "requirement": [
+          "reg-kcse:special-needs",
+          "reg-kcse:private-identity",
+          "reg-kcse:private-practical-confirmation",
+          "reg-kcse:special-needs-annex"
+        ],
+        "step": [
+          "reg-kcse:school-route",
+          "reg-kcse:private-route"
+        ],
+        "fee": [
+          "reg-kcse:fee-exceptions"
+        ],
+        "timeline": [
+          "reg-kcse:registration-window",
+          "reg-kcse:late-entry-conflict"
+        ],
+        "exception": [
+          "reg-kcse:partial-repeat",
+          "reg-kcse:whole-repeat",
+          "reg-kcse:withdrawal"
+        ],
+        "contact": []
+      },
+      "review_gaps": [
+        "Confirm current practical-centre assignment and later amendments.",
+        "Clarify institutional versus private late-entry handling.",
+        "Confirm current fee exceptions and any late-entry charge.",
+        "2026 window is historical; obtain the applicable year circular.",
+        "Resolve late-entry contradiction and private-candidate venue rules."
+      ],
+      "open_conflicts": [
+        "kcse-late-entry"
+      ],
+      "pii_boundary": "Do not collect or store candidate names, index numbers, credentials, identity documents or personal records; provide generic guidance only.",
+      "reviewer_brief": "Review every cited claim and resolve the listed gaps for KCSE Examination Registration; record scope, effective date and source version.",
+      "publication_authorized": false
+    },
+    {
+      "article_id": "reg-kpsea",
+      "service_summary": "Draft public-service guidance; review questions must be resolved before publication.",
+      "applicable_scope": {
+        "examinations": [
+          "KPSEA"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "2026"
+        ]
+      },
+      "source_ids": [
+        "kpsea-2026"
+      ],
+      "supported_claims": [
+        "reg-kpsea:kpsea-window",
+        "reg-kpsea:kpsea-eligibility",
+        "reg-kpsea:kpsea-declaration",
+        "reg-kpsea:kpsea-special-needs"
+      ],
+      "evidence_sections": {
+        "orientation": [],
+        "requirement": [
+          "reg-kpsea:kpsea-eligibility",
+          "reg-kpsea:kpsea-special-needs"
+        ],
+        "step": [
+          "reg-kpsea:kpsea-declaration"
+        ],
+        "fee": [],
+        "timeline": [
+          "reg-kpsea:kpsea-window"
+        ],
+        "exception": [],
+        "contact": []
+      },
+      "review_gaps": [
+        "Confirm transfer, assessment-number and special-needs rules for the applicable year.",
+        "Obtain current portal workflow and later amendments.",
+        "Confirm applicable fee and penalty exceptions.",
+        "2026 window is historical; obtain the applicable year circular.",
+        "Confirm transfers and late-registration handling."
+      ],
+      "open_conflicts": [],
+      "pii_boundary": "Do not collect or store candidate names, index numbers, credentials, identity documents or personal records; provide generic guidance only.",
+      "reviewer_brief": "Review every cited claim and resolve the listed gaps for KPSEA Assessment Registration (2026); record scope, effective date and source version.",
+      "publication_authorized": false
+    },
+    {
+      "article_id": "reg-kjsea",
+      "service_summary": "Draft year-scoped KJSEA registration, pathway and senior-school progression guidance; current cohort portal and review instructions remain blocked pending authoritative confirmation.",
+      "applicable_scope": {
+        "examinations": [
+          "KJSEA"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "2025",
+          "2026"
+        ]
+      },
+      "source_ids": [
+        "kjsea-2026",
+        "kjsea-regulations-2026",
+        "moe-kjsea-placement-2025"
+      ],
+      "supported_claims": [
+        "reg-kjsea:kjsea-window",
+        "reg-kjsea:kjsea-eligibility",
+        "reg-kjsea:kjsea-declaration",
+        "reg-kjsea:kjsea-special-needs",
+        "reg-kjsea:placement-purpose",
+        "reg-kjsea:pathway-strength",
+        "reg-kjsea:score-composition",
+        "reg-kjsea:learner-report",
+        "reg-kjsea:placement-factors-2025",
+        "reg-kjsea:placement-review-2025"
+      ],
+      "evidence_sections": {
+        "orientation": [
+          "reg-kjsea:placement-purpose",
+          "reg-kjsea:pathway-strength",
+          "reg-kjsea:score-composition",
+          "reg-kjsea:placement-factors-2025"
+        ],
+        "requirement": [
+          "reg-kjsea:kjsea-eligibility",
+          "reg-kjsea:kjsea-special-needs",
+          "reg-kjsea:learner-report"
+        ],
+        "step": [
+          "reg-kjsea:kjsea-declaration"
+        ],
+        "fee": [],
+        "timeline": [
+          "reg-kjsea:kjsea-window"
+        ],
+        "exception": [
+          "reg-kjsea:placement-review-2025"
+        ],
+        "contact": []
+      },
+      "review_gaps": [
+        "Confirm transfer, SBA and special-needs rules for the applicable year.",
+        "Obtain current portal workflow and later amendments.",
+        "Confirm applicable fee and penalty exceptions.",
+        "2026 window is historical; obtain the applicable year circular.",
+        "Confirm transfers and late-registration handling."
+      ],
+      "open_conflicts": [],
+      "pii_boundary": "Do not collect or store candidate names, index numbers, credentials, identity documents or personal records; provide generic guidance only.",
+      "reviewer_brief": "Review every cited registration, pathway and placement claim for KJSEA; confirm current cohort applicability, official portal and review route, then record scope, effective date and source version.",
+      "publication_authorized": false
+    },
+    {
+      "article_id": "reg-kilea",
+      "service_summary": "Draft public-service guidance; review questions must be resolved before publication.",
+      "applicable_scope": {
+        "examinations": [
+          "KILEA"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "2026"
+        ]
+      },
+      "source_ids": [
+        "kpsea-2026"
+      ],
+      "supported_claims": [
+        "reg-kilea:kpsea-window",
+        "reg-kilea:kilea-pathway"
+      ],
+      "evidence_sections": {
+        "orientation": [
+          "reg-kilea:kilea-pathway"
+        ],
+        "requirement": [],
+        "step": [],
+        "fee": [],
+        "timeline": [
+          "reg-kilea:kpsea-window"
+        ],
+        "exception": [],
+        "contact": []
+      },
+      "review_gaps": [
+        "Obtain complete stage-based eligibility, forms and supporting evidence.",
+        "Document the current KILEA-specific portal procedure.",
+        "Confirm KILEA fee and penalty exceptions.",
+        "2026 window is historical; obtain the applicable year circular.",
+        "Confirm transfers and stage-readiness exceptions."
+      ],
+      "open_conflicts": [],
+      "pii_boundary": "Do not collect or store candidate names, index numbers, credentials, identity documents or personal records; provide generic guidance only.",
+      "reviewer_brief": "Review every cited claim and resolve the listed gaps for KILEA Assessment Registration (2026); record scope, effective date and source version.",
+      "publication_authorized": false
+    },
+    {
+      "article_id": "reg-kplea",
+      "service_summary": "Draft public-service guidance; review questions must be resolved before publication.",
+      "applicable_scope": {
+        "examinations": [
+          "KPLEA"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "2026"
+        ]
+      },
+      "source_ids": [
+        "kjsea-2026"
+      ],
+      "supported_claims": [
+        "reg-kplea:kjsea-window",
+        "reg-kplea:kplea-pathway"
+      ],
+      "evidence_sections": {
+        "orientation": [
+          "reg-kplea:kplea-pathway"
+        ],
+        "requirement": [],
+        "step": [],
+        "fee": [],
+        "timeline": [
+          "reg-kplea:kjsea-window"
+        ],
+        "exception": [],
+        "contact": []
+      },
+      "review_gaps": [
+        "Obtain complete stage-based eligibility, forms and supporting evidence.",
+        "Document the current KPLEA-specific portal procedure.",
+        "Confirm KPLEA fee and penalty exceptions.",
+        "2026 window is historical; obtain the applicable year circular.",
+        "Confirm transfers and stage-readiness exceptions."
+      ],
+      "open_conflicts": [],
+      "pii_boundary": "Do not collect or store candidate names, index numbers, credentials, identity documents or personal records; provide generic guidance only.",
+      "reviewer_brief": "Review every cited claim and resolve the listed gaps for KPLEA Assessment Registration (2026); record scope, effective date and source version.",
+      "publication_authorized": false
+    }
+  ]
+}

@@ -5,7 +5,7 @@ const { createConversationIdentity, createConversationEventIdentity } = require(
 class ConversationRuntime {
   #secret;
 
-  constructor({ service, store, worker, accountSid, sender, participant, secret, version }) {
+  constructor({ service, store, worker, accountSid, sender, participants, participant, secret, version }) {
     if (!service || typeof service.process !== 'function' || !store || typeof store.recordCallback !== 'function' ||
         !worker || typeof worker.tick !== 'function') throw new Error('INVALID_CONVERSATION_RUNTIME');
     this.service = service;
@@ -13,17 +13,23 @@ class ConversationRuntime {
     this.worker = worker;
     this.accountSid = accountSid;
     this.sender = sender;
-    this.participant = participant;
+    const allowedParticipants = participants || (typeof participant === 'string' ? [participant] : null);
+    if (!Array.isArray(allowedParticipants) || allowedParticipants.length < 1 || allowedParticipants.length > 5 ||
+        new Set(allowedParticipants).size !== allowedParticipants.length || allowedParticipants.some(value => typeof value !== 'string')) {
+      throw new Error('INVALID_CONVERSATION_PARTICIPANTS');
+    }
+    this.participants = new Set(allowedParticipants);
     this.#secret = secret;
     this.version = version;
     // Validate and derive once without retaining any reversible participant identifier in storage.
-    this.conversationId = createConversationIdentity({ secret, version, accountSid, sender, participant });
+    this.conversationIds = new Map(allowedParticipants.map(participant => [participant,
+      createConversationIdentity({ secret, version, accountSid, sender, participant })]));
   }
 
   async inbound(body, adapter) {
     if (!adapter || typeof adapter.normalizeInboundPayload !== 'function') throw new Error('INVALID_CONVERSATION_ADAPTER');
     const messages = adapter.normalizeInboundPayload(body);
-    if (body.From !== this.participant) {
+    if (!this.participants.has(body.From)) {
       const error = new Error('PARTICIPANT_NOT_PERMITTED');
       error.statusCode = 403;
       throw error;
@@ -35,7 +41,7 @@ class ConversationRuntime {
       throw error;
     }
     const eventId = createConversationEventIdentity({ secret: this.#secret, accountSid: this.accountSid, messageSid: body.MessageSid });
-    const result = await this.service.process({ conversationId: this.conversationId, eventId,
+    const result = await this.service.process({ conversationId: this.conversationIds.get(body.From), eventId,
       accountSid: this.accountSid, input: messages[0].textBody });
     return { supported: true, duplicate: result.duplicate, sessionRevision: result.session.revision };
   }

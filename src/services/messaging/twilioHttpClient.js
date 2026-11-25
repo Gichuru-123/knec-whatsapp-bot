@@ -16,7 +16,8 @@ function createRestrictedSender(settings, validateText, { testTarget } = {}) {
     }
   }
   return async (to, text) => {
-    if (to !== settings.recipient || !validateText(text)) throw new Error('Invalid outbound reply');
+    const recipients = settings.recipients || [settings.recipient];
+    if (!recipients.includes(to) || !validateText(text)) throw new Error('Invalid outbound reply');
     let outcome = { kind: 'uncertain' };
     const httpClient = { request: async options => {
       const expected = { To: to, From: settings.from, Body: text, StatusCallback: settings.status.url };

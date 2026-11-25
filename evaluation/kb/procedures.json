@@ -129,6 +129,8 @@
           "prompt": "Confirm the receiving institution address. The statement goes to the employer or institution, cannot be redirected and is not a replacement certificate.",
           "applies_when": "Always",
           "claim_refs": [
+            "ver-results:purpose",
+            "ver-results:eligible-requesters",
             "ver-results:recipient",
             "ver-results:apply"
           ],
@@ -167,8 +169,10 @@
           "applies_when": "Always",
           "claim_refs": [
             "ver-results:apply",
+            "ver-results:historical-qmis-sequence",
             "ver-results:applicant-contact",
-            "ver-results:portal-sequence"
+            "ver-results:portal-sequence",
+            "ver-results:payment-prompt"
           ],
           "review_gate": "Verify current portal screens before button-by-button instructions."
         },
@@ -178,8 +182,10 @@
           "applies_when": "Always",
           "claim_refs": [
             "ver-results:fees",
+            "ver-results:outside-email-courier",
             "ver-results:modular-charging",
-            "ver-results:single-group-charging"
+            "ver-results:single-group-charging",
+            "ver-results:delivery-conflict"
           ],
           "review_gate": "Resolve dispatch terminology and overseas-payment instructions before presenting a total or payment directions."
         },
@@ -189,7 +195,9 @@
           "applies_when": "Always",
           "claim_refs": [
             "ver-results:recipient",
-            "ver-results:historical-results"
+            "ver-results:historical-results",
+            "ver-results:processing-clock",
+            "ver-results:delivery-conflict"
           ],
           "review_gate": "Confirm applicable current delivery channel and timing; do not promise tracking access."
         },
@@ -350,6 +358,329 @@
         }
       ],
       "completion": "Review-gated orientation only; no application, payment or amendment has been performed."
+    },
+    {
+      "id": "reg-kcse",
+      "title": "KCSE registration: year-scoped guidance",
+      "status": "draft",
+      "language": "en",
+      "clarifying_questions": [
+        "Which KCSE examination year applies?",
+        "Is the candidate school-based, private, repeating or withdrawing?",
+        "Are practical subjects or special-needs arrangements involved?"
+      ],
+      "steps": [
+        {
+          "id": "establish-scope",
+          "prompt": "Confirm the examination year and candidate route before using any dates or requirements.",
+          "applies_when": "After the listed clarifying questions are answered",
+          "claim_refs": [
+            "reg-kcse:registration-window",
+            "reg-kcse:school-route",
+            "reg-kcse:private-route"
+          ],
+          "review_gate": "The available circular is bound to 2026; a different year requires its own authoritative circular."
+        },
+        {
+          "id": "identify-exceptions",
+          "prompt": "Check repeat, withdrawal, practical-subject and special-needs circumstances before giving the route.",
+          "applies_when": "After the listed clarifying questions are answered",
+          "claim_refs": [
+            "reg-kcse:partial-repeat",
+            "reg-kcse:whole-repeat",
+            "reg-kcse:withdrawal",
+            "reg-kcse:private-practical-confirmation",
+            "reg-kcse:special-needs-annex"
+          ],
+          "review_gate": "An authorized reviewer must confirm current applicability and later amendments."
+        },
+        {
+          "id": "resolve-late-entry",
+          "prompt": "Do not promise late registration; the stored 2026 source contains competing wording.",
+          "applies_when": "After the listed clarifying questions are answered",
+          "claim_refs": [
+            "reg-kcse:late-entry-conflict"
+          ],
+          "review_gate": "Resolve institutional versus private-candidate treatment before publication."
+        }
+      ],
+      "completion": "Guidance boundary established only; no registration, payment, approval or candidate-record action has been performed."
+    },
+    {
+      "id": "reg-kpsea",
+      "title": "KPSEA registration: year-scoped guidance",
+      "status": "draft",
+      "language": "en",
+      "clarifying_questions": [
+        "Which KPSEA assessment year applies?",
+        "Is the learner eligible under the applicable circular?",
+        "Are transfer or special-needs arrangements involved?"
+      ],
+      "steps": [
+        {
+          "id": "establish-scope",
+          "prompt": "Confirm the applicable year before using the registration window.",
+          "applies_when": "After the listed clarifying questions are answered",
+          "claim_refs": [
+            "reg-kpsea:kpsea-window"
+          ],
+          "review_gate": "The available window is historical and must not be projected to another year."
+        },
+        {
+          "id": "check-eligibility",
+          "prompt": "Use the year-specific eligibility and declaration provisions only within their recorded scope.",
+          "applies_when": "After the listed clarifying questions are answered",
+          "claim_refs": [
+            "reg-kpsea:kpsea-eligibility",
+            "reg-kpsea:kpsea-declaration"
+          ],
+          "review_gate": "Confirm later amendments, transfers and assessment-number rules."
+        },
+        {
+          "id": "check-accommodation",
+          "prompt": "Identify special-needs arrangements without requesting medical or candidate records in chat.",
+          "applies_when": "After the listed clarifying questions are answered",
+          "claim_refs": [
+            "reg-kpsea:kpsea-special-needs"
+          ],
+          "review_gate": "Confirm the current authorized evidence and submission channel."
+        }
+      ],
+      "completion": "Guidance boundary established only; no registration, payment, approval or candidate-record action has been performed."
+    },
+    {
+      "id": "reg-kjsea",
+      "title": "KJSEA registration: year-scoped guidance",
+      "status": "draft",
+      "language": "en",
+      "clarifying_questions": [
+        "Which KJSEA assessment year applies?",
+        "Is the learner eligible under the applicable circular?",
+        "Are transfer, SBA or special-needs arrangements involved?"
+      ],
+      "steps": [
+        {
+          "id": "establish-scope",
+          "prompt": "Confirm the applicable year before using the registration window.",
+          "applies_when": "After the listed clarifying questions are answered",
+          "claim_refs": [
+            "reg-kjsea:kjsea-window"
+          ],
+          "review_gate": "The available window is historical and must not be projected to another year."
+        },
+        {
+          "id": "check-eligibility",
+          "prompt": "Use the year-specific eligibility and declaration provisions only within their recorded scope.",
+          "applies_when": "After the listed clarifying questions are answered",
+          "claim_refs": [
+            "reg-kjsea:kjsea-eligibility",
+            "reg-kjsea:kjsea-declaration"
+          ],
+          "review_gate": "Confirm later amendments, transfers and SBA requirements."
+        },
+        {
+          "id": "check-accommodation",
+          "prompt": "Identify special-needs arrangements without requesting learner records in chat.",
+          "applies_when": "After the listed clarifying questions are answered",
+          "claim_refs": [
+            "reg-kjsea:kjsea-special-needs"
+          ],
+          "review_gate": "Confirm the current authorized evidence and submission channel."
+        }
+      ],
+      "completion": "Guidance boundary established only; no registration, payment, approval or candidate-record action has been performed."
+    },
+    {
+      "id": "reg-kilea",
+      "title": "KILEA registration: pathway-scoped guidance",
+      "status": "draft",
+      "language": "en",
+      "clarifying_questions": [
+        "Which assessment year and KILEA stage apply?",
+        "Has the learner been placed on the KILEA pathway?",
+        "Are transfer or accommodation arrangements involved?"
+      ],
+      "steps": [
+        {
+          "id": "establish-scope",
+          "prompt": "Confirm the assessment year before using the KPSEA/KILEA window.",
+          "applies_when": "After the listed clarifying questions are answered",
+          "claim_refs": [
+            "reg-kilea:kpsea-window"
+          ],
+          "review_gate": "The available window is historical and later amendments must be checked."
+        },
+        {
+          "id": "confirm-pathway",
+          "prompt": "Confirm the KILEA pathway and stage before describing eligibility.",
+          "applies_when": "After the listed clarifying questions are answered",
+          "claim_refs": [
+            "reg-kilea:kilea-pathway"
+          ],
+          "review_gate": "The complete current stage rules, forms, fees and exceptions require service-owner review."
+        }
+      ],
+      "completion": "Guidance boundary established only; no registration, payment, approval or candidate-record action has been performed."
+    },
+    {
+      "id": "reg-kplea",
+      "title": "KPLEA registration: pathway-scoped guidance",
+      "status": "draft",
+      "language": "en",
+      "clarifying_questions": [
+        "Which assessment year and KPLEA stage apply?",
+        "Has the learner been placed on the KPLEA pathway?",
+        "Are transfer or accommodation arrangements involved?"
+      ],
+      "steps": [
+        {
+          "id": "establish-scope",
+          "prompt": "Confirm the assessment year before using the KJSEA/KPLEA window.",
+          "applies_when": "After the listed clarifying questions are answered",
+          "claim_refs": [
+            "reg-kplea:kjsea-window"
+          ],
+          "review_gate": "The available window is historical and later amendments must be checked."
+        },
+        {
+          "id": "confirm-pathway",
+          "prompt": "Confirm the KPLEA pathway and stage before describing eligibility.",
+          "applies_when": "After the listed clarifying questions are answered",
+          "claim_refs": [
+            "reg-kplea:kplea-pathway"
+          ],
+          "review_gate": "The complete current stage rules, forms, fees and exceptions require service-owner review."
+        }
+      ],
+      "completion": "Guidance boundary established only; no registration, payment, approval or candidate-record action has been performed."
+    },
+    {
+      "id": "qmis-navigation",
+      "title": "QMIS guide-based navigation",
+      "status": "draft",
+      "language": "en",
+      "clarifying_questions": [
+        "Do you need access, submission or status guidance?",
+        "Which QMIS service is involved?"
+      ],
+      "steps": [
+        {
+          "id": "access",
+          "prompt": "Use the guide-documented secure QMIS address. Register if needed, or log in with credentials received privately through email.",
+          "applies_when": "The user needs portal access",
+          "claim_refs": [
+            "qmis-navigation:access-url",
+            "qmis-navigation:registration-fields",
+            "qmis-navigation:login"
+          ],
+          "review_gate": "Label the screens as guide-based and do not state that the historical interface is unchanged."
+        },
+        {
+          "id": "choose-service",
+          "prompt": "Use Query or the documented service control and select the relevant query type.",
+          "applies_when": "The user is logged in and knows the service",
+          "claim_refs": [
+            "qmis-navigation:home-menu",
+            "qmis-navigation:query-menu"
+          ],
+          "review_gate": "Do not invent a menu label absent from the inspected guides."
+        },
+        {
+          "id": "complete-submit",
+          "prompt": "Complete the displayed service fields, attach each item requested by the Required List and submit.",
+          "applies_when": "The selected service form is displayed",
+          "claim_refs": [
+            "qmis-navigation:generic-submission",
+            "qmis-navigation:attachments"
+          ],
+          "review_gate": "Do not invent a service document checklist or collect the documents in WhatsApp."
+        },
+        {
+          "id": "track",
+          "prompt": "Use Status and the requested query details to look up progress.",
+          "applies_when": "A query has already been submitted",
+          "claim_refs": [
+            "qmis-navigation:status-tracking"
+          ],
+          "review_gate": "Do not interpret an undefined status label or claim access to the user account."
+        },
+        {
+          "id": "protect-credentials",
+          "prompt": "Keep usernames, passwords and OTPs private and use the portal directly.",
+          "applies_when": "Always",
+          "claim_refs": [
+            "qmis-navigation:credential-warning"
+          ],
+          "review_gate": null
+        }
+      ],
+      "completion": "Guide-based navigation explained only; no login, upload, payment, submission, status lookup or candidate-record access has been performed."
+    },
+    {
+      "id": "results-query",
+      "title": "Examination results query: scoped guidance",
+      "status": "draft",
+      "language": "en",
+      "clarifying_questions": ["Which query category applies?", "Which examination and release year applies?", "Which institution or education-office route applies?"],
+      "steps": [
+        {"id":"classify","prompt":"Distinguish missing marks, subjects, pending results, absentee appeals and cancellation appeals.","applies_when":"Always","claim_refs":["results-query:service","results-query:published-query-categories"],"review_gate":"Do not merge correction and irregularity appeals."},
+        {"id":"scope","prompt":"Establish examination, year, query type and triggering event before discussing a deadline or penalty.","applies_when":"Before time or fee guidance","claim_refs":["results-query:charter-query-window","results-query:charter-late-penalties","results-query:deadline-conflict"],"review_gate":"Calendar-day versus working-day evidence remains unresolved."},
+        {"id":"submit","prompt":"Use the applicable institutional route and the documented QMIS submission and Status workflow.","applies_when":"After classification","claim_refs":["results-query:official-query-route","results-query:qmis-generic-route"],"review_gate":"Use only the document list shown by the current portal."}
+      ],
+      "completion": "Guidance only; no result, appeal or candidate record has been accessed or changed."
+    },
+    {
+      "id": "direct-recovery",
+      "title": "Direct recovery: document-scoped guidance",
+      "status": "draft",
+      "language": "en",
+      "clarifying_questions": ["Which document is affected?", "Was it never received, spoilt, or lost after collection?", "Which examination and dispatch year applies?"],
+      "steps": [
+        {"id":"classify","prompt":"Distinguish result-slip, certificate and printout recovery from loss after collection.","applies_when":"Always","claim_refs":["direct-recovery:service","direct-recovery:published-recovery-categories","direct-recovery:service-boundary"],"review_gate":"Loss after collection belongs to certification-letter guidance."},
+        {"id":"route","prompt":"Use the documented Direct Recovery QMIS workflow and institutional route.","applies_when":"Recovery is the correct service","claim_refs":["direct-recovery:official-query-route","direct-recovery:qmis-generic-route"],"review_gate":"Current attachments and fees require confirmation."},
+        {"id":"deadline","prompt":"Use the 60-working-day certificate-query window only when its dispatch-based scope is established.","applies_when":"The issue is a certificate query","claim_refs":["direct-recovery:certificate-window"],"review_gate":"Do not generalize this window to lost documents or printouts."}
+      ],
+      "completion": "Guidance only; no recovery request or personal record has been submitted."
+    },
+    {
+      "id": "photo-amendment",
+      "title": "Photo amendment: guide-based workflow",
+      "status": "draft",
+      "language": "en",
+      "clarifying_questions": ["Which examination and year applies?", "Who is the authorized requester?"],
+      "steps": [
+        {"id":"identify","prompt":"Keep photo amendment separate from other biodata changes.","applies_when":"Always","claim_refs":["photo-amendment:service"],"review_gate":"Confirm eligibility and requester authority."},
+        {"id":"submit","prompt":"Follow the guide-based QMIS photo sequence and the live Required List.","applies_when":"The user is eligible","claim_refs":["photo-amendment:historical-form-sequence","photo-amendment:generic-submission-status"],"review_gate":"Do not request the photo or identity records in WhatsApp."},
+        {"id":"limits","prompt":"Do not invent a checklist, fee, deadline or status meaning.","applies_when":"Always","claim_refs":["photo-amendment:no-fixed-checklist"],"review_gate":"Current portal applicability remains unconfirmed."}
+      ],
+      "completion": "Guide-based guidance only; no photo or candidate record has been collected."
+    },
+    {
+      "id": "professional-payment-query",
+      "title": "Contracted-professional payment query",
+      "status": "draft",
+      "language": "en",
+      "clarifying_questions": ["Is this nonpayment, underpayment or overpayment?", "Which examination, year, series and position applies?"],
+      "steps": [
+        {"id":"classify","prompt":"Classify the payment issue without deciding entitlement or amount.","applies_when":"Always","claim_refs":["professional-payment-query:service","professional-payment-query:contract-obligations"],"review_gate":"KNEC must confirm the current eligible categories."},
+        {"id":"portal","prompt":"Use the documented QMIS form fields and the current Required List.","applies_when":"The issue is in scope","claim_refs":["professional-payment-query:historical-form-fields","professional-payment-query:historical-attachments"],"review_gate":"Historical attachment examples are not a universal checklist."},
+        {"id":"privacy","prompt":"Enter identity and payment facts only in the official portal.","applies_when":"Always","claim_refs":["professional-payment-query:privacy-boundary"],"review_gate":null}
+      ],
+      "completion": "Guidance only; no identity, banking or payment record has been collected."
+    },
+    {
+      "id": "public-complaints",
+      "title": "Public complaints and escalation",
+      "status": "draft",
+      "language": "en",
+      "clarifying_questions": ["Which service is involved?", "Has frontline or departmental handling already occurred?"],
+      "steps": [
+        {"id":"channel","prompt":"Use an approved complaint channel and explain the one-working-day response commitment without promising final resolution.","applies_when":"Always","claim_refs":["public-complaints:channels","public-complaints:commitment"],"review_gate":"Confirm the starting event and current channel for the complaint type."},
+        {"id":"frontline","prompt":"Explain Stage 1 frontline handling and closure when satisfied.","applies_when":"The complaint is new","claim_refs":["public-complaints:frontline-stage"],"review_gate":null},
+        {"id":"investigate","prompt":"Explain investigation, Corporate Communications and management escalation when dissatisfaction continues.","applies_when":"The complaint remains unresolved","claim_refs":["public-complaints:investigation-stage","public-complaints:management-stage"],"review_gate":null},
+        {"id":"support","prompt":"Offer the verified switchboard or email without claiming CRM access.","applies_when":"Assistance is requested","claim_refs":["public-complaints:support-contact","public-complaints:assistant-boundary"],"review_gate":null}
+      ],
+      "completion": "Process explained only; the assistant has not filed, investigated or closed a complaint."
     }
   ]
 }

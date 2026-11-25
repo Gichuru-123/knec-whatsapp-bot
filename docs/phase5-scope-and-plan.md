@@ -186,6 +186,12 @@ An LLM may later help understand free-text questions or phrase approved answers.
 
 Phase 5 will be complete when the assistant can receive an authenticated WhatsApp message, maintain a durable conversation session, guide the user through a structured menu, ask necessary clarifying questions, retrieve only approved information, create a safe outbound response and handle retries or interruptions consistently.
 
+## Future General Administration service
+
+The seventh main-menu option is reserved as `GENERAL ADMINISTRATION — COMING SOON`. In a future, separately authorized milestone it may connect QR-based and WhatsApp-based facility reporting to the separate reporting tool already under development. The intended scope includes damaged or malfunctioning facilities, washroom and sanitation faults, broken equipment, infrastructure and maintenance issues, and assignment, tracking and resolution by authorized General Administration personnel.
+
+The current milestone provides an informational placeholder only. It does not collect reports, create tickets, scan QR codes, accept attachments or connect to a facility-management system. Security, authentication, access control, abuse and spam prevention, privacy, attachment handling, audit trails and integration boundaries must be reviewed before implementation. A parallel reporting platform must not be created unnecessarily.
+
 ## Current position
 
 The project currently has the menu-navigation foundation, polished WhatsApp text renderer, PostgreSQL session foundation, conversation application service, idempotent event boundary, durable response outbox and offline authenticated webhook lifecycle. The implemented controls include a validated 44-node tree, descriptions, breadcrumbs, commands, versioned state, safe fallback, knowledge hooks, expiry, private identities, atomic processing, one-job-per-event constraints, leased worker claims, uncertainty preservation, callback reconciliation and bounded retention. A signed duplicate webhook produces one transition and one fake send; unsupported media produces none; persistence failure is not acknowledged as success. The next checkpoint is an independent review of this complete offline slice before development-database migration or Sandbox activation.

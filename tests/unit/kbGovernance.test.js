@@ -5,7 +5,7 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 const { validateCorpus, contentHash } = require('../../src/services/kbValidation');
-const { selectApprovedAnswer } = require('../../src/services/kbAnswerPolicy');
+const { selectApprovedAnswer, selectApprovedRequirements } = require('../../src/services/kbAnswerPolicy');
 const { KBRepository } = require('../../src/repository/kbRepository');
 const service = require('../../src/services/kbService');
 
@@ -58,6 +58,18 @@ test('KB approval policy returns only reviewed claims with exact citations', () 
   assert.ok(!('approval' in result));
 });
 
+test('KB approval policy exposes only safe clarification requirements for approved content', () => {
+  const { article, sources } = fixture();
+  const requirements = selectApprovedRequirements(article, sources, '2026-11-03');
+  assert.deepEqual(requirements, { articleId: 'synthetic-article', language: 'en', fields: [
+    { field: 'examination', question: 'Which examination does your enquiry concern?', allowedValues: ['KCSE'] },
+    { field: 'year', question: 'Which examination year does your enquiry concern?', allowedValues: ['2026'] },
+    { field: 'audience', question: 'Are you enquiring as a candidate, institution, parent/guardian, or another listed user type?', allowedValues: ['candidate'] }
+  ] });
+  article.status = 'draft'; article.approval = null;
+  assert.equal(selectApprovedRequirements(article, sources, '2026-11-03'), null);
+});
+
 test('KB schema rejects invalid dates, types, undeclared fields, URLs and duplicate IDs', () => {
   const changes = [
     a => { a.review_due = '2026-02-30'; },
@@ -78,6 +90,15 @@ test('KB schema rejects invalid dates, types, undeclared fields, URLs and duplic
   const { article, sources } = fixture();
   assert.throws(() => validateCorpus([article, article], sources));
   assert.throws(() => validateCorpus([article], [sources[0], sources[0]]));
+});
+
+test('KB source policy accepts named Ministry evidence without accepting lookalike domains', () => {
+  const { article, sources } = fixture();
+  sources[0].publisher = 'Ministry of Education, State Department for Basic Education';
+  sources[0].url = 'https://www.education.go.ke/official-evidence.pdf';
+  assert.doesNotThrow(() => validateCorpus([article], sources));
+  sources[0].url = 'https://education.go.ke.evil.example/official-evidence.pdf';
+  assert.throws(() => validateCorpus([article], sources));
 });
 
 test('KB edits and source revision changes invalidate old approvals', () => {

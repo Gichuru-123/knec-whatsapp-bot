@@ -3,10 +3,10 @@
   "id": "reg-kjsea",
   "service_id": "reg-kjsea",
   "category": "registration",
-  "title": "KJSEA Assessment Registration (2026)",
-  "description": "Draft public-service guidance; review questions must be resolved before publication.",
+  "title": "KJSEA Registration and Senior School Progression",
+  "description": "Draft evidence-backed guidance for year-scoped KJSEA registration, results use and senior-school placement context.",
   "language": "en",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "status": "draft",
   "verification_status": "source_checked",
   "visibility": "public",
@@ -18,15 +18,20 @@
       "all"
     ],
     "years": [
+      "2025",
       "2026"
     ]
   },
   "intents": [
-    "kjsea registration"
+    "kjsea registration",
+    "kjsea placement",
+    "senior school pathway",
+    "grade 10 placement"
   ],
   "clarifying_questions": [
     "Which assessment year?",
-    "Are you a learner, parent or registering institution?"
+    "Are you a learner, parent or registering institution?",
+    "Is your question about registration, pathway information, placement, or a placement review?"
   ],
   "claims": [
     {
@@ -80,11 +85,90 @@
           "locator": "PDF p8, special-needs form notes ii-iv"
         }
       ]
+    },
+    {
+      "id": "placement-purpose",
+      "kind": "orientation",
+      "text": "KJSEA results are used to show achievement by subject and help place a learner in a senior-school pathway based on the learner's interest and demonstrated strength; the nine KJSEA subjects are not combined into one aggregate value or points total.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "kjsea-regulations-2026",
+          "source_sha256": "875ae1aea3445a1efc75dcfa2ae82599651d68def63dbfac52777c8eb927f3b3",
+          "locator": "PDF p17 sections 13.2-13.3"
+        }
+      ]
+    },
+    {
+      "id": "pathway-strength",
+      "kind": "orientation",
+      "text": "The KJSEA Regulations state that a statistical formula determines a learner's strength in STEM, Arts and Sports Science, and Social Sciences. The pathway-strength value ranges from 0 to 75, with a higher value indicating stronger potential in that pathway.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "kjsea-regulations-2026",
+          "source_sha256": "875ae1aea3445a1efc75dcfa2ae82599651d68def63dbfac52777c8eb927f3b3",
+          "locator": "PDF p17 section 13.4"
+        }
+      ]
+    },
+    {
+      "id": "score-composition",
+      "kind": "orientation",
+      "text": "The Regulations state that KJSEA scoring for progression combines the Grade 9 KJSEA summative assessment at 60%, Grades 7 and 8 School-Based Assessment at 20%, and KPSEA at 20%.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "kjsea-regulations-2026",
+          "source_sha256": "875ae1aea3445a1efc75dcfa2ae82599651d68def63dbfac52777c8eb927f3b3",
+          "locator": "PDF p17 section 13.5"
+        }
+      ]
+    },
+    {
+      "id": "learner-report",
+      "kind": "requirement",
+      "text": "Schools are expected to download, print and officially stamp each KJSEA Individual Learner Report as guided by KNEC; learners progressing to Senior School are expected to have this report.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "kjsea-regulations-2026",
+          "source_sha256": "875ae1aea3445a1efc75dcfa2ae82599651d68def63dbfac52777c8eb927f3b3",
+          "locator": "PDF p17 section 13.7"
+        }
+      ]
+    },
+    {
+      "id": "placement-factors-2025",
+      "kind": "orientation",
+      "text": "For the pioneer 2025 placement, the Ministry of Education reported an automated process considering learner choices, performance, merit, equity, fairness and available school spaces. Learners had made 12 preferred senior-school choices across C1-C4 while selecting a pathway and three-subject combination with parent and teacher guidance.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "moe-kjsea-placement-2025",
+          "source_sha256": "b1bb97bb2c9cbdb5e0f1c9ea18a3f08211adbcdfc9fb309c6554e16b749ce82a",
+          "locator": "PDF pp1-2 paragraphs 3 and 6"
+        }
+      ]
+    },
+    {
+      "id": "placement-review-2025",
+      "kind": "exception",
+      "text": "The Ministry's seven-day placement-review window beginning 23 December 2025 was specific to the pioneer 2025 placement. It directed candidates to their Grade 9 school or Ministry Sub-County or County offices through heads of institutions; it must not be presented as a current or recurring window.",
+      "evidence_status": "supported",
+      "citations": [
+        {
+          "source_id": "moe-kjsea-placement-2025",
+          "source_sha256": "b1bb97bb2c9cbdb5e0f1c9ea18a3f08211adbcdfc9fb309c6554e16b749ce82a",
+          "locator": "PDF p2 paragraph 8"
+        }
+      ]
     }
   ],
   "unresolved_questions": [
     "Review fee exceptions and transfer rules specifically for KJSEA.",
-    "Check subsequent amendments and obtain named content approval before publication."
+    "Check subsequent registration and placement amendments and obtain named content approval before publication.",
+    "Verify the official placement or selection portal and current placement-review route for the applicable cohort; the inspected official sources do not name a current public placement website."
   ],
   "effective_from": null,
   "effective_to": null,

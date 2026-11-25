@@ -9,7 +9,7 @@ test('assessment guidance separates stage-based pathways from grade-based requir
   for (const exam of ['KPSEA', 'KJSEA', 'KILEA', 'KPLEA']) {
     const a = articles.find(a => a.id === `reg-${exam.toLowerCase()}`);
     assert.deepEqual(a.scope.examinations, [exam]);
-    assert.deepEqual(a.scope.years, ['2026']);
+    assert.deepEqual(a.scope.years, exam === 'KJSEA' ? ['2025', '2026'] : ['2026']);
     if (['KILEA', 'KPLEA'].includes(exam)) {
       assert.ok(a.claims.every(c => !['requirement', 'step'].includes(c.kind)));
       assert.ok(a.claims.some(c => c.id === `${exam.toLowerCase()}-pathway`));

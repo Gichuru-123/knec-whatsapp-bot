@@ -62,7 +62,7 @@
     "review_status": "inspected",
     "sha256": "4f67a0032187376ec74c7fcf5770735eafa7c13e7dee57e76796ddd19c56d181",
     "local_filename": "qmis-manual.pdf",
-    "notes": "Six-page text inspected; query categories in section 2.4. Historical UI, not verified current navigation."
+    "notes": "All six pages and screenshots visually inspected. The guide explicitly documents access, registration, login, menus, query submission, status lookup, payment notification and collection notification. Historical guide applicability to the live portal still requires confirmation."
   },
   {
     "id": "knec-home",
@@ -179,7 +179,7 @@
     "review_status": "inspected",
     "sha256": "4c6a3f796aa72a0025c7aeae2cf7da792e4e1f9d2be40dff0c9d61a9692f966d",
     "local_filename": "qmis-external-manual.pdf",
-    "notes": "All ten pages extracted and read; screenshots on PDF pages 6, 9 and 10 visually inspected. Historical UI only; publication day unknown."
+    "notes": "All ten pages and screenshots visually inspected. The September 2017 edition explicitly documents registration, login, password recovery, biodata, photo, contracted-professional payment, confirmation and query-status screens. Live-portal applicability remains separate from what the guide documents."
   },
   {
     "id": "qmis-procedure-poster",
@@ -192,6 +192,32 @@
     "review_status": "inspected",
     "sha256": "36180572aedc32d94e7dca95cc6afc0b0e91a659ea3473ca9a450d184cf510e6",
     "local_filename": "qmis-confirmation-2024.png",
-    "notes": "Poster visually inspected. Linked from official procedure page dated April 2024; poster itself undated. Seven-document count requires reconciliation with detailed guideline. Both linked poster images show the same workflow; no current authenticated screens inspected."
+    "notes": "Poster visually inspected. Linked from official procedure page dated April 2024; poster itself undated. Seven-document count requires reconciliation with detailed guideline. Both linked poster images show the same documented workflow; live authenticated screens were not inspected."
+  },
+  {
+    "id": "kjsea-regulations-2026",
+    "title": "KJSEA Regulations",
+    "publisher": "KNEC",
+    "url": "https://www.knec.ac.ke/wp-content/uploads/2026/02/KJSEA-REGULATIONS.pdf",
+    "document_date": null,
+    "retrieved_on": "2026-11-16",
+    "review_due": "2026-12-16",
+    "review_status": "inspected",
+    "sha256": "875ae1aea3445a1efc75dcfa2ae82599651d68def63dbfac52777c8eb927f3b3",
+    "local_filename": "kjsea-regulations-2026.pdf",
+    "notes": "All 19 PDF pages inspected for structure; PDF pages 16-17 visually inspected for performance levels, pathway strength, score composition and learner reports. Publication day is not inferred from file metadata."
+  },
+  {
+    "id": "moe-kjsea-placement-2025",
+    "title": "Status of the Ongoing Placement of Grade Nine Learners in Senior Schools",
+    "publisher": "Ministry of Education, State Department for Basic Education",
+    "url": "https://www.education.go.ke/sites/default/files/PS%20BITOK%20-%20STATUS%20OF%20THE%20ONGOING%20PLACEMENT%20OF%20GRADE%20NINE%20LEARNERS%20%281%29.pdf",
+    "document_date": "2025-12-21",
+    "retrieved_on": "2026-11-16",
+    "review_due": "2026-12-16",
+    "review_status": "inspected",
+    "sha256": "b1bb97bb2c9cbdb5e0f1c9ea18a3f08211adbcdfc9fb309c6554e16b749ce82a",
+    "local_filename": "moe-kjsea-placement-2025.pdf",
+    "notes": "All three pages visually inspected. This is an official historical account of the pioneer 2025 placement and review window; it does not establish a current placement portal or future review dates."
   }
 ]

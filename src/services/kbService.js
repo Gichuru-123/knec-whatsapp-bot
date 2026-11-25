@@ -1,5 +1,5 @@
 const kbRepository = require('../repository/kbRepository');
-const { selectApprovedAnswer } = require('./kbAnswerPolicy');
+const { selectApprovedAnswer, selectApprovedRequirements } = require('./kbAnswerPolicy');
 
 function getAllArticles() {
   return kbRepository.findAll();
@@ -20,9 +20,15 @@ function getApprovedAnswer(id, context) {
   return selectApprovedAnswer(article, kbRepository.getSources(), context);
 }
 
+function getApprovedRequirements(id) {
+  const article = getArticleById(id);
+  return selectApprovedRequirements(article, kbRepository.getSources());
+}
+
 // Existing getAll/getById/category methods are development inspection APIs only.
 module.exports = {
   getApprovedAnswer,
+  getApprovedRequirements,
   getAllArticles,
   getArticleById,
   getArticlesByCategory

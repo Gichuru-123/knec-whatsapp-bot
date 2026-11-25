@@ -49,7 +49,7 @@ From the repository in PowerShell:
 
 ```powershell
 $pgRoot = [System.IO.Path]::GetFullPath((Join-Path (Get-Location) '..\.knec-postgresql18'))
-& (Join-Path $pgRoot 'core\pgsql\bin\pg_ctl.exe') -D (Join-Path $pgRoot 'data') -l (Join-Path $pgRoot 'server.log') -o '-h 127.0.0.1 -p 55418' -w start
+& (Join-Path $pgRoot 'distribution\pgsql\bin\pg_ctl.exe') -D (Join-Path $pgRoot 'data') -l (Join-Path $pgRoot 'server.log') -o '-h 127.0.0.1 -p 55418' -w start
 # Stop only this instance after application workers have stopped:
 & (Join-Path $pgRoot 'core\pgsql\bin\pg_ctl.exe') -D (Join-Path $pgRoot 'data') -m fast -w stop
 ```

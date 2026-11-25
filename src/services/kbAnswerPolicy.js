@@ -1,13 +1,41 @@
 'use strict';
 const { isDate, validateCorpus } = require('./kbValidation');
 
+function isApprovedAndCurrent(article, sources, today) {
+  if (!article || !Array.isArray(sources) || !isDate(today)) return false;
+  try { validateCorpus([article], sources); } catch { return false; }
+  if (article.status !== 'approved' || article.visibility !== 'public' || !article.approval ||
+      article.approval.approved_on > today || article.effective_from > today ||
+      (article.effective_to && article.effective_to < today) || article.review_due < today) return false;
+  const sourceMap = new Map(sources.map(source => [source.id, source]));
+  for (const claim of article.claims) {
+    for (const reference of claim.citations) {
+      const source = sourceMap.get(reference.source_id);
+      if (!source || source.review_due < today || source.retrieved_on > today ||
+          (source.document_date && source.document_date > today)) return false;
+    }
+  }
+  return true;
+}
+
+function selectApprovedRequirements(article, sources, today = new Date().toISOString().slice(0, 10)) {
+  if (!isApprovedAndCurrent(article, sources, today)) return null;
+  const definitions = [
+    ['examination', 'examinations', 'Which examination does your enquiry concern?'],
+    ['year', 'years', 'Which examination year does your enquiry concern?'],
+    ['audience', 'audiences', 'Are you enquiring as a candidate, institution, parent/guardian, or another listed user type?'],
+    ['programme', 'programmes', 'Which programme does your enquiry concern?'],
+    ['series', 'series', 'Which examination series does your enquiry concern?']
+  ];
+  const fields = definitions
+    .filter(([, scopeField]) => Array.isArray(article.scope[scopeField]))
+    .map(([field, scopeField, question]) => ({ field, question, allowedValues: [...article.scope[scopeField]] }));
+  return { articleId: article.id, language: article.language, fields };
+}
+
 // Internal boundary for future menu/retrieval callers, not a public HTTP route.
 function selectApprovedAnswer(article, sources, context, today = new Date().toISOString().slice(0, 10)) {
-  if (!article || !context || !isDate(today)) return null;
-  try { validateCorpus([article], sources); } catch { return null; }
-  if (article.status !== 'approved' || article.visibility !== 'public' ||
-      article.approval.approved_on > today || article.effective_from > today ||
-      (article.effective_to && article.effective_to < today) || article.review_due < today) return null;
+  if (!context || !isApprovedAndCurrent(article, sources, today)) return null;
   if (context.language !== article.language) return null;
   if (article.scope.programmes && !article.scope.programmes.includes(context.programme)) return null;
   if (article.scope.series && (!article.scope.series.includes(context.series) ||
@@ -32,4 +60,4 @@ function selectApprovedAnswer(article, sources, context, today = new Date().toIS
   return { id: article.id, service_id: article.service_id, title: article.title,
     language: article.language, version: article.version, claims };
 }
-module.exports = { selectApprovedAnswer };
+module.exports = { selectApprovedAnswer, selectApprovedRequirements };

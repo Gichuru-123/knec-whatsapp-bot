@@ -1,10 +1,15 @@
 'use strict';
 
-const { createInitialState, handleInput } = require('./navigation');
+const { createInitialState } = require('./navigation');
 const { renderResponse } = require('./responseRenderer');
+const { KnowledgeResolutionService } = require('./knowledgeResolutionService');
 
 class ConversationService {
-  constructor({ store, transition = handleInput, renderer = renderResponse } = {}) {
+  constructor({ store, transition, renderer = renderResponse, knowledge } = {}) {
+    if (!transition) {
+      const resolution = new KnowledgeResolutionService({ knowledge });
+      transition = resolution.transition.bind(resolution);
+    }
     if (!store || typeof store.applyEvent !== 'function' || typeof transition !== 'function' || typeof renderer !== 'function') {
       throw new Error('INVALID_CONVERSATION_SERVICE_CONFIGURATION');
     }
