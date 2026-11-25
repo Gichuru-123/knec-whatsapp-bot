@@ -17,7 +17,10 @@ function createRestrictedSender(settings, validateText, { testTarget } = {}) {
   }
   return async (to, text) => {
     const recipients = settings.recipients || [settings.recipient];
-    if (!recipients.includes(to) || !validateText(text)) throw new Error('Invalid outbound reply');
+    const permitted = settings.openSandboxParticipants === true
+      ? /^whatsapp:\+[1-9]\d{0,14}$/.test(to)
+      : recipients.includes(to);
+    if (!permitted || !validateText(text)) throw new Error('Invalid outbound reply');
     let outcome = { kind: 'uncertain' };
     const httpClient = { request: async options => {
       const expected = { To: to, From: settings.from, Body: text, StatusCallback: settings.status.url };

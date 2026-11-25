@@ -161,6 +161,7 @@ function renderMenu(node) {
     nodeId: node.id,
     title: node.title,
     ...(node.emoji ? { emoji: node.emoji } : {}),
+    ...(node.prompt ? { prompt: node.prompt } : {}),
     breadcrumb: buildPathToNode(node.id).map((nodeId) => MENU_INDEX.get(nodeId).title),
     options: node.children.map((child, index) => ({
       number: index + 1,
@@ -355,7 +356,7 @@ function handleInvalidInput(state) {
         type: 'invalid',
         retryAllowed: true,
         message:
-          'That selection is not available. Please choose one of the listed options.',
+          "I didn't quite catch that. Please choose one of the listed options, or type HELP if you'd like guidance.",
         menu: renderMenu(currentNode)
       }
     };
@@ -371,7 +372,7 @@ function handleInvalidInput(state) {
       retryAllowed: false,
       escalationRequired: true,
       message:
-        'I could not match that selection. Please choose a listed option, return to the main menu, or request help.',
+        "Let's try that another way. Choose a listed option, type MAIN MENU, or type HELP.",
       menu: renderMenu(currentNode)
     }
   };

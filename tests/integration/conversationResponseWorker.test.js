@@ -22,7 +22,7 @@ test('durable response worker sends one committed body and preserves provider ac
     assert.equal(claims.filter(Boolean).length, 1);
     assert.equal(await worker.tick(), false);
     assert.equal(sent.length, 1);
-    assert.match(sent[0][1], /KNEC NURU — Main Menu/);
+    assert.match(sent[0][1], /Welcome! I'm NURU/);
     const row = (await fixture.pool.query('SELECT state,provider_sid,provider_status,attempts FROM conversation.outbox')).rows[0];
     assert.deepEqual(row, { state: 'accepted', provider_sid: 'SM' + '9'.repeat(32), provider_status: 'queued', attempts: 1 });
   } finally { await fixture.close(); }

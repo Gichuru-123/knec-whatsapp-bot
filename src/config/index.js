@@ -212,7 +212,7 @@ function validateConfig(env) {
       conversation = Object.freeze({ enabled: conversationEnabled,
         ttlSeconds: integerSetting('TWILIO_CONVERSATION_TTL_SECONDS', 86400, 60, 2592000),
         pollIntervalMs: integerSetting('TWILIO_CONVERSATION_POLL_MS', 1000, 100, 60000),
-        messagesPerParticipant: integerSetting('TWILIO_SANDBOX_MESSAGES_PER_PARTICIPANT', 25, 1, 25) });
+        messagesPerParticipant: integerSetting('TWILIO_SANDBOX_MESSAGES_PER_PARTICIPANT', 50, 1, 50) });
     }
     twilioSettings = Object.freeze({
       mode,
@@ -224,7 +224,8 @@ function validateConfig(env) {
       inbound: Object.freeze(endpoint('TWILIO_INBOUND_WEBHOOK_URL', '/api/v1/webhook/twilio/whatsapp')),
       status: Object.freeze(endpoint('TWILIO_STATUS_CALLBACK_URL', '/api/v1/webhook/twilio/status')),
       timeoutMs: integerSetting('TWILIO_REQUEST_TIMEOUT_MS', 10000, 100, 30000),
-      liveSendEnabled: sandbox && live === 'true'
+      liveSendEnabled: sandbox && live === 'true',
+      openSandboxParticipants: sandbox && conversation?.enabled === true
     });
   }
 

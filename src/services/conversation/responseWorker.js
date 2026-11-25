@@ -11,7 +11,7 @@ function isValidAcceptance(result) {
 }
 
 class ConversationResponseWorker {
-  constructor({ store, send, recipientForConversation, participant, messagesPerParticipant = 25 }) {
+  constructor({ store, send, recipientForConversation, participant, messagesPerParticipant = 50 }) {
     if (
       !store ||
       typeof store.claimOutbox !== 'function' ||
@@ -20,7 +20,7 @@ class ConversationResponseWorker {
       typeof store.finishOutbox !== 'function' ||
       typeof send !== 'function' ||
       (typeof recipientForConversation !== 'function' && typeof participant !== 'string') ||
-      !Number.isInteger(messagesPerParticipant) || messagesPerParticipant < 1 || messagesPerParticipant > 25
+      !Number.isInteger(messagesPerParticipant) || messagesPerParticipant < 1 || messagesPerParticipant > 50
     ) {
       throw new Error('INVALID_CONVERSATION_WORKER_CONFIGURATION');
     }

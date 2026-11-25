@@ -356,7 +356,7 @@ test('Sandbox configuration requires explicit development storage and private id
   const conversation = validateConfig({ ...sandbox, TWILIO_CONVERSATION_ENABLED: 'true',
     TWILIO_CONVERSATION_TTL_SECONDS: '86400', TWILIO_CONVERSATION_POLL_MS: '1000' });
   assert.deepEqual(conversation.conversation, { enabled: true, ttlSeconds: 86400, pollIntervalMs: 1000,
-    messagesPerParticipant: 25 });
+    messagesPerParticipant: 50 });
   assert.equal(validateConfig({ ...sandbox, TWILIO_LIVE_SEND_ENABLED: 'true' }).twilio.liveSendEnabled, true);
   for (const change of [{ NODE_ENV: 'production' }, { ENABLE_DEV_INSPECTION_ROUTES: 'true' },
     { TWILIO_DELIVERY_ENABLED: 'false' }, { TWILIO_CONVERSATION_SECRET: 'bad' },
@@ -364,7 +364,7 @@ test('Sandbox configuration requires explicit development storage and private id
     assert.throws(() => validateConfig({ ...sandbox, ...change }));
   }
   for (const change of [{ TWILIO_CONVERSATION_ENABLED: 'TRUE' }, { TWILIO_CONVERSATION_TTL_SECONDS: '59' },
-    { TWILIO_CONVERSATION_POLL_MS: '99' }, { TWILIO_SANDBOX_MESSAGES_PER_PARTICIPANT: '26' }]) {
+    { TWILIO_CONVERSATION_POLL_MS: '99' }, { TWILIO_SANDBOX_MESSAGES_PER_PARTICIPANT: '51' }]) {
     assert.throws(() => validateConfig({ ...sandbox, ...change }));
   }
 });

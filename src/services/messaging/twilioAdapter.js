@@ -83,7 +83,7 @@ class TwilioWhatsAppAdapter extends MessagingAdapter {
     const recipients = this.#settings.recipients || [this.#settings.recipient];
     if (typeof body.MessageStatus !== 'string' || !body.MessageStatus.trim() || body.MessageStatus.length > 64 ||
         (body.From !== undefined && body.From !== this.#settings.from) ||
-        (body.To !== undefined && !recipients.includes(body.To))) throw failure('TWILIO_INVALID_EVENT', 400);
+        (body.To !== undefined && !(this.#settings.openSandboxParticipants === true ? ADDRESS.test(body.To) : recipients.includes(body.To)))) throw failure('TWILIO_INVALID_EVENT', 400);
     let errorCode;
     if (body.ErrorCode !== undefined && body.ErrorCode !== '') {
       if (typeof body.ErrorCode !== 'string' || !/^\d+$/.test(body.ErrorCode) || !Number.isSafeInteger(Number(body.ErrorCode))) throw failure('TWILIO_INVALID_EVENT', 400);

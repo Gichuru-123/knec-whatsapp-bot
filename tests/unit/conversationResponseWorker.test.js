@@ -75,11 +75,11 @@ test('Sandbox participant limit blocks an over-limit claim before provider conta
   const store = {
     async claimOutbox() { return claim; },
     async ownsOutbox() { return true; },
-    async isWithinOutboxLimit(item, limit) { assert.equal(item, claim); assert.equal(limit, 25); return false; },
+    async isWithinOutboxLimit(item, limit) { assert.equal(item, claim); assert.equal(limit, 50); return false; },
     async finishOutbox(item, result) { completions.push([item, result]); }
   };
   const worker = new ConversationResponseWorker({ store, participant: PARTICIPANT,
-    messagesPerParticipant: 25, async send() { sends += 1; } });
+    messagesPerParticipant: 50, async send() { sends += 1; } });
   assert.equal(await worker.tick(), true);
   assert.equal(sends, 0);
   assert.deepEqual(completions, [[claim, { kind: 'failed' }]]);

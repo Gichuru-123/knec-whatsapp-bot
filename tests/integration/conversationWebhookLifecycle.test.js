@@ -61,7 +61,7 @@ test('signed webhook commits one menu response, fake-sends once and reconciles c
     assert.equal(await app.locals.conversationRuntime.dispatchOne(), true);
     assert.equal(await app.locals.conversationRuntime.dispatchOne(), false);
     assert.equal(sends.length, 1);
-    assert.match(sends[0][1], /KNEC NURU — Main Menu/);
+    assert.match(sends[0][1], /Welcome! I'm NURU/);
     const callback = { AccountSid: accountSid, MessageSid: 'SM' + 'b'.repeat(32), MessageStatus: 'delivered' };
     await request(app).post(config.twilio.status.target).type('form')
       .set('X-Twilio-Signature', twilio.getExpectedTwilioSignature(authToken, statusUrl, callback))

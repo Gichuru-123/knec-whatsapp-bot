@@ -21,6 +21,7 @@ const MENU_TREE = Object.freeze({
       title: 'Examinations & Registration',
       emoji: '📝',
       description: 'Assessment registration, examination series and programme guidance',
+      prompt: "✨ *Great choice!*\n\nLet's find the examination service you're looking for.\n\n*Which category would you like to explore?*",
       children: [
         {
           id: 'registration.kcse',
@@ -195,6 +196,7 @@ const MENU_TREE = Object.freeze({
       title: 'Certificates & Documents',
       emoji: '📄',
       description: 'Certificate replacement and examination-document guidance',
+      prompt: "✨ *Great choice!*\n\nLet's get you to the right certificate or document service.",
       children: [
         {
           id: 'certificates.replacement',
@@ -211,6 +213,7 @@ const MENU_TREE = Object.freeze({
       title: 'Results & Qualifications',
       emoji: '🎓',
       description: 'Results confirmation and foreign qualification equation',
+      prompt: "✨ *Great choice!*\n\nWhat would you like help with?",
       children: [
         {
           id: 'verification.results',
@@ -234,6 +237,7 @@ const MENU_TREE = Object.freeze({
       title: 'Corrections & Complaints',
       emoji: '📩',
       description: 'Results queries, amendments, recovery and complaints',
+      prompt: "✨ *Let's get you to the right service.*\n\nChoose the option that best describes what you need.",
       children: [
         {
           id: 'queries.results',
@@ -285,6 +289,7 @@ const MENU_TREE = Object.freeze({
       title: 'QMIS & Online Services',
       emoji: '🌐',
       description: 'Portal navigation and application-status guidance',
+      prompt: '🌐 *What would you like help with in QMIS?*',
       children: [
         {
           id: 'online-services.qmis',
@@ -301,11 +306,12 @@ const MENU_TREE = Object.freeze({
       title: 'Information & Support',
       emoji: 'ℹ️',
       description: 'Official contacts, public information and scam awareness',
+      prompt: '✨ *How can we support you?*',
       children: [
         {
           id: 'information.general',
           type: 'knowledge_hook',
-          title: 'General Support',
+          title: 'KNEC Contact & Customer Support',
           emoji: '☎️',
           action: { type: 'knowledge_lookup', articleId: 'faq-general' }
         },
@@ -326,12 +332,21 @@ const MENU_TREE = Object.freeze({
       ]
     },
     {
+      id: 'ict-support',
+      type: 'placeholder',
+      title: 'ICT Support & Fault Reporting',
+      emoji: '💻',
+      description: 'Future institutional technology fault reporting and ticket tracking',
+      message: "✨ *Great choice!*\n\nWe're working on a smarter way to help KNEC staff report workplace technology issues directly through NURU.\n\nSoon, you'll be able to:\n\n🖥️ *1. Report an ICT issue* — Computers, printers, networks and other workplace systems.\n\n🎫 *2. Receive a ticket number* — Every submitted report will have a unique reference for tracking.\n\n🔎 *3. Track your report* — Follow progress and receive updates from the ICT team.\n\n🚧 *Coming Soon!*\n\nWe're preparing this service to make reporting and resolving ICT issues easier.\n\nTicket creation is not yet available, so no report has been submitted and no ticket number can be issued just yet.\n\nNURU is getting ready to make support simpler! 💚\n\nMAIN MENU • HELP",
+      returnTo: 'root'
+    },
+    {
       id: 'general-administration',
       type: 'placeholder',
-      title: 'General Administration — Coming Soon',
+      title: 'General Administration (GA) — Coming Soon',
       emoji: '🏢',
       description: 'Future institutional facility support services',
-      message: '🏢 *General Administration — Coming Soon*\n\nThis service is being prepared for a future phase.\n\nType MAIN MENU to return.',
+      message: "🏢 *General Administration (GA)*\n\n✨ *Wonderful choice!*\n\nWe are preparing a smarter way to help you report facility and maintenance issues across KNEC offices.\n\nSoon, you will be able to:\n\n🚰 *1. Report facility faults* – Broken taps, leaking pipes, washroom problems and other maintenance issues.\n\n🧹 *2. Report facility concerns* – Cleanliness, damaged furniture, lighting and other workplace conditions.\n\n📱 *3. Scan and report* – Scan a QR code at a facility or report directly through WhatsApp.\n\n🎫 *4. Receive a reference number* – Get a unique ticket to help track your report.\n\n🔎 *5. Track progress* – Follow updates as the responsible team works on your issue.\n\n🚧 *Coming Soon!*\n\nWe are working towards making it easier to report facility issues and ensure they reach the right team.\n\nThis service is not yet available, so no report has been submitted and no ticket has been generated.\n\n*A better way to report. A better environment for everyone! 💚*\n\nMAIN MENU • HELP",
       returnTo: 'root'
     }
   ]

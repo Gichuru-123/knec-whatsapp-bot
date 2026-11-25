@@ -89,6 +89,11 @@ function validateBasicNode(node) {
     throw new Error('Menu node description is invalid: ' + node.id);
   }
 
+  if ('prompt' in node &&
+      (typeof node.prompt !== 'string' || node.prompt.trim() === '' || node.prompt.length > 300)) {
+    throw new Error('Menu node prompt is invalid: ' + node.id);
+  }
+
   if (!SUPPORTED_NODE_TYPES.has(node.type)) {
     throw new Error(
       'Unsupported menu node type "' + node.type + '" for node: ' + node.id

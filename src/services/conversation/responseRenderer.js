@@ -20,10 +20,7 @@ function renderMenu(menu, { welcome = false } = {}) {
   } else if (menu.nodeId === 'root') {
     lines.push('✨ *KNEC NURU — Main Menu*');
   } else {
-    lines.push(`${menu.emoji ? `${menu.emoji} ` : ''}*${menu.title}*`);
-    if (Array.isArray(menu.breadcrumb) && menu.breadcrumb.length > 1) {
-      lines.push(`📍 ${menu.breadcrumb.slice(1).join(' › ')}`);
-    }
+    lines.push(menu.prompt || `✨ *What would you like help with?*`);
   }
   lines.push('');
   for (const option of menu.options) {
@@ -32,7 +29,7 @@ function renderMenu(menu, { welcome = false } = {}) {
   }
   lines.push('');
   if (menu.nodeId === 'root') {
-    lines.push('Reply with a number (1–7).');
+    lines.push('Reply with a number (1–8).');
     lines.push('');
     lines.push('HELP • MAIN MENU');
     return lines.join('\n');
@@ -49,8 +46,7 @@ function renderResponse(response) {
   } else if (response.type === 'help') {
     text = `ℹ️ *HELP*\n${response.message}\n\n${renderMenu(response.menu)}`;
   } else if (response.type === 'invalid' || response.type === 'fallback') {
-    const heading = response.type === 'fallback' ? '⚠️ *MORE HELP NEEDED*' : '⚠️ *OPTION NOT RECOGNISED*';
-    text = `${heading}\n${response.message}\n\n${renderMenu(response.menu)}`;
+    text = `💬 *Let's find the right option.*\n${response.message}\n\n${renderMenu(response.menu)}`;
   } else if (response.type === 'placeholder') {
     text = response.message;
   } else if (response.type === 'knowledge_lookup') {

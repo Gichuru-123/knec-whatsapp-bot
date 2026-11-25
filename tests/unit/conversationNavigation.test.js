@@ -18,11 +18,11 @@ const {
   handleInput
 } = require('../../src/services/conversation/navigation');
 
-test('Phase 5: menu tree validates and contains 44 nodes', () => {
+test('Phase 5: menu tree validates and contains 45 nodes', () => {
   const index = buildMenuIndex(MENU_TREE);
 
   assert.strictEqual(index.rootId, 'root');
-  assert.strictEqual(index.size(), 44);
+  assert.strictEqual(index.size(), 45);
 });
 
 test('NURU emoji system: every selectable node has one explicit contextual icon', () => {
@@ -71,11 +71,11 @@ test('Phase 5: initial state starts safely at root', () => {
   });
 });
 
-test('Phase 5: root menu exposes seven top-level options', () => {
+test('Phase 5: root menu exposes eight top-level options', () => {
   const menu = renderMenu(MENU_TREE);
 
   assert.strictEqual(menu.nodeId, 'root');
-  assert.strictEqual(menu.options.length, 7);
+  assert.strictEqual(menu.options.length, 8);
   assert.strictEqual(menu.commands.back, false);
   assert.strictEqual(menu.commands.mainMenu, true);
   assert.strictEqual(menu.commands.help, true);
@@ -86,9 +86,10 @@ test('Phase 5: root menu exposes seven top-level options', () => {
     'Corrections & Complaints',
     'QMIS & Online Services',
     'Information & Support',
-    'General Administration — Coming Soon'
+    'ICT Support & Fault Reporting',
+    'General Administration (GA) — Coming Soon'
   ]);
-  assert.deepStrictEqual(menu.options.map(option => option.emoji), ['📝', '📄', '🎓', '📩', '🌐', 'ℹ️', '🏢']);
+  assert.deepStrictEqual(menu.options.map(option => option.emoji), ['📝', '📄', '🎓', '📩', '🌐', 'ℹ️', '💻', '🏢']);
 });
 
 test('Phase 5: supports arbitrary-depth parent-child navigation', () => {
@@ -358,7 +359,7 @@ test('Phase 5: exact menu title may be used as selection', () => {
 
 test('Phase 5: GA is a controlled placeholder only', () => {
   const result = handleInput(
-    '7',
+    '8',
     createInitialState()
   );
 
@@ -371,10 +372,10 @@ test('Phase 5: GA is a controlled placeholder only', () => {
 
   assert.match(
     result.response.message,
-    /General Administration — Coming Soon/i
+    /General Administration \(GA\)/i
   );
-  assert.match(result.response.message, /prepared for a future phase/i);
-  assert.match(result.response.message, /Type MAIN MENU to return/i);
+  assert.match(result.response.message, /no report has been submitted/i);
+  assert.match(result.response.message, /no ticket has been generated/i);
 
   assert.strictEqual(result.response.returnTo, 'root');
   assert.strictEqual(result.state.currentNodeId, 'root');
@@ -383,6 +384,18 @@ test('Phase 5: GA is a controlled placeholder only', () => {
     result.state.path,
     ['root']
   );
+});
+
+test('NURU: ICT and GA remain separate safe Coming Soon services', () => {
+  const ict = handleInput('7', createInitialState());
+  const ga = handleInput('8', createInitialState());
+  assert.equal(ict.response.nodeId, 'ict-support');
+  assert.match(ict.response.message, /Ticket creation is not yet available/);
+  assert.match(ict.response.message, /no report has been submitted/);
+  assert.equal(ga.response.nodeId, 'general-administration');
+  assert.match(ga.response.message, /facility and maintenance issues/);
+  assert.match(ga.response.message, /no ticket has been generated/);
+  assert.notEqual(ict.response.message, ga.response.message);
 });
 
 test('Phase 5: corrupt state with unknown node is rejected', () => {

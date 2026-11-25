@@ -32,6 +32,7 @@ async function createConversationApplicationRuntime(settings, { senderFactory = 
     const service = new ConversationRuntime({ service: conversationService, store,
       worker: responseWorker || { tick: async () => false }, accountSid: settings.twilio.accountSid,
       sender: settings.twilio.from, participants: settings.twilio.recipients,
+      recipientByConversation, openParticipants: settings.twilio.openSandboxParticipants,
       secret: settings.delivery.secret, version: settings.delivery.version });
 
     const schedule = () => {

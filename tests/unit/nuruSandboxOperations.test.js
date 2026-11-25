@@ -45,12 +45,12 @@ test('shutdown targets recorded PIDs and status distinguishes local readiness fr
   assert.match(check, /manual Console check required/);
 });
 
-test('25-response policy is per participant and duplicate safety remains covered by executable integration tests', () => {
+test('50-response policy is per participant and duplicate safety remains covered by executable integration tests', () => {
   const config = fs.readFileSync(path.join(root, 'src/config/index.js'), 'utf8');
   const worker = fs.readFileSync(path.join(root, 'src/services/conversation/responseWorker.js'), 'utf8');
   const integration = fs.readFileSync(path.join(root, 'tests/integration/conversationMultiRecipient.test.js'), 'utf8');
   assert.match(config, /TWILIO_SANDBOX_MESSAGES_PER_PARTICIPANT/);
   assert.match(worker, /messagesPerParticipant/);
-  assert.match(integration, /allows 25 responses per participant, blocks the 26th/);
+  assert.match(integration, /allows 50 responses per participant, blocks the 51st/);
   assert.match(integration, /duplicate\.duplicate, true/);
 });

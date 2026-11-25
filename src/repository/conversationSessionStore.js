@@ -150,7 +150,7 @@ class ConversationSessionStore {
   }
 
   async isWithinOutboxLimit(claim, limit) {
-    if (!claim || typeof claim.conversation_id !== 'string' || !Number.isInteger(limit) || limit < 1 || limit > 25) {
+    if (!claim || typeof claim.conversation_id !== 'string' || !Number.isInteger(limit) || limit < 1 || limit > 50) {
       throw new Error('INVALID_OUTBOX_LIMIT');
     }
     try {

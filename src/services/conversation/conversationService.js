@@ -19,8 +19,8 @@ class ConversationService {
   }
 
   async process({ conversationId, eventId, accountSid, input } = {}) {
-    const applied = await this.store.applyEvent(conversationId, eventId, accountSid, ({ state }) => {
-      const result = this.transition(input, state || createInitialState());
+    const applied = await this.store.applyEvent(conversationId, eventId, accountSid, ({ state, started }) => {
+      const result = this.transition(started ? 'hi' : input, state || createInitialState());
       return { state: result.state, response: result.response, outboundBody: this.renderer(result.response) };
     });
     return {

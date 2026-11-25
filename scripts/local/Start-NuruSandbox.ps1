@@ -30,14 +30,14 @@ try {
     }
     if (-not (Test-NuruDatabase $paths $values)) { throw 'The authorized knec_development database is not reachable with the runtime role.' }
 
-    Write-Host ('Preflight passed: PostgreSQL 18 ready; {0} authorized tester(s); 25 responses per tester.' -f $recipients.Count)
+    Write-Host ('Preflight passed: PostgreSQL 18 ready; open joined-Sandbox participation; 50 responses per participant.')
     if ($PreflightOnly) { return }
 
     New-Item -ItemType Directory -Force -Path $paths.Runtime | Out-Null
     $overrides = @{
         NODE_ENV='development'; WHATSAPP_PROVIDER='twilio'; TWILIO_MODE='sandbox';
         TWILIO_DELIVERY_ENABLED='true'; TWILIO_CONVERSATION_ENABLED='true'; TWILIO_LIVE_SEND_ENABLED='true';
-        TWILIO_SANDBOX_MESSAGES_PER_PARTICIPANT='25'; ENABLE_DEV_INSPECTION_ROUTES='false'; TRUST_PROXY_HOPS='1'
+        TWILIO_SANDBOX_MESSAGES_PER_PARTICIPANT='50'; ENABLE_DEV_INSPECTION_ROUTES='false'; TRUST_PROXY_HOPS='1'
     }
     $saved = @{}
     foreach ($key in $overrides.Keys) { $saved[$key] = [Environment]::GetEnvironmentVariable($key,'Process'); [Environment]::SetEnvironmentVariable($key,$overrides[$key],'Process') }
@@ -57,11 +57,11 @@ try {
 
     $state = [ordered]@{ AppPid=$app.Id; NgrokPid=$ngrok.Id; PostgresStartedByScript=$pgStarted;
         PublicUrl=$tunnel.public_url; StartedAt=(Get-Date).ToUniversalTime().ToString('o'); TesterCount=$recipients.Count;
-        MessageLimitPerParticipant=25; TwilioConsoleWebhookVerified=$false }
+        MessageLimitPerParticipant=50; TwilioConsoleWebhookVerified=$false }
     Save-NuruState $paths $state
     Write-Host ''
     Write-Host 'NURU SANDBOX STARTED' -ForegroundColor Green
-    Write-Host ('Authorized testers: {0}; allowance: 25 responses per tester.' -f $recipients.Count)
+    Write-Host ('Joined Sandbox participants are accepted after signed inbound verification; allowance: 50 responses per participant.')
     Write-Host ('Incoming webhook (POST): {0}/api/v1/webhook/twilio/whatsapp' -f $tunnel.public_url)
     Write-Host ('Status callback:         {0}/api/v1/webhook/twilio/status' -f $tunnel.public_url)
     Write-Host 'Save the incoming webhook in Twilio Console > Messaging > Try it out > Send a WhatsApp message > Sandbox settings.'

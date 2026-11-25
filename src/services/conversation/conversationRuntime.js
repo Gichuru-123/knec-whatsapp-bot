@@ -5,7 +5,7 @@ const { createConversationIdentity, createConversationEventIdentity } = require(
 class ConversationRuntime {
   #secret;
 
-  constructor({ service, store, worker, accountSid, sender, participants, participant, secret, version }) {
+  constructor({ service, store, worker, accountSid, sender, participants, participant, recipientByConversation, openParticipants = false, secret, version }) {
     if (!service || typeof service.process !== 'function' || !store || typeof store.recordCallback !== 'function' ||
         !worker || typeof worker.tick !== 'function') throw new Error('INVALID_CONVERSATION_RUNTIME');
     this.service = service;
@@ -19,6 +19,8 @@ class ConversationRuntime {
       throw new Error('INVALID_CONVERSATION_PARTICIPANTS');
     }
     this.participants = new Set(allowedParticipants);
+    this.openParticipants = openParticipants === true;
+    this.recipientByConversation = recipientByConversation instanceof Map ? recipientByConversation : new Map();
     this.#secret = secret;
     this.version = version;
     // Validate and derive once without retaining any reversible participant identifier in storage.
@@ -29,7 +31,7 @@ class ConversationRuntime {
   async inbound(body, adapter) {
     if (!adapter || typeof adapter.normalizeInboundPayload !== 'function') throw new Error('INVALID_CONVERSATION_ADAPTER');
     const messages = adapter.normalizeInboundPayload(body);
-    if (!this.participants.has(body.From)) {
+    if (!this.openParticipants && !this.participants.has(body.From)) {
       const error = new Error('PARTICIPANT_NOT_PERMITTED');
       error.statusCode = 403;
       throw error;
@@ -40,8 +42,13 @@ class ConversationRuntime {
       error.statusCode = 400;
       throw error;
     }
+    const conversationId = this.conversationIds.get(body.From) || createConversationIdentity({ secret: this.#secret,
+      version: this.version, accountSid: this.accountSid, sender: this.sender, participant: body.From });
+    const registered = this.recipientByConversation.get(conversationId);
+    if (registered && registered !== body.From) throw new Error('CONVERSATION_IDENTITY_COLLISION');
+    this.recipientByConversation.set(conversationId, body.From);
     const eventId = createConversationEventIdentity({ secret: this.#secret, accountSid: this.accountSid, messageSid: body.MessageSid });
-    const result = await this.service.process({ conversationId: this.conversationIds.get(body.From), eventId,
+    const result = await this.service.process({ conversationId, eventId,
       accountSid: this.accountSid, input: messages[0].textBody });
     return { supported: true, duplicate: result.duplicate, sessionRevision: result.session.revision };
   }

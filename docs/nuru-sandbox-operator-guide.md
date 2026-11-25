@@ -80,7 +80,7 @@ From each authorized WhatsApp phone:
 2. Send the exact current join phrase.
 3. Wait for Twilio's confirmation that the phone joined the Sandbox.
 
-Joining Twilio does not add a phone to NURU's allowlist. Both controls must pass.
+During the controlled development Sandbox session, a participant who successfully joins Twilio may start an isolated NURU conversation. Signed webhook, account and Sandbox-destination checks must still pass.
 
 ## H. Test NURU
 
@@ -108,7 +108,7 @@ Example shape only—do not copy these fictitious numbers:
 TWILIO_TEST_RECIPIENTS=whatsapp:+254700000001,whatsapp:+254700000002,whatsapp:+254700000003
 ```
 
-The allowlist supports one to five unique phones. Each phone receives an independent PostgreSQL conversation identity and a separate 25-response test allowance.
+The configured phones remain useful for diagnostics. Joined Sandbox participants receive independent PostgreSQL conversation identities and separate 50-response test allowances; raw phone numbers are not persisted in conversation state.
 
 ## J. Check status
 
@@ -146,7 +146,7 @@ Open PowerShell, return to the project directory, then run the startup command f
 - **Missing recipient allowlist:** add authorized joined testers to `TWILIO_TEST_RECIPIENTS`; do not remove an existing tester while adding another.
 - **NURU starts but WhatsApp does not reply:** run status, confirm public health, then compare the printed incoming URL character-for-character with Twilio Sandbox settings and confirm method POST. Confirm the phone received Twilio's join acknowledgement.
 - **Twilio signature errors:** the public host saved in Twilio and the host configured locally must be identical. Restart and use the exact URL printed by the script.
-- **The 26th message receives no reply:** the controlled policy permits 25 outbound responses per participant identity. Stop and start a newly authorized test session only under the approved operating procedure; do not bypass Twilio restrictions.
+- **The 51st message receives no reply:** the controlled policy permits 50 outbound responses per participant identity. Start a new controlled test session only under the approved operating procedure; do not bypass Twilio restrictions.
 - **PowerShell execution policy blocks a script:** use the full `powershell.exe -NoProfile -ExecutionPolicy Bypass -File ...` startup command shown above. This bypass applies only to that process.
 
 ## N. Confirm shutdown
