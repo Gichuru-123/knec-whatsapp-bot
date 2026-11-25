@@ -4,48 +4,141 @@
   "service_id": "qmis-navigation",
   "category": "faqs",
   "title": "QMIS Navigation and Status Guidance",
-  "description": "Draft public-service guidance; review questions must be resolved before publication.",
+  "description": "Guide-based QMIS navigation and workflow information. The documented screens are historical evidence; live-portal applicability remains subject to confirmation.",
   "language": "en",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "status": "draft",
   "verification_status": "source_checked",
   "visibility": "public",
-  "scope": {
-    "examinations": [
-      "all"
-    ],
-    "audiences": [
-      "all"
-    ],
-    "years": [
-      "all"
-    ]
-  },
-  "intents": [
-    "application status",
-    "qmis login"
-  ],
+  "scope": {"examinations": ["all"], "audiences": ["all"], "years": ["all"]},
+  "intents": ["application status", "qmis login", "qmis registration", "forgot qmis password", "qmis menu", "submit qmis query", "attach qmis documents"],
   "clarifying_questions": [
-    "Which service and examination does your question concern?"
+    "Do you need help accessing QMIS, submitting a query, or understanding how the guide says to track a submitted query?",
+    "Which QMIS service does your question concern?"
   ],
   "claims": [
     {
-      "id": "status",
-      "kind": "orientation",
-      "text": "The historical manual describes checking query progress through the QMIS Status function.",
+      "id": "purpose", "kind": "orientation",
+      "text": "The guides describe QMIS as KNEC's online system for clients to raise examination-related queries, attach relevant documents and track progress; KNEC staff use an internal module to receive, verify, validate and resolve them.",
       "evidence_status": "supported",
       "citations": [
-        {
-          "source_id": "qmis-manual-2018",
-          "source_sha256": "4f67a0032187376ec74c7fcf5770735eafa7c13e7dee57e76796ddd19c56d181",
-          "locator": "pp5-6 section2.2"
-        }
+        {"source_id": "qmis-manual-2018", "source_sha256": "4f67a0032187376ec74c7fcf5770735eafa7c13e7dee57e76796ddd19c56d181", "locator": "PDF p2 introductory paragraph"},
+        {"source_id": "qmis-external-2017", "source_sha256": "4c6a3f796aa72a0025c7aeae2cf7da792e4e1f9d2be40dff0c9d61a9692f966d", "locator": "PDF p3 sections 1.0-1.2"}
       ]
+    },
+    {
+      "id": "access-url", "kind": "step",
+      "text": "The September 2017 external manual instructs users to open a browser and enter https://qmis.knec.ac.ke. The 2018 guide displays the same QMIS host but prints an older http URL, so users should use the secure HTTPS address documented by the external manual.",
+      "evidence_status": "supported",
+      "citations": [
+        {"source_id": "qmis-external-2017", "source_sha256": "4c6a3f796aa72a0025c7aeae2cf7da792e4e1f9d2be40dff0c9d61a9692f966d", "locator": "PDF p3 sections 2.1-2.3"},
+        {"source_id": "qmis-manual-2018", "source_sha256": "4f67a0032187376ec74c7fcf5770735eafa7c13e7dee57e76796ddd19c56d181", "locator": "PDF p2 section 1.1"}
+      ]
+    },
+    {
+      "id": "registration-fields", "kind": "requirement",
+      "text": "For a new account, the guides show a Register control and a form requesting Full Name, Mobile Number, Postal Address, Title/Designation, Email Address and confirmation of the email address. After registration, login credentials are sent to the supplied email address.",
+      "evidence_status": "supported",
+      "citations": [
+        {"source_id": "qmis-manual-2018", "source_sha256": "4f67a0032187376ec74c7fcf5770735eafa7c13e7dee57e76796ddd19c56d181", "locator": "PDF pp2-3 sections 1.2-1.3"},
+        {"source_id": "qmis-external-2017", "source_sha256": "4c6a3f796aa72a0025c7aeae2cf7da792e4e1f9d2be40dff0c9d61a9692f966d", "locator": "PDF pp3-4 sections 2.3.2-2.3.2.4"}
+      ]
+    },
+    {
+      "id": "login", "kind": "step",
+      "text": "A registered user enters the username and password received through email and selects Log In. The assistant must explain this process without requesting, receiving or entering the user's credentials.",
+      "evidence_status": "supported",
+      "citations": [
+        {"source_id": "qmis-manual-2018", "source_sha256": "4f67a0032187376ec74c7fcf5770735eafa7c13e7dee57e76796ddd19c56d181", "locator": "PDF pp3-4 section 1.3"},
+        {"source_id": "qmis-external-2017", "source_sha256": "4c6a3f796aa72a0025c7aeae2cf7da792e4e1f9d2be40dff0c9d61a9692f966d", "locator": "PDF pp3-4 sections 2.3.1-2.3.2.4"}
+      ]
+    },
+    {
+      "id": "password-recovery", "kind": "step",
+      "text": "The September 2017 manual documents a Forgot Password link that sends a new password to the user's email. This is guide-based navigation, not confirmation that the live portal still uses the same recovery behavior.",
+      "evidence_status": "supported",
+      "citations": [{"source_id": "qmis-external-2017", "source_sha256": "4c6a3f796aa72a0025c7aeae2cf7da792e4e1f9d2be40dff0c9d61a9692f966d", "locator": "PDF p4 sections 2.3.3-2.3.3.1"}]
+    },
+    {
+      "id": "home-menu", "kind": "orientation",
+      "text": "The 2018 guide's QMIS home-page screenshot shows Query, Status, Confirmation, Certification, Equation, Change Password and Logout controls.",
+      "evidence_status": "supported",
+      "citations": [{"source_id": "qmis-manual-2018", "source_sha256": "4f67a0032187376ec74c7fcf5770735eafa7c13e7dee57e76796ddd19c56d181", "locator": "PDF p4 Figure 3"}]
+    },
+    {
+      "id": "query-menu", "kind": "orientation",
+      "text": "The 2018 guide documents Query-menu options for Bio Data Amendment, Photo Amendment, Centre Name Amendment, Direct Recovery, Result Query and Payment Queries. It separately describes Confirmation of Results, Certification Letter and Equation of Certificates services.",
+      "evidence_status": "supported",
+      "citations": [{"source_id": "qmis-manual-2018", "source_sha256": "4f67a0032187376ec74c7fcf5770735eafa7c13e7dee57e76796ddd19c56d181", "locator": "PDF pp4-6 sections 2.1 and 2.4"}]
+    },
+    {
+      "id": "generic-submission", "kind": "step",
+      "text": "The 2018 guide says to open Query, select the specific query type, complete the displayed query details, attach the required supporting documents, select Submit, and check the resulting feedback for successful submission.",
+      "evidence_status": "supported",
+      "citations": [{"source_id": "qmis-manual-2018", "source_sha256": "4f67a0032187376ec74c7fcf5770735eafa7c13e7dee57e76796ddd19c56d181", "locator": "PDF pp4-5 sections 2.0-2.1, steps 1-4"}]
+    },
+    {
+      "id": "attachments", "kind": "step",
+      "text": "For the documented biodata, photo, payment and confirmation workflows, the external manual instructs users to choose each item from the Required List, choose the corresponding file, attach the required documents, and then submit. The exact required-document list depends on the selected service and must not be invented from the screenshots.",
+      "evidence_status": "supported",
+      "citations": [{"source_id": "qmis-external-2017", "source_sha256": "4c6a3f796aa72a0025c7aeae2cf7da792e4e1f9d2be40dff0c9d61a9692f966d", "locator": "PDF pp6-10 sections 3.1.8-3.1.9, 3.2.7-3.2.9 and 3.4.7-3.4.9"}]
+    },
+    {
+      "id": "biodata-screen", "kind": "step",
+      "text": "The external manual's Candidate Biodata Amendment sequence is: select the biodata query type; enter the candidate index number; select query type, examination, year and series; select Find; review the current examination details; enter the proposed name in the provided field; attach each required document; and submit.",
+      "evidence_status": "supported",
+      "citations": [{"source_id": "qmis-external-2017", "source_sha256": "4c6a3f796aa72a0025c7aeae2cf7da792e4e1f9d2be40dff0c9d61a9692f966d", "locator": "PDF pp5-6 sections 3.1.1-3.1.9"}]
+    },
+    {
+      "id": "photo-screen", "kind": "step",
+      "text": "The external manual's Candidate Photo Amendment sequence is: select Photo Amendment; enter the candidate index number; select examination, year and series; select Find; review the current photo; upload the correct photo in the New Photo area; attach each required document; and submit.",
+      "evidence_status": "supported",
+      "citations": [{"source_id": "qmis-external-2017", "source_sha256": "4c6a3f796aa72a0025c7aeae2cf7da792e4e1f9d2be40dff0c9d61a9692f966d", "locator": "PDF pp6-7 sections 3.2.1-3.2.9"}]
+    },
+    {
+      "id": "payment-screen", "kind": "step",
+      "text": "The external manual's Contracted Professionals payment-query screen documents National ID Number, examination, year, series, position worked, nature of query, amount expected, amount received, institution, query description and attachments. These fields are entered only in the official portal; the assistant must not collect them in WhatsApp.",
+      "evidence_status": "supported",
+      "citations": [{"source_id": "qmis-external-2017", "source_sha256": "4c6a3f796aa72a0025c7aeae2cf7da792e4e1f9d2be40dff0c9d61a9692f966d", "locator": "PDF pp7-8 sections 3.3.1-3.3.4 and Contracted Professionals screenshots"}]
+    },
+    {
+      "id": "confirmation-screen", "kind": "step",
+      "text": "The external manual's Results Confirmation sequence is: select Confirmation; enter the candidate index number; select examination and year, and series where applicable; select Find; review the generated candidate name; enter recipient details; attach each required document; and submit.",
+      "evidence_status": "supported",
+      "citations": [{"source_id": "qmis-external-2017", "source_sha256": "4c6a3f796aa72a0025c7aeae2cf7da792e4e1f9d2be40dff0c9d61a9692f966d", "locator": "PDF pp8-10 sections 3.4.1-3.4.9"}]
+    },
+    {
+      "id": "status-tracking", "kind": "step",
+      "text": "The guides document selecting Status from the home page and supplying query details such as examination, index number and examination year to monitor a submitted query. The guides show the lookup screen but do not provide a complete glossary for every possible status label.",
+      "evidence_status": "supported",
+      "citations": [
+        {"source_id": "qmis-manual-2018", "source_sha256": "4f67a0032187376ec74c7fcf5770735eafa7c13e7dee57e76796ddd19c56d181", "locator": "PDF pp5-6 section 2.2"},
+        {"source_id": "qmis-external-2017", "source_sha256": "4c6a3f796aa72a0025c7aeae2cf7da792e4e1f9d2be40dff0c9d61a9692f966d", "locator": "PDF p10 section 4.0 and Online Query Status screenshot"}
+      ]
+    },
+    {
+      "id": "post-verification-payment", "kind": "step",
+      "text": "The 2018 guide states that after documents are verified, KNEC sends a message indicating the amount to pay, pay-bill number and account number for the query. Users should follow the official portal or KNEC message and should not send payment details to the assistant.",
+      "evidence_status": "supported",
+      "citations": [{"source_id": "qmis-manual-2018", "source_sha256": "4f67a0032187376ec74c7fcf5770735eafa7c13e7dee57e76796ddd19c56d181", "locator": "PDF p5 Figure 4 payment note"}]
+    },
+    {
+      "id": "document-notification", "kind": "step",
+      "text": "The 2018 guide states that KNEC notifies clients through email and SMS when documents are ready for collection.",
+      "evidence_status": "supported",
+      "citations": [{"source_id": "qmis-manual-2018", "source_sha256": "4f67a0032187376ec74c7fcf5770735eafa7c13e7dee57e76796ddd19c56d181", "locator": "PDF p6 section 2.3"}]
+    },
+    {
+      "id": "credential-warning", "kind": "exception",
+      "text": "The 2018 guide states that usernames and passwords are confidential and must not be disclosed to a third party. It also instructs users to provide a valid email address and mobile number to receive feedback. The assistant must never request a password, OTP or login credential.",
+      "evidence_status": "supported",
+      "citations": [{"source_id": "qmis-manual-2018", "source_sha256": "4f67a0032187376ec74c7fcf5770735eafa7c13e7dee57e76796ddd19c56d181", "locator": "PDF p6 final NB warning"}]
     }
   ],
   "unresolved_questions": [
-    "Validate current public manual/UI without collecting account credentials.",
-    "This assistant cannot access individual application status."
+    "Confirm whether the live QMIS portal still uses the same screen labels, sequence and password-recovery behavior shown in the September 2017 and copyright-2018 guides.",
+    "Obtain an official current glossary for live QMIS status labels; the inspected guides do not define every possible label.",
+    "The assistant provides generic navigation only and cannot access, inspect, approve or alter an individual application."
   ],
   "effective_from": null,
   "effective_to": null,

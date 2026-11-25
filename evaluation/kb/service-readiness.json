@@ -1,0 +1,1880 @@
+{
+  "version": "1.0.0",
+  "baseline": {
+    "article_count": 33,
+    "source_count": 17,
+    "captured_on": "2026-11-16"
+  },
+  "services": [
+    {
+      "article_id": "cert-replacement",
+      "service_name": "Examination Results Certification Letter",
+      "menu_mapping": [
+        "certificates.replacement"
+      ],
+      "applicable_scope": {
+        "examinations": [
+          "all"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "all"
+        ]
+      },
+      "evidence_coverage": {
+        "claim_count": 15,
+        "supported_claims": 14,
+        "unresolved_claims": 1,
+        "claim_types": [
+          "orientation",
+          "requirement",
+          "exception",
+          "step",
+          "fee",
+          "timeline",
+          "contact"
+        ]
+      },
+      "missing_requirements": [
+        "Current portal attachment checklist by examination, age and legal-name circumstance."
+      ],
+      "missing_procedural_steps": [
+        "Current pended/resubmission workflow and payment consequences."
+      ],
+      "missing_fees": [
+        "Confirm the current KES 5,220 tariff and payment prompt."
+      ],
+      "missing_timelines": [
+        "KNEC reviewer must confirm the proposed estimated 10–15 working-day range and establish its starting event; it is not yet an institutional commitment."
+      ],
+      "missing_exceptions": [
+        "Confirm name-change and uncollected-letter edge cases."
+      ],
+      "open_conflicts": [
+        "certification-processing-time",
+        "certification-document-count"
+      ],
+      "pii_boundary": "Do not collect or store candidate names, index numbers, credentials, identity documents or personal records; provide generic guidance only.",
+      "required_reviewer": "Accountable KNEC service owner must be assigned; no reviewer identity is inferred.",
+      "approval_dependencies": [
+        "Resolve timeline conflict against charter p5 row16.",
+        "Confirm current portal requirements and legal-name-change edge cases with reviewer.",
+        "Section 5.7 instructs deletion and resubmission of a pended application. Verify current portal behavior and payment implications before advising this irreversible action; never generalize to any pending status.",
+        "Poster says seven documents without enumerating them; reconcile with the detailed guideline and current portal before giving a universal attachment count.",
+        "Confirm current applicability and source versions.",
+        "Record exact content-bound institutional approval."
+      ],
+      "status": "source_checked"
+    },
+    {
+      "article_id": "faq-general",
+      "service_name": "General Support and Official Contacts",
+      "menu_mapping": [
+        "information.general"
+      ],
+      "applicable_scope": {
+        "examinations": [
+          "all"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "all"
+        ]
+      },
+      "evidence_coverage": {
+        "claim_count": 3,
+        "supported_claims": 3,
+        "unresolved_claims": 0,
+        "claim_types": [
+          "contact"
+        ]
+      },
+      "missing_requirements": [
+        "No sufficiently scoped requirements claim is recorded."
+      ],
+      "missing_procedural_steps": [
+        "No sufficiently scoped procedure claim is recorded."
+      ],
+      "missing_fees": [
+        "No sufficiently scoped fees claim is recorded."
+      ],
+      "missing_timelines": [
+        "No sufficiently scoped timeline claim is recorded."
+      ],
+      "missing_exceptions": [
+        "No sufficiently scoped exceptions claim is recorded."
+      ],
+      "open_conflicts": [],
+      "pii_boundary": "Do not collect or store candidate names, index numbers, credentials, identity documents or personal records; provide generic guidance only.",
+      "required_reviewer": "Accountable KNEC service owner must be assigned; no reviewer identity is inferred.",
+      "approval_dependencies": [
+        "Named content reviewer approval is still required.",
+        "Office hours, call charges and WhatsApp support are not established by this page; do not assert them.",
+        "Confirm current applicability and source versions.",
+        "Record exact content-bound institutional approval."
+      ],
+      "status": "source_checked"
+    },
+    {
+      "article_id": "public-information",
+      "service_name": "Requests for Information",
+      "menu_mapping": [
+        "information.public"
+      ],
+      "applicable_scope": {
+        "examinations": [
+          "all"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "all"
+        ]
+      },
+      "evidence_coverage": {
+        "claim_count": 1,
+        "supported_claims": 1,
+        "unresolved_claims": 0,
+        "claim_types": [
+          "orientation"
+        ]
+      },
+      "missing_requirements": [
+        "No sufficiently scoped requirements claim is recorded."
+      ],
+      "missing_procedural_steps": [
+        "No sufficiently scoped procedure claim is recorded."
+      ],
+      "missing_fees": [
+        "No sufficiently scoped fees claim is recorded."
+      ],
+      "missing_timelines": [
+        "No sufficiently scoped timeline claim is recorded."
+      ],
+      "missing_exceptions": [
+        "No sufficiently scoped exceptions claim is recorded."
+      ],
+      "open_conflicts": [],
+      "pii_boundary": "Do not collect or store candidate names, index numbers, credentials, identity documents or personal records; provide generic guidance only.",
+      "required_reviewer": "Accountable KNEC service owner must be assigned; no reviewer identity is inferred.",
+      "approval_dependencies": [
+        "Obtain the applicable request procedure, permitted disclosure boundaries and current contact route.",
+        "Confirm current applicability and source versions.",
+        "Record exact content-bound institutional approval."
+      ],
+      "status": "research_needed"
+    },
+    {
+      "article_id": "qmis-navigation",
+      "service_name": "QMIS Navigation and Status Guidance",
+      "menu_mapping": [
+        "online-services.qmis"
+      ],
+      "applicable_scope": {
+        "examinations": [
+          "all"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "all"
+        ]
+      },
+      "evidence_coverage": {
+        "claim_count": 17,
+        "supported_claims": 17,
+        "unresolved_claims": 0,
+        "claim_types": [
+          "orientation",
+          "step",
+          "requirement",
+          "exception"
+        ]
+      },
+      "missing_requirements": [
+        "Current live-portal applicability of the documented registration and login screens."
+      ],
+      "missing_procedural_steps": [
+        "Current live-portal status-label glossary and confirmed recovery/correction paths."
+      ],
+      "missing_fees": [
+        "No universal fee is claimed; service-specific payment evidence remains in the relevant service article."
+      ],
+      "missing_timelines": [
+        "The guides do not establish a general QMIS processing time."
+      ],
+      "missing_exceptions": [
+        "Confirm live behavior when registration email, password recovery, attachment or submission fails."
+      ],
+      "open_conflicts": [],
+      "pii_boundary": "Do not collect or store candidate names, index numbers, credentials, identity documents or personal records; provide generic guidance only.",
+      "required_reviewer": "Accountable KNEC service owner must be assigned; no reviewer identity is inferred.",
+      "approval_dependencies": [
+        "Confirm live-portal applicability of the documented historical screens.",
+        "Obtain a current official status-label glossary.",
+        "Record exact content-bound institutional approval."
+      ],
+      "status": "source_checked"
+    },
+    {
+      "article_id": "faq-scam-awareness",
+      "service_name": "Fraud Awareness and Official Channels",
+      "menu_mapping": [
+        "information.scam-awareness"
+      ],
+      "applicable_scope": {
+        "examinations": [
+          "all"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "all"
+        ]
+      },
+      "evidence_coverage": {
+        "claim_count": 0,
+        "supported_claims": 0,
+        "unresolved_claims": 0,
+        "claim_types": []
+      },
+      "missing_requirements": [
+        "No sufficiently scoped requirements claim is recorded."
+      ],
+      "missing_procedural_steps": [
+        "No sufficiently scoped procedure claim is recorded."
+      ],
+      "missing_fees": [
+        "No sufficiently scoped fees claim is recorded."
+      ],
+      "missing_timelines": [
+        "No sufficiently scoped timeline claim is recorded."
+      ],
+      "missing_exceptions": [
+        "No sufficiently scoped exceptions claim is recorded."
+      ],
+      "open_conflicts": [],
+      "pii_boundary": "Do not collect or store candidate names, index numbers, credentials, identity documents or personal records; provide generic guidance only.",
+      "required_reviewer": "Accountable KNEC service owner must be assigned; no reviewer identity is inferred.",
+      "approval_dependencies": [
+        "Legacy unsupported checklist/dates removed. Obtain precise current official source and examination/year applicability.",
+        "Assign content reviewer before publishing.",
+        "Confirm current applicability and source versions.",
+        "Record exact content-bound institutional approval."
+      ],
+      "status": "research_needed"
+    },
+    {
+      "article_id": "biodata-amendment",
+      "service_name": "Biodata Amendments",
+      "menu_mapping": [
+        "queries.biodata"
+      ],
+      "applicable_scope": {
+        "examinations": [
+          "all"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "all"
+        ]
+      },
+      "evidence_coverage": {
+        "claim_count": 8,
+        "supported_claims": 8,
+        "unresolved_claims": 0,
+        "claim_types": [
+          "orientation",
+          "step"
+        ]
+      },
+      "missing_requirements": [
+        "No sufficiently scoped requirements claim is recorded."
+      ],
+      "missing_procedural_steps": [
+        "Procedure requires named factual review and current applicability confirmation."
+      ],
+      "missing_fees": [
+        "No sufficiently scoped fees claim is recorded."
+      ],
+      "missing_timelines": [
+        "No sufficiently scoped timeline claim is recorded."
+      ],
+      "missing_exceptions": [
+        "No sufficiently scoped exceptions claim is recorded."
+      ],
+      "open_conflicts": [
+        "query-deadline-basis",
+        "query-penalty-scope"
+      ],
+      "pii_boundary": "Do not collect or store candidate names, index numbers, credentials, identity documents or personal records; provide generic guidance only.",
+      "required_reviewer": "Accountable KNEC service owner must be assigned; no reviewer identity is inferred.",
+      "approval_dependencies": [
+        "Historical manual: verify current procedure, eligibility, documents and portal behavior.",
+        "Distinguish this service from other similarly named queries before answering.",
+        "Resolve query-page 30-day wording versus charter p3 row10 working-day windows and exam-specific penalties.",
+        "Confirm current applicability and source versions.",
+        "Record exact content-bound institutional approval."
+      ],
+      "status": "research_needed"
+    },
+    {
+      "article_id": "public-complaints",
+      "service_name": "Public Complaints and Grievances",
+      "menu_mapping": [
+        "queries.complaints"
+      ],
+      "applicable_scope": {
+        "examinations": [
+          "all"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "all"
+        ]
+      },
+      "evidence_coverage": {
+        "claim_count": 8,
+        "supported_claims": 8,
+        "unresolved_claims": 0,
+        "claim_types": [
+          "timeline",
+          "step",
+          "orientation"
+        ]
+      },
+      "missing_requirements": [
+        "No sufficiently scoped requirements claim is recorded."
+      ],
+      "missing_procedural_steps": [
+        "Procedure requires named factual review and current applicability confirmation."
+      ],
+      "missing_fees": [
+        "No sufficiently scoped fees claim is recorded."
+      ],
+      "missing_timelines": [
+        "Timeline requires named factual review and current applicability confirmation."
+      ],
+      "missing_exceptions": [
+        "No sufficiently scoped exceptions claim is recorded."
+      ],
+      "open_conflicts": [],
+      "pii_boundary": "Do not collect or store candidate names, index numbers, credentials, identity documents or personal records; provide generic guidance only.",
+      "required_reviewer": "Accountable KNEC service owner must be assigned; no reviewer identity is inferred.",
+      "approval_dependencies": [
+        "Verify current submission contacts and named reviewer approval.",
+        "Do not claim the bot submits complaints into KNEC CRM.",
+        "Confirm current applicability and source versions.",
+        "Record exact content-bound institutional approval."
+      ],
+      "status": "research_needed"
+    },
+    {
+      "article_id": "direct-recovery",
+      "service_name": "Direct Recovery of Examination Documents",
+      "menu_mapping": [
+        "queries.direct-recovery"
+      ],
+      "applicable_scope": {
+        "examinations": [
+          "all"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "all"
+        ]
+      },
+      "evidence_coverage": {
+        "claim_count": 6,
+        "supported_claims": 6,
+        "unresolved_claims": 0,
+        "claim_types": [
+          "orientation",
+          "step"
+        ]
+      },
+      "missing_requirements": [
+        "No sufficiently scoped requirements claim is recorded."
+      ],
+      "missing_procedural_steps": [
+        "Procedure requires named factual review and current applicability confirmation."
+      ],
+      "missing_fees": [
+        "No sufficiently scoped fees claim is recorded."
+      ],
+      "missing_timelines": [
+        "No sufficiently scoped timeline claim is recorded."
+      ],
+      "missing_exceptions": [
+        "No sufficiently scoped exceptions claim is recorded."
+      ],
+      "open_conflicts": [
+        "query-deadline-basis",
+        "query-penalty-scope"
+      ],
+      "pii_boundary": "Do not collect or store candidate names, index numbers, credentials, identity documents or personal records; provide generic guidance only.",
+      "required_reviewer": "Accountable KNEC service owner must be assigned; no reviewer identity is inferred.",
+      "approval_dependencies": [
+        "Historical manual: verify current procedure, eligibility, documents and portal behavior.",
+        "Distinguish this service from other similarly named queries before answering.",
+        "Resolve query-page 30-day wording versus charter p3 row10 working-day windows and exam-specific penalties.",
+        "Confirm current applicability and source versions.",
+        "Record exact content-bound institutional approval."
+      ],
+      "status": "research_needed"
+    },
+    {
+      "article_id": "photo-amendment",
+      "service_name": "Photo Amendments",
+      "menu_mapping": [
+        "queries.photo"
+      ],
+      "applicable_scope": {
+        "examinations": [
+          "all"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "all"
+        ]
+      },
+      "evidence_coverage": {
+        "claim_count": 4,
+        "supported_claims": 4,
+        "unresolved_claims": 0,
+        "claim_types": [
+          "orientation"
+        ]
+      },
+      "missing_requirements": [
+        "No sufficiently scoped requirements claim is recorded."
+      ],
+      "missing_procedural_steps": [
+        "No sufficiently scoped procedure claim is recorded."
+      ],
+      "missing_fees": [
+        "No sufficiently scoped fees claim is recorded."
+      ],
+      "missing_timelines": [
+        "No sufficiently scoped timeline claim is recorded."
+      ],
+      "missing_exceptions": [
+        "No sufficiently scoped exceptions claim is recorded."
+      ],
+      "open_conflicts": [],
+      "pii_boundary": "Do not collect or store candidate names, index numbers, credentials, identity documents or personal records; provide generic guidance only.",
+      "required_reviewer": "Accountable KNEC service owner must be assigned; no reviewer identity is inferred.",
+      "approval_dependencies": [
+        "Historical manual: verify current procedure, eligibility, documents and portal behavior.",
+        "Distinguish this service from other similarly named queries before answering.",
+        "Confirm current applicability and source versions.",
+        "Record exact content-bound institutional approval."
+      ],
+      "status": "research_needed"
+    },
+    {
+      "article_id": "professional-payment-query",
+      "service_name": "Contracted Professional Payment Queries",
+      "menu_mapping": [
+        "queries.professional-payment"
+      ],
+      "applicable_scope": {
+        "examinations": [
+          "all"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "all"
+        ]
+      },
+      "evidence_coverage": {
+        "claim_count": 5,
+        "supported_claims": 5,
+        "unresolved_claims": 0,
+        "claim_types": [
+          "orientation"
+        ]
+      },
+      "missing_requirements": [
+        "No sufficiently scoped requirements claim is recorded."
+      ],
+      "missing_procedural_steps": [
+        "No sufficiently scoped procedure claim is recorded."
+      ],
+      "missing_fees": [
+        "No sufficiently scoped fees claim is recorded."
+      ],
+      "missing_timelines": [
+        "No sufficiently scoped timeline claim is recorded."
+      ],
+      "missing_exceptions": [
+        "No sufficiently scoped exceptions claim is recorded."
+      ],
+      "open_conflicts": [],
+      "pii_boundary": "Do not collect or store candidate names, index numbers, credentials, identity documents or personal records; provide generic guidance only.",
+      "required_reviewer": "Accountable KNEC service owner must be assigned; no reviewer identity is inferred.",
+      "approval_dependencies": [
+        "Historical manual: verify current procedure, eligibility, documents and portal behavior.",
+        "Distinguish this service from other similarly named queries before answering.",
+        "Confirm current applicability and source versions.",
+        "Record exact content-bound institutional approval."
+      ],
+      "status": "research_needed"
+    },
+    {
+      "article_id": "results-query",
+      "service_name": "Examination Results Queries",
+      "menu_mapping": [
+        "queries.results"
+      ],
+      "applicable_scope": {
+        "examinations": [
+          "all"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "all"
+        ]
+      },
+      "evidence_coverage": {
+        "claim_count": 7,
+        "supported_claims": 7,
+        "unresolved_claims": 0,
+        "claim_types": [
+          "orientation",
+          "step"
+        ]
+      },
+      "missing_requirements": [
+        "No sufficiently scoped requirements claim is recorded."
+      ],
+      "missing_procedural_steps": [
+        "Procedure requires named factual review and current applicability confirmation."
+      ],
+      "missing_fees": [
+        "No sufficiently scoped fees claim is recorded."
+      ],
+      "missing_timelines": [
+        "No sufficiently scoped timeline claim is recorded."
+      ],
+      "missing_exceptions": [
+        "No sufficiently scoped exceptions claim is recorded."
+      ],
+      "open_conflicts": [
+        "query-deadline-basis",
+        "query-penalty-scope"
+      ],
+      "pii_boundary": "Do not collect or store candidate names, index numbers, credentials, identity documents or personal records; provide generic guidance only.",
+      "required_reviewer": "Accountable KNEC service owner must be assigned; no reviewer identity is inferred.",
+      "approval_dependencies": [
+        "Historical manual: verify current procedure, eligibility, documents and portal behavior.",
+        "Distinguish this service from other similarly named queries before answering.",
+        "Resolve query-page 30-day wording versus charter p3 row10 working-day windows and exam-specific penalties.",
+        "Confirm current applicability and source versions.",
+        "Record exact content-bound institutional approval."
+      ],
+      "status": "research_needed"
+    },
+    {
+      "article_id": "reg-kcse",
+      "service_name": "KCSE Examination Registration",
+      "menu_mapping": [
+        "registration.kcse"
+      ],
+      "applicable_scope": {
+        "examinations": [
+          "KCSE"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "2026"
+        ]
+      },
+      "evidence_coverage": {
+        "claim_count": 12,
+        "supported_claims": 11,
+        "unresolved_claims": 1,
+        "claim_types": [
+          "timeline",
+          "step",
+          "requirement",
+          "fee",
+          "exception"
+        ]
+      },
+      "missing_requirements": [
+        "Confirm current practical-centre assignment and later amendments."
+      ],
+      "missing_procedural_steps": [
+        "Clarify institutional versus private late-entry handling."
+      ],
+      "missing_fees": [
+        "Confirm current fee exceptions and any late-entry charge."
+      ],
+      "missing_timelines": [
+        "2026 window is historical; obtain the applicable year circular."
+      ],
+      "missing_exceptions": [
+        "Resolve late-entry contradiction and private-candidate venue rules."
+      ],
+      "open_conflicts": [
+        "kcse-late-entry"
+      ],
+      "pii_boundary": "Do not collect or store candidate names, index numbers, credentials, identity documents or personal records; provide generic guidance only.",
+      "required_reviewer": "Accountable KNEC service owner must be assigned; no reviewer identity is inferred.",
+      "approval_dependencies": [
+        "Clarify main-circular versus private-annex late-entry and amendment rules for the relevant candidate type.",
+        "Confirm practical venue with SCDE; annex references to an approved practical centre and county headquarters must not be treated as a personal venue assignment.",
+        "Check subsequent amendments and obtain named content approval before publication.",
+        "Confirm current applicability and source versions.",
+        "Record exact content-bound institutional approval."
+      ],
+      "status": "source_checked"
+    },
+    {
+      "article_id": "reg-kilea",
+      "service_name": "KILEA Assessment Registration (2026)",
+      "menu_mapping": [
+        "registration.kilea"
+      ],
+      "applicable_scope": {
+        "examinations": [
+          "KILEA"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "2026"
+        ]
+      },
+      "evidence_coverage": {
+        "claim_count": 2,
+        "supported_claims": 2,
+        "unresolved_claims": 0,
+        "claim_types": [
+          "timeline",
+          "orientation"
+        ]
+      },
+      "missing_requirements": [
+        "Obtain complete stage-based eligibility, forms and supporting evidence."
+      ],
+      "missing_procedural_steps": [
+        "Document the current KILEA-specific portal procedure."
+      ],
+      "missing_fees": [
+        "Confirm KILEA fee and penalty exceptions."
+      ],
+      "missing_timelines": [
+        "2026 window is historical; obtain the applicable year circular."
+      ],
+      "missing_exceptions": [
+        "Confirm transfers and stage-readiness exceptions."
+      ],
+      "open_conflicts": [],
+      "pii_boundary": "Do not collect or store candidate names, index numbers, credentials, identity documents or personal records; provide generic guidance only.",
+      "required_reviewer": "Accountable KNEC service owner must be assigned; no reviewer identity is inferred.",
+      "approval_dependencies": [
+        "Review fee exceptions and transfer rules specifically for KILEA.",
+        "Check subsequent amendments and obtain named content approval before publication.",
+        "Verify stage-based forms and eligibility; do not import grade-based KPSEA/KJSEA annex requirements.",
+        "Confirm current applicability and source versions.",
+        "Record exact content-bound institutional approval."
+      ],
+      "status": "research_needed"
+    },
+    {
+      "article_id": "reg-kjsea",
+      "service_name": "KJSEA Registration and Senior School Progression",
+      "menu_mapping": [
+        "registration.kjsea"
+      ],
+      "applicable_scope": {
+        "examinations": [
+          "KJSEA"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "2025",
+          "2026"
+        ]
+      },
+      "evidence_coverage": {
+        "claim_count": 10,
+        "supported_claims": 10,
+        "unresolved_claims": 0,
+        "claim_types": [
+          "timeline",
+          "requirement",
+          "step",
+          "orientation",
+          "exception"
+        ]
+      },
+      "missing_requirements": [
+        "Confirm transfer, SBA and special-needs rules for the applicable year."
+      ],
+      "missing_procedural_steps": [
+        "Verify the official placement/selection portal and current review route for the applicable cohort."
+      ],
+      "missing_fees": [
+        "Confirm applicable fee and penalty exceptions."
+      ],
+      "missing_timelines": [
+        "2026 registration and 2025 placement windows are historical; obtain current cohort dates."
+      ],
+      "missing_exceptions": [
+        "Confirm transfers and late-registration handling."
+      ],
+      "open_conflicts": [],
+      "pii_boundary": "Do not collect or store candidate names, index numbers, credentials, identity documents or personal records; provide generic guidance only.",
+      "required_reviewer": "Accountable KNEC service owner must be assigned; no reviewer identity is inferred.",
+      "approval_dependencies": [
+        "Review fee exceptions and transfer rules specifically for KJSEA.",
+        "Check subsequent amendments and obtain named content approval before publication.",
+        "Confirm current applicability and source versions.",
+        "Record exact content-bound institutional approval."
+      ],
+      "status": "source_checked"
+    },
+    {
+      "article_id": "reg-kplea",
+      "service_name": "KPLEA Assessment Registration (2026)",
+      "menu_mapping": [
+        "registration.kplea"
+      ],
+      "applicable_scope": {
+        "examinations": [
+          "KPLEA"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "2026"
+        ]
+      },
+      "evidence_coverage": {
+        "claim_count": 2,
+        "supported_claims": 2,
+        "unresolved_claims": 0,
+        "claim_types": [
+          "timeline",
+          "orientation"
+        ]
+      },
+      "missing_requirements": [
+        "Obtain complete stage-based eligibility, forms and supporting evidence."
+      ],
+      "missing_procedural_steps": [
+        "Document the current KPLEA-specific portal procedure."
+      ],
+      "missing_fees": [
+        "Confirm KPLEA fee and penalty exceptions."
+      ],
+      "missing_timelines": [
+        "2026 window is historical; obtain the applicable year circular."
+      ],
+      "missing_exceptions": [
+        "Confirm transfers and stage-readiness exceptions."
+      ],
+      "open_conflicts": [],
+      "pii_boundary": "Do not collect or store candidate names, index numbers, credentials, identity documents or personal records; provide generic guidance only.",
+      "required_reviewer": "Accountable KNEC service owner must be assigned; no reviewer identity is inferred.",
+      "approval_dependencies": [
+        "Review fee exceptions and transfer rules specifically for KPLEA.",
+        "Check subsequent amendments and obtain named content approval before publication.",
+        "Verify stage-based forms and eligibility; do not import grade-based KPSEA/KJSEA annex requirements.",
+        "Confirm current applicability and source versions.",
+        "Record exact content-bound institutional approval."
+      ],
+      "status": "research_needed"
+    },
+    {
+      "article_id": "reg-kpsea-kjsea",
+      "service_name": "KPSEA and KJSEA Assessment Registration",
+      "menu_mapping": [],
+      "applicable_scope": {
+        "examinations": [
+          "KPSEA",
+          "KILEA",
+          "KJSEA",
+          "KPLEA"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "2026"
+        ]
+      },
+      "evidence_coverage": {
+        "claim_count": 10,
+        "supported_claims": 10,
+        "unresolved_claims": 0,
+        "claim_types": [
+          "timeline",
+          "requirement",
+          "orientation",
+          "step"
+        ]
+      },
+      "missing_requirements": [
+        "Requirements requires named factual review and current applicability confirmation."
+      ],
+      "missing_procedural_steps": [
+        "Procedure requires named factual review and current applicability confirmation."
+      ],
+      "missing_fees": [
+        "No sufficiently scoped fees claim is recorded."
+      ],
+      "missing_timelines": [
+        "Timeline requires named factual review and current applicability confirmation."
+      ],
+      "missing_exceptions": [
+        "No sufficiently scoped exceptions claim is recorded."
+      ],
+      "open_conflicts": [],
+      "pii_boundary": "Do not collect or store candidate names, index numbers, credentials, identity documents or personal records; provide generic guidance only.",
+      "required_reviewer": "Accountable KNEC service owner must be assigned; no reviewer identity is inferred.",
+      "approval_dependencies": [
+        "Internal comparison only; not eligible for public answers.",
+        "Confirm current applicability and source versions.",
+        "Record exact content-bound institutional approval."
+      ],
+      "status": "source_checked"
+    },
+    {
+      "article_id": "reg-kpsea",
+      "service_name": "KPSEA Assessment Registration (2026)",
+      "menu_mapping": [
+        "registration.kpsea"
+      ],
+      "applicable_scope": {
+        "examinations": [
+          "KPSEA"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "2026"
+        ]
+      },
+      "evidence_coverage": {
+        "claim_count": 4,
+        "supported_claims": 4,
+        "unresolved_claims": 0,
+        "claim_types": [
+          "timeline",
+          "requirement",
+          "step"
+        ]
+      },
+      "missing_requirements": [
+        "Confirm transfer, assessment-number and special-needs rules for the applicable year."
+      ],
+      "missing_procedural_steps": [
+        "Obtain current portal workflow and later amendments."
+      ],
+      "missing_fees": [
+        "Confirm applicable fee and penalty exceptions."
+      ],
+      "missing_timelines": [
+        "2026 window is historical; obtain the applicable year circular."
+      ],
+      "missing_exceptions": [
+        "Confirm transfers and late-registration handling."
+      ],
+      "open_conflicts": [],
+      "pii_boundary": "Do not collect or store candidate names, index numbers, credentials, identity documents or personal records; provide generic guidance only.",
+      "required_reviewer": "Accountable KNEC service owner must be assigned; no reviewer identity is inferred.",
+      "approval_dependencies": [
+        "Review fee exceptions and transfer rules specifically for KPSEA.",
+        "Check subsequent amendments and obtain named content approval before publication.",
+        "Confirm current applicability and source versions.",
+        "Record exact content-bound institutional approval."
+      ],
+      "status": "source_checked"
+    },
+    {
+      "article_id": "tvet-business-stage-i",
+      "service_name": "Business Stage I Examination Fee Components",
+      "menu_mapping": [
+        "registration.business-technical.business.stage-i"
+      ],
+      "applicable_scope": {
+        "examinations": [
+          "Business and Technical"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "2026",
+          "2027"
+        ],
+        "programmes": [
+          "business-stage-i"
+        ],
+        "series": [
+          "2026-11",
+          "2027-03",
+          "2027-07"
+        ]
+      },
+      "evidence_coverage": {
+        "claim_count": 2,
+        "supported_claims": 2,
+        "unresolved_claims": 0,
+        "claim_types": [
+          "fee",
+          "step"
+        ]
+      },
+      "missing_requirements": [
+        "No sufficiently scoped requirements claim is recorded."
+      ],
+      "missing_procedural_steps": [
+        "Procedure requires named factual review and current applicability confirmation."
+      ],
+      "missing_fees": [
+        "Fees requires named factual review and current applicability confirmation."
+      ],
+      "missing_timelines": [
+        "No sufficiently scoped timeline claim is recorded."
+      ],
+      "missing_exceptions": [
+        "No sufficiently scoped exceptions claim is recorded."
+      ],
+      "open_conflicts": [],
+      "pii_boundary": "Do not collect or store candidate names, index numbers, credentials, identity documents or personal records; provide generic guidance only.",
+      "required_reviewer": "Accountable KNEC service owner must be assigned; no reviewer identity is inferred.",
+      "approval_dependencies": [
+        "Independently review fee transcription and programme applicability.",
+        "Verify subsequent amendments and applicable additional charges; components are not a total invoice.",
+        "Obtain named content approval before publication.",
+        "Confirm current applicability and source versions.",
+        "Record exact content-bound institutional approval."
+      ],
+      "status": "source_checked"
+    },
+    {
+      "article_id": "tvet-business-stage-ii",
+      "service_name": "Business Stage Ii Examination Fee Components",
+      "menu_mapping": [
+        "registration.business-technical.business.stage-ii"
+      ],
+      "applicable_scope": {
+        "examinations": [
+          "Business and Technical"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "2026",
+          "2027"
+        ],
+        "programmes": [
+          "business-stage-ii"
+        ],
+        "series": [
+          "2026-11",
+          "2027-03",
+          "2027-07"
+        ]
+      },
+      "evidence_coverage": {
+        "claim_count": 2,
+        "supported_claims": 2,
+        "unresolved_claims": 0,
+        "claim_types": [
+          "fee",
+          "step"
+        ]
+      },
+      "missing_requirements": [
+        "No sufficiently scoped requirements claim is recorded."
+      ],
+      "missing_procedural_steps": [
+        "Procedure requires named factual review and current applicability confirmation."
+      ],
+      "missing_fees": [
+        "Fees requires named factual review and current applicability confirmation."
+      ],
+      "missing_timelines": [
+        "No sufficiently scoped timeline claim is recorded."
+      ],
+      "missing_exceptions": [
+        "No sufficiently scoped exceptions claim is recorded."
+      ],
+      "open_conflicts": [],
+      "pii_boundary": "Do not collect or store candidate names, index numbers, credentials, identity documents or personal records; provide generic guidance only.",
+      "required_reviewer": "Accountable KNEC service owner must be assigned; no reviewer identity is inferred.",
+      "approval_dependencies": [
+        "Independently review fee transcription and programme applicability.",
+        "Verify subsequent amendments and applicable additional charges; components are not a total invoice.",
+        "Obtain named content approval before publication.",
+        "Confirm current applicability and source versions.",
+        "Record exact content-bound institutional approval."
+      ],
+      "status": "source_checked"
+    },
+    {
+      "article_id": "tvet-business-stage-iii",
+      "service_name": "Business Stage Iii Examination Fee Components",
+      "menu_mapping": [
+        "registration.business-technical.business.stage-iii"
+      ],
+      "applicable_scope": {
+        "examinations": [
+          "Business and Technical"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "2026",
+          "2027"
+        ],
+        "programmes": [
+          "business-stage-iii"
+        ],
+        "series": [
+          "2026-11",
+          "2027-03",
+          "2027-07"
+        ]
+      },
+      "evidence_coverage": {
+        "claim_count": 2,
+        "supported_claims": 2,
+        "unresolved_claims": 0,
+        "claim_types": [
+          "fee",
+          "step"
+        ]
+      },
+      "missing_requirements": [
+        "No sufficiently scoped requirements claim is recorded."
+      ],
+      "missing_procedural_steps": [
+        "Procedure requires named factual review and current applicability confirmation."
+      ],
+      "missing_fees": [
+        "Fees requires named factual review and current applicability confirmation."
+      ],
+      "missing_timelines": [
+        "No sufficiently scoped timeline claim is recorded."
+      ],
+      "missing_exceptions": [
+        "No sufficiently scoped exceptions claim is recorded."
+      ],
+      "open_conflicts": [],
+      "pii_boundary": "Do not collect or store candidate names, index numbers, credentials, identity documents or personal records; provide generic guidance only.",
+      "required_reviewer": "Accountable KNEC service owner must be assigned; no reviewer identity is inferred.",
+      "approval_dependencies": [
+        "Independently review fee transcription and programme applicability.",
+        "Verify subsequent amendments and applicable additional charges; components are not a total invoice.",
+        "Obtain named content approval before publication.",
+        "Confirm current applicability and source versions.",
+        "Record exact content-bound institutional approval."
+      ],
+      "status": "source_checked"
+    },
+    {
+      "article_id": "tvet-business-tep-certificate",
+      "service_name": "Business Tep Certificate Examination Fee Components",
+      "menu_mapping": [
+        "registration.business-technical.business.tep-certificate"
+      ],
+      "applicable_scope": {
+        "examinations": [
+          "Business and Technical"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "2026",
+          "2027"
+        ],
+        "programmes": [
+          "business-tep-certificate"
+        ],
+        "series": [
+          "2026-11",
+          "2027-03",
+          "2027-07"
+        ]
+      },
+      "evidence_coverage": {
+        "claim_count": 2,
+        "supported_claims": 2,
+        "unresolved_claims": 0,
+        "claim_types": [
+          "fee",
+          "step"
+        ]
+      },
+      "missing_requirements": [
+        "No sufficiently scoped requirements claim is recorded."
+      ],
+      "missing_procedural_steps": [
+        "Procedure requires named factual review and current applicability confirmation."
+      ],
+      "missing_fees": [
+        "Fees requires named factual review and current applicability confirmation."
+      ],
+      "missing_timelines": [
+        "No sufficiently scoped timeline claim is recorded."
+      ],
+      "missing_exceptions": [
+        "No sufficiently scoped exceptions claim is recorded."
+      ],
+      "open_conflicts": [],
+      "pii_boundary": "Do not collect or store candidate names, index numbers, credentials, identity documents or personal records; provide generic guidance only.",
+      "required_reviewer": "Accountable KNEC service owner must be assigned; no reviewer identity is inferred.",
+      "approval_dependencies": [
+        "Independently review fee transcription and programme applicability.",
+        "Verify subsequent amendments and applicable additional charges; components are not a total invoice.",
+        "Obtain named content approval before publication.",
+        "Confirm current applicability and source versions.",
+        "Record exact content-bound institutional approval."
+      ],
+      "status": "source_checked"
+    },
+    {
+      "article_id": "tvet-business-tep-diploma",
+      "service_name": "Business Tep Diploma Examination Fee Components",
+      "menu_mapping": [
+        "registration.business-technical.business.tep-diploma"
+      ],
+      "applicable_scope": {
+        "examinations": [
+          "Business and Technical"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "2026",
+          "2027"
+        ],
+        "programmes": [
+          "business-tep-diploma"
+        ],
+        "series": [
+          "2026-11",
+          "2027-03",
+          "2027-07"
+        ]
+      },
+      "evidence_coverage": {
+        "claim_count": 2,
+        "supported_claims": 2,
+        "unresolved_claims": 0,
+        "claim_types": [
+          "fee",
+          "step"
+        ]
+      },
+      "missing_requirements": [
+        "No sufficiently scoped requirements claim is recorded."
+      ],
+      "missing_procedural_steps": [
+        "Procedure requires named factual review and current applicability confirmation."
+      ],
+      "missing_fees": [
+        "Fees requires named factual review and current applicability confirmation."
+      ],
+      "missing_timelines": [
+        "No sufficiently scoped timeline claim is recorded."
+      ],
+      "missing_exceptions": [
+        "No sufficiently scoped exceptions claim is recorded."
+      ],
+      "open_conflicts": [],
+      "pii_boundary": "Do not collect or store candidate names, index numbers, credentials, identity documents or personal records; provide generic guidance only.",
+      "required_reviewer": "Accountable KNEC service owner must be assigned; no reviewer identity is inferred.",
+      "approval_dependencies": [
+        "Independently review fee transcription and programme applicability.",
+        "Verify subsequent amendments and applicable additional charges; components are not a total invoice.",
+        "Obtain named content approval before publication.",
+        "Confirm current applicability and source versions.",
+        "Record exact content-bound institutional approval."
+      ],
+      "status": "source_checked"
+    },
+    {
+      "article_id": "tvet-series-2026-11",
+      "service_name": "Business and Technical Registration: 2026-11",
+      "menu_mapping": [
+        "registration.business-technical.series.2026-11"
+      ],
+      "applicable_scope": {
+        "examinations": [
+          "Business and Technical"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "2026"
+        ],
+        "series": [
+          "2026-11"
+        ]
+      },
+      "evidence_coverage": {
+        "claim_count": 2,
+        "supported_claims": 2,
+        "unresolved_claims": 0,
+        "claim_types": [
+          "timeline",
+          "step"
+        ]
+      },
+      "missing_requirements": [
+        "No sufficiently scoped requirements claim is recorded."
+      ],
+      "missing_procedural_steps": [
+        "Procedure requires named factual review and current applicability confirmation."
+      ],
+      "missing_fees": [
+        "No sufficiently scoped fees claim is recorded."
+      ],
+      "missing_timelines": [
+        "Timeline requires named factual review and current applicability confirmation."
+      ],
+      "missing_exceptions": [
+        "No sufficiently scoped exceptions claim is recorded."
+      ],
+      "open_conflicts": [],
+      "pii_boundary": "Do not collect or store candidate names, index numbers, credentials, identity documents or personal records; provide generic guidance only.",
+      "required_reviewer": "Accountable KNEC service owner must be assigned; no reviewer identity is inferred.",
+      "approval_dependencies": [
+        "Check subsequent amendments and obtain named content approval before publication.",
+        "Confirm current applicability and source versions.",
+        "Record exact content-bound institutional approval."
+      ],
+      "status": "source_checked"
+    },
+    {
+      "article_id": "tvet-series-2027-03",
+      "service_name": "Business and Technical Registration: 2027-03",
+      "menu_mapping": [
+        "registration.business-technical.series.2027-03"
+      ],
+      "applicable_scope": {
+        "examinations": [
+          "Business and Technical"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "2027"
+        ],
+        "series": [
+          "2027-03"
+        ]
+      },
+      "evidence_coverage": {
+        "claim_count": 2,
+        "supported_claims": 2,
+        "unresolved_claims": 0,
+        "claim_types": [
+          "timeline",
+          "step"
+        ]
+      },
+      "missing_requirements": [
+        "No sufficiently scoped requirements claim is recorded."
+      ],
+      "missing_procedural_steps": [
+        "Procedure requires named factual review and current applicability confirmation."
+      ],
+      "missing_fees": [
+        "No sufficiently scoped fees claim is recorded."
+      ],
+      "missing_timelines": [
+        "Timeline requires named factual review and current applicability confirmation."
+      ],
+      "missing_exceptions": [
+        "No sufficiently scoped exceptions claim is recorded."
+      ],
+      "open_conflicts": [],
+      "pii_boundary": "Do not collect or store candidate names, index numbers, credentials, identity documents or personal records; provide generic guidance only.",
+      "required_reviewer": "Accountable KNEC service owner must be assigned; no reviewer identity is inferred.",
+      "approval_dependencies": [
+        "Check subsequent amendments and obtain named content approval before publication.",
+        "Confirm current applicability and source versions.",
+        "Record exact content-bound institutional approval."
+      ],
+      "status": "source_checked"
+    },
+    {
+      "article_id": "tvet-series-2027-07",
+      "service_name": "Business and Technical Registration: 2027-07",
+      "menu_mapping": [
+        "registration.business-technical.series.2027-07"
+      ],
+      "applicable_scope": {
+        "examinations": [
+          "Business and Technical"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "2027"
+        ],
+        "series": [
+          "2027-07"
+        ]
+      },
+      "evidence_coverage": {
+        "claim_count": 2,
+        "supported_claims": 2,
+        "unresolved_claims": 0,
+        "claim_types": [
+          "timeline",
+          "step"
+        ]
+      },
+      "missing_requirements": [
+        "No sufficiently scoped requirements claim is recorded."
+      ],
+      "missing_procedural_steps": [
+        "Procedure requires named factual review and current applicability confirmation."
+      ],
+      "missing_fees": [
+        "No sufficiently scoped fees claim is recorded."
+      ],
+      "missing_timelines": [
+        "Timeline requires named factual review and current applicability confirmation."
+      ],
+      "missing_exceptions": [
+        "No sufficiently scoped exceptions claim is recorded."
+      ],
+      "open_conflicts": [],
+      "pii_boundary": "Do not collect or store candidate names, index numbers, credentials, identity documents or personal records; provide generic guidance only.",
+      "required_reviewer": "Accountable KNEC service owner must be assigned; no reviewer identity is inferred.",
+      "approval_dependencies": [
+        "Check subsequent amendments and obtain named content approval before publication.",
+        "Confirm current applicability and source versions.",
+        "Record exact content-bound institutional approval."
+      ],
+      "status": "source_checked"
+    },
+    {
+      "article_id": "tvet-technical-artisan",
+      "service_name": "Technical Artisan Examination Fee Components",
+      "menu_mapping": [
+        "registration.business-technical.technical.artisan"
+      ],
+      "applicable_scope": {
+        "examinations": [
+          "Business and Technical"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "2026",
+          "2027"
+        ],
+        "programmes": [
+          "technical-artisan"
+        ],
+        "series": [
+          "2026-11",
+          "2027-03",
+          "2027-07"
+        ]
+      },
+      "evidence_coverage": {
+        "claim_count": 2,
+        "supported_claims": 2,
+        "unresolved_claims": 0,
+        "claim_types": [
+          "fee",
+          "step"
+        ]
+      },
+      "missing_requirements": [
+        "No sufficiently scoped requirements claim is recorded."
+      ],
+      "missing_procedural_steps": [
+        "Procedure requires named factual review and current applicability confirmation."
+      ],
+      "missing_fees": [
+        "Fees requires named factual review and current applicability confirmation."
+      ],
+      "missing_timelines": [
+        "No sufficiently scoped timeline claim is recorded."
+      ],
+      "missing_exceptions": [
+        "No sufficiently scoped exceptions claim is recorded."
+      ],
+      "open_conflicts": [],
+      "pii_boundary": "Do not collect or store candidate names, index numbers, credentials, identity documents or personal records; provide generic guidance only.",
+      "required_reviewer": "Accountable KNEC service owner must be assigned; no reviewer identity is inferred.",
+      "approval_dependencies": [
+        "Independently review fee transcription and programme applicability.",
+        "Verify subsequent amendments and applicable additional charges; components are not a total invoice.",
+        "Obtain named content approval before publication.",
+        "Confirm current applicability and source versions.",
+        "Record exact content-bound institutional approval."
+      ],
+      "status": "source_checked"
+    },
+    {
+      "article_id": "tvet-technical-craft",
+      "service_name": "Technical Craft Examination Fee Components",
+      "menu_mapping": [
+        "registration.business-technical.technical.craft"
+      ],
+      "applicable_scope": {
+        "examinations": [
+          "Business and Technical"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "2026",
+          "2027"
+        ],
+        "programmes": [
+          "technical-craft"
+        ],
+        "series": [
+          "2026-11",
+          "2027-03",
+          "2027-07"
+        ]
+      },
+      "evidence_coverage": {
+        "claim_count": 2,
+        "supported_claims": 2,
+        "unresolved_claims": 0,
+        "claim_types": [
+          "fee",
+          "step"
+        ]
+      },
+      "missing_requirements": [
+        "No sufficiently scoped requirements claim is recorded."
+      ],
+      "missing_procedural_steps": [
+        "Procedure requires named factual review and current applicability confirmation."
+      ],
+      "missing_fees": [
+        "Fees requires named factual review and current applicability confirmation."
+      ],
+      "missing_timelines": [
+        "No sufficiently scoped timeline claim is recorded."
+      ],
+      "missing_exceptions": [
+        "No sufficiently scoped exceptions claim is recorded."
+      ],
+      "open_conflicts": [],
+      "pii_boundary": "Do not collect or store candidate names, index numbers, credentials, identity documents or personal records; provide generic guidance only.",
+      "required_reviewer": "Accountable KNEC service owner must be assigned; no reviewer identity is inferred.",
+      "approval_dependencies": [
+        "Independently review fee transcription and programme applicability.",
+        "Verify subsequent amendments and applicable additional charges; components are not a total invoice.",
+        "Obtain named content approval before publication.",
+        "Confirm current applicability and source versions.",
+        "Record exact content-bound institutional approval."
+      ],
+      "status": "source_checked"
+    },
+    {
+      "article_id": "tvet-technical-diploma",
+      "service_name": "Technical Diploma Examination Fee Components",
+      "menu_mapping": [
+        "registration.business-technical.technical.diploma"
+      ],
+      "applicable_scope": {
+        "examinations": [
+          "Business and Technical"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "2026",
+          "2027"
+        ],
+        "programmes": [
+          "technical-diploma"
+        ],
+        "series": [
+          "2026-11",
+          "2027-03",
+          "2027-07"
+        ]
+      },
+      "evidence_coverage": {
+        "claim_count": 2,
+        "supported_claims": 2,
+        "unresolved_claims": 0,
+        "claim_types": [
+          "fee",
+          "step"
+        ]
+      },
+      "missing_requirements": [
+        "No sufficiently scoped requirements claim is recorded."
+      ],
+      "missing_procedural_steps": [
+        "Procedure requires named factual review and current applicability confirmation."
+      ],
+      "missing_fees": [
+        "Fees requires named factual review and current applicability confirmation."
+      ],
+      "missing_timelines": [
+        "No sufficiently scoped timeline claim is recorded."
+      ],
+      "missing_exceptions": [
+        "No sufficiently scoped exceptions claim is recorded."
+      ],
+      "open_conflicts": [],
+      "pii_boundary": "Do not collect or store candidate names, index numbers, credentials, identity documents or personal records; provide generic guidance only.",
+      "required_reviewer": "Accountable KNEC service owner must be assigned; no reviewer identity is inferred.",
+      "approval_dependencies": [
+        "Independently review fee transcription and programme applicability.",
+        "Verify subsequent amendments and applicable additional charges; components are not a total invoice.",
+        "Obtain named content approval before publication.",
+        "Confirm current applicability and source versions.",
+        "Record exact content-bound institutional approval."
+      ],
+      "status": "source_checked"
+    },
+    {
+      "article_id": "tvet-technical-higher-diploma",
+      "service_name": "Technical Higher Diploma Examination Fee Components",
+      "menu_mapping": [
+        "registration.business-technical.technical.higher-diploma"
+      ],
+      "applicable_scope": {
+        "examinations": [
+          "Business and Technical"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "2026",
+          "2027"
+        ],
+        "programmes": [
+          "technical-higher-diploma"
+        ],
+        "series": [
+          "2026-11",
+          "2027-03",
+          "2027-07"
+        ]
+      },
+      "evidence_coverage": {
+        "claim_count": 2,
+        "supported_claims": 2,
+        "unresolved_claims": 0,
+        "claim_types": [
+          "fee",
+          "step"
+        ]
+      },
+      "missing_requirements": [
+        "No sufficiently scoped requirements claim is recorded."
+      ],
+      "missing_procedural_steps": [
+        "Procedure requires named factual review and current applicability confirmation."
+      ],
+      "missing_fees": [
+        "Fees requires named factual review and current applicability confirmation."
+      ],
+      "missing_timelines": [
+        "No sufficiently scoped timeline claim is recorded."
+      ],
+      "missing_exceptions": [
+        "No sufficiently scoped exceptions claim is recorded."
+      ],
+      "open_conflicts": [],
+      "pii_boundary": "Do not collect or store candidate names, index numbers, credentials, identity documents or personal records; provide generic guidance only.",
+      "required_reviewer": "Accountable KNEC service owner must be assigned; no reviewer identity is inferred.",
+      "approval_dependencies": [
+        "Independently review fee transcription and programme applicability.",
+        "Verify subsequent amendments and applicable additional charges; components are not a total invoice.",
+        "Obtain named content approval before publication.",
+        "Confirm current applicability and source versions.",
+        "Record exact content-bound institutional approval."
+      ],
+      "status": "source_checked"
+    },
+    {
+      "article_id": "tvet-technical-old-higher-diploma",
+      "service_name": "Technical Old Higher Diploma Examination Fee Components",
+      "menu_mapping": [
+        "registration.business-technical.technical.old-higher-diploma"
+      ],
+      "applicable_scope": {
+        "examinations": [
+          "Business and Technical"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "2026",
+          "2027"
+        ],
+        "programmes": [
+          "technical-old-higher-diploma"
+        ],
+        "series": [
+          "2026-11",
+          "2027-03",
+          "2027-07"
+        ]
+      },
+      "evidence_coverage": {
+        "claim_count": 2,
+        "supported_claims": 2,
+        "unresolved_claims": 0,
+        "claim_types": [
+          "fee",
+          "step"
+        ]
+      },
+      "missing_requirements": [
+        "No sufficiently scoped requirements claim is recorded."
+      ],
+      "missing_procedural_steps": [
+        "Procedure requires named factual review and current applicability confirmation."
+      ],
+      "missing_fees": [
+        "Fees requires named factual review and current applicability confirmation."
+      ],
+      "missing_timelines": [
+        "No sufficiently scoped timeline claim is recorded."
+      ],
+      "missing_exceptions": [
+        "No sufficiently scoped exceptions claim is recorded."
+      ],
+      "open_conflicts": [],
+      "pii_boundary": "Do not collect or store candidate names, index numbers, credentials, identity documents or personal records; provide generic guidance only.",
+      "required_reviewer": "Accountable KNEC service owner must be assigned; no reviewer identity is inferred.",
+      "approval_dependencies": [
+        "Independently review fee transcription and programme applicability.",
+        "Verify subsequent amendments and applicable additional charges; components are not a total invoice.",
+        "Obtain named content approval before publication.",
+        "Confirm current applicability and source versions.",
+        "Record exact content-bound institutional approval."
+      ],
+      "status": "source_checked"
+    },
+    {
+      "article_id": "reg-tvet",
+      "service_name": "Business and Technical Examination Registration",
+      "menu_mapping": [
+        "registration.business-technical.registration"
+      ],
+      "applicable_scope": {
+        "examinations": [
+          "Business and Technical"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "2026",
+          "2027"
+        ]
+      },
+      "evidence_coverage": {
+        "claim_count": 18,
+        "supported_claims": 18,
+        "unresolved_claims": 0,
+        "claim_types": [
+          "timeline",
+          "step",
+          "requirement",
+          "exception",
+          "fee"
+        ]
+      },
+      "missing_requirements": [
+        "Requirements requires named factual review and current applicability confirmation."
+      ],
+      "missing_procedural_steps": [
+        "Procedure requires named factual review and current applicability confirmation."
+      ],
+      "missing_fees": [
+        "Fees requires named factual review and current applicability confirmation."
+      ],
+      "missing_timelines": [
+        "Timeline requires named factual review and current applicability confirmation."
+      ],
+      "missing_exceptions": [
+        "Exceptions requires named factual review and current applicability confirmation."
+      ],
+      "open_conflicts": [],
+      "pii_boundary": "Do not collect or store candidate names, index numbers, credentials, identity documents or personal records; provide generic guidance only.",
+      "required_reviewer": "Accountable KNEC service owner must be assigned; no reviewer identity is inferred.",
+      "approval_dependencies": [
+        "Internal comparison only. Programme and series records require review before public use.",
+        "Additional-charge applicability, query deadline conflicts and programme-specific eligibility remain under review.",
+        "Confirm current applicability and source versions.",
+        "Record exact content-bound institutional approval."
+      ],
+      "status": "source_checked"
+    },
+    {
+      "article_id": "foreign-equation",
+      "service_name": "Equation of Foreign Qualifications",
+      "menu_mapping": [
+        "verification.foreign-equation"
+      ],
+      "applicable_scope": {
+        "examinations": [
+          "all"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "all"
+        ]
+      },
+      "evidence_coverage": {
+        "claim_count": 15,
+        "supported_claims": 15,
+        "unresolved_claims": 0,
+        "claim_types": [
+          "orientation",
+          "requirement",
+          "step",
+          "exception",
+          "fee",
+          "contact"
+        ]
+      },
+      "missing_requirements": [
+        "Qualification-specific eligibility must be decided by an authorized reviewer."
+      ],
+      "missing_procedural_steps": [
+        "Confirm current portal and authentication sequence."
+      ],
+      "missing_fees": [
+        "Confirm current dispatch/email components and payment prompt."
+      ],
+      "missing_timelines": [
+        "Resolve payment-versus-complete-documentation trigger."
+      ],
+      "missing_exceptions": [
+        "Define evidence path where standard equation criteria do not exist."
+      ],
+      "open_conflicts": [
+        "equation-processing-start"
+      ],
+      "pii_boundary": "Do not collect or store candidate names, index numbers, credentials, identity documents or personal records; provide generic guidance only.",
+      "required_reviewer": "Accountable KNEC service owner must be assigned; no reviewer identity is inferred.",
+      "approval_dependencies": [
+        "Resolve timeline start: guideline p2 section6 uses receipt of payment; charter p4 row14 uses complete accurate documentation.",
+        "Confirm qualification-specific eligibility with an authorized reviewer; the assistant must not decide equivalence.",
+        "Confirm present portal behavior, later amendments and named content approval.",
+        "Confirm current applicability and source versions.",
+        "Record exact content-bound institutional approval."
+      ],
+      "status": "source_checked"
+    },
+    {
+      "article_id": "ver-results",
+      "service_name": "Confirmation of Results",
+      "menu_mapping": [
+        "verification.results"
+      ],
+      "applicable_scope": {
+        "examinations": [
+          "all"
+        ],
+        "audiences": [
+          "all"
+        ],
+        "years": [
+          "all"
+        ]
+      },
+      "evidence_coverage": {
+        "claim_count": 18,
+        "supported_claims": 18,
+        "unresolved_claims": 0,
+        "claim_types": [
+          "step",
+          "exception",
+          "fee",
+          "requirement",
+          "contact"
+        ]
+      },
+      "missing_requirements": [
+        "Current destination and evidence requirements by examination and series."
+      ],
+      "missing_procedural_steps": [
+        "Confirm whether the guide-documented QMIS screens and delivery options remain applicable to the live portal."
+      ],
+      "missing_fees": [
+        "Resolve fax/email and overseas payment applicability."
+      ],
+      "missing_timelines": [
+        "Confirm current processing trigger and historical-results exception."
+      ],
+      "missing_exceptions": [
+        "Confirm modular and stage charging boundaries."
+      ],
+      "open_conflicts": [
+        "confirmation-delivery-payment"
+      ],
+      "pii_boundary": "Do not collect or store candidate names, index numbers, credentials, identity documents or personal records; provide generic guidance only.",
+      "required_reviewer": "Accountable KNEC service owner must be assigned; no reviewer identity is inferred.",
+      "approval_dependencies": [
+        "Resolve fax/email dispatch terminology and overseas-payment instructions before publishing fees as a full quote.",
+        "Confirm current portal and payment prompts; retain destination and module/stage context when quoting.",
+        "Named content approval and current applicability review remain required.",
+        "Confirm current applicability and source versions.",
+        "Record exact content-bound institutional approval."
+      ],
+      "status": "source_checked"
+    }
+  ]
+}

@@ -15,7 +15,8 @@ ajv.addFormat('official-url', value => {
   try {
     const url = new URL(value);
     return url.protocol === 'https:' && !url.username && !url.password && !url.port &&
-      (url.hostname === 'knec.ac.ke' || url.hostname.endsWith('.knec.ac.ke'));
+      (url.hostname === 'knec.ac.ke' || url.hostname.endsWith('.knec.ac.ke') ||
+        url.hostname === 'education.go.ke' || url.hostname.endsWith('.education.go.ke'));
   } catch { return false; }
 });
 const validateArticle = ajv.compile(require('../../knowledge-base/schema/article.schema.json'));

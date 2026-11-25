@@ -16,7 +16,10 @@
         "pattern": "\\S"
       },
       "publisher": {
-        "const": "KNEC"
+        "enum": [
+          "KNEC",
+          "Ministry of Education, State Department for Basic Education"
+        ]
       },
       "url": {
         "type": "string",

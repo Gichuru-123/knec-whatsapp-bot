@@ -351,11 +351,36 @@ test('Sandbox configuration requires explicit development storage and private id
     TWILIO_CONVERSATION_SECRET: 'ab'.repeat(32), TWILIO_CONVERSATION_KEY_VERSION: '1',
     TWILIO_SANDBOX_RUN_ID: '11111111-1111-4111-8111-111111111111', TWILIO_SANDBOX_MAX_ATTEMPTS: '1' };
   assert.equal(validateConfig(sandbox).twilio.liveSendEnabled, false);
+  assert.deepEqual(validateConfig(sandbox).twilio.recipients, ['whatsapp:+15005550007']);
+  assert.equal(validateConfig(sandbox).conversation.enabled, false);
+  const conversation = validateConfig({ ...sandbox, TWILIO_CONVERSATION_ENABLED: 'true',
+    TWILIO_CONVERSATION_TTL_SECONDS: '86400', TWILIO_CONVERSATION_POLL_MS: '1000' });
+  assert.deepEqual(conversation.conversation, { enabled: true, ttlSeconds: 86400, pollIntervalMs: 1000,
+    messagesPerParticipant: 50 });
   assert.equal(validateConfig({ ...sandbox, TWILIO_LIVE_SEND_ENABLED: 'true' }).twilio.liveSendEnabled, true);
   for (const change of [{ NODE_ENV: 'production' }, { ENABLE_DEV_INSPECTION_ROUTES: 'true' },
     { TWILIO_DELIVERY_ENABLED: 'false' }, { TWILIO_CONVERSATION_SECRET: 'bad' },
     { DATABASE_URL: 'invalid-private-database-value' }, { TWILIO_SANDBOX_MAX_ATTEMPTS: '11' }]) {
     assert.throws(() => validateConfig({ ...sandbox, ...change }));
+  }
+  for (const change of [{ TWILIO_CONVERSATION_ENABLED: 'TRUE' }, { TWILIO_CONVERSATION_TTL_SECONDS: '59' },
+    { TWILIO_CONVERSATION_POLL_MS: '99' }, { TWILIO_SANDBOX_MESSAGES_PER_PARTICIPANT: '51' }]) {
+    assert.throws(() => validateConfig({ ...sandbox, ...change }));
+  }
+});
+
+test('Sandbox recipient allowlist accepts three unique participants and fails closed', () => {
+  const multi = { ...TWILIO_ENV, TWILIO_TEST_RECIPIENTS:
+    'whatsapp:+15005550007,whatsapp:+15005550008,whatsapp:+15005550009' };
+  const accepted = validateConfig(multi);
+  assert.deepEqual(accepted.twilio.recipients, [
+    'whatsapp:+15005550007', 'whatsapp:+15005550008', 'whatsapp:+15005550009'
+  ]);
+  assert.equal(accepted.twilio.recipient, 'whatsapp:+15005550007');
+  for (const value of ['', ' ', 'whatsapp:+15005550007,',
+    'whatsapp:+15005550007,whatsapp:+15005550007',
+    'whatsapp:+15005550001,whatsapp:+15005550002,whatsapp:+15005550003,whatsapp:+15005550004,whatsapp:+15005550005,whatsapp:+15005550006']) {
+    assert.throws(() => validateConfig({ ...TWILIO_ENV, TWILIO_TEST_RECIPIENTS: value }), /TWILIO_TEST_RECIPIENTS/);
   }
 });
 

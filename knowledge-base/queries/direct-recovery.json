@@ -6,7 +6,7 @@
   "title": "Direct Recovery of Examination Documents",
   "description": "Draft public-service guidance; review questions must be resolved before publication.",
   "language": "en",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "status": "draft",
   "verification_status": "source_checked",
   "visibility": "public",
@@ -25,7 +25,9 @@
     "never received certificate"
   ],
   "clarifying_questions": [
-    "Which service and examination does your question concern?"
+    "Is the missing or spoilt item a result slip, certificate or another examination printout?",
+    "Which examination and release or dispatch year applies?",
+    "Was the document never received, lost after collection, spoilt, or printed with incorrect details?"
   ],
   "claims": [
     {
@@ -53,12 +55,40 @@
           "locator": "Period Of launching queries after release of Results"
         }
       ]
+    },
+    {
+      "id": "published-recovery-categories",
+      "kind": "orientation",
+      "text": "The public query page separately describes recovery queries for certificates and result slips, including incorrect candidate or centre details and cases where a document was not received. This service must not be presented as replacement of a certificate lost after collection.",
+      "evidence_status": "supported",
+      "citations": [{"source_id":"queries-page","source_sha256":"816e8397a02149d7a43c13092e37bf8997a18fc192b83f94fb0d31c12b96b55e","locator":"Query on Recovery of Certificates; Query on Recovery of Results slips"}]
+    },
+    {
+      "id": "qmis-generic-route",
+      "kind": "step",
+      "text": "The 2018 QMIS guide uses Direct Recovery as its example: choose Direct Recovery, complete the generated form, confirm the captured details and attachments, submit, verify success feedback and track the query through Status.",
+      "evidence_status": "supported",
+      "citations": [{"source_id":"qmis-manual-2018","source_sha256":"4f67a0032187376ec74c7fcf5770735eafa7c13e7dee57e76796ddd19c56d181","locator":"PDF p5 section2.1 steps2-4 and pp5-6 sections2.2-2.3"}]
+    },
+    {
+      "id": "certificate-window",
+      "kind": "timeline",
+      "text": "The 2026 charter says certificate queries should be raised within 60 working days after dispatch of certificates; this does not establish a universal deadline for lost certificates or every type of printout.",
+      "evidence_status": "supported",
+      "citations": [{"source_id":"charter-2026","source_sha256":"ede99259c38a3ed9d51ab6ca3479e933abda80c4c3ed9003594196a788726fdc","locator":"p3 row10.4"}]
+    },
+    {
+      "id": "service-boundary",
+      "kind": "exception",
+      "text": "Direct recovery concerns missing or spoilt examination documents. A person who lost a certificate after receiving it must be routed to the separate Examination Results Certification Letter service, not promised a recovered or replacement certificate through this article.",
+      "evidence_status": "supported",
+      "citations": [{"source_id":"qmis-manual-2018","source_sha256":"4f67a0032187376ec74c7fcf5770735eafa7c13e7dee57e76796ddd19c56d181","locator":"PDF p6 sections2.4(v) and2.4(viii)"}]
     }
   ],
   "unresolved_questions": [
-    "Historical manual: verify current procedure, eligibility, documents and portal behavior.",
-    "Distinguish this service from other similarly named queries before answering.",
-    "Resolve query-page 30-day wording versus charter p3 row10 working-day windows and exam-specific penalties."
+    "Confirm current eligibility, attachment and payment requirements separately for result slips, certificates and printouts.",
+    "Confirm the triggering event for certificate-recovery deadlines and any examination-specific exceptions.",
+    "Preserve the boundary between direct recovery and certification after loss."
   ],
   "effective_from": null,
   "effective_to": null,

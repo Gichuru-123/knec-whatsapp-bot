@@ -57,7 +57,13 @@ if (require.main === module) {
   const root = path.join(__dirname, '..');
   const { articles, sources } = loadCorpus(path.join(root, 'knowledge-base'));
   const bank = JSON.parse(fs.readFileSync(path.join(root, 'evaluation/kb/questions.json'), 'utf8'));
-  const output = report(bank, articles, sources);
+  let output = report(bank, articles, sources);
+  const readinessPath = path.join(root, 'evaluation/kb/service-readiness.json');
+  if (fs.existsSync(readinessPath)) {
+    const readiness = JSON.parse(fs.readFileSync(readinessPath, 'utf8'));
+    const counts = readiness.services.reduce((result, item) => ({ ...result, [item.status]: (result[item.status] || 0) + 1 }), {});
+    output += `\n## Governed readiness\n\nReadiness is editorial state, not runtime approval: ${Object.entries(counts).map(([status, count]) => `${status} ${count}`).join('; ')}. See \`kb-readiness-report.md\` and the service review packages for evidence conflicts and approval dependencies.\n`;
+  }
   if (process.argv.includes('--write')) fs.writeFileSync(path.join(root, 'docs/kb-coverage-report.md'), output);
   console.log(output);
 }

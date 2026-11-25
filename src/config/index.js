@@ -152,6 +152,7 @@ function validateConfig(env) {
   // Sandbox is explicit and isolated from the default offline protocol mode.
   let twilioSettings;
   let delivery;
+  let conversation;
   if (whatsappProvider === 'twilio') {
     const mode = env.TWILIO_MODE || 'offline';
     const sandbox = mode === 'sandbox' && nodeEnv === 'development';
@@ -180,6 +181,20 @@ function validateConfig(env) {
       }
     }
     const addressPattern = /^whatsapp:\+[1-9]\d{0,14}$/;
+    function recipientAllowlist() {
+      const raw = env.TWILIO_TEST_RECIPIENTS;
+      if (raw === undefined) return [required('TWILIO_TEST_RECIPIENT', addressPattern)];
+      if (typeof raw !== 'string' || !raw || raw !== raw.trim()) {
+        errors.push('Invalid TWILIO_TEST_RECIPIENTS: a non-empty comma-separated allowlist is required.');
+        return [];
+      }
+      const values = raw.split(',').map(value => value.trim());
+      if (values.length < 1 || values.length > 5 || values.some(value => !addressPattern.test(value)) || new Set(values).size !== values.length) {
+        errors.push('Invalid TWILIO_TEST_RECIPIENTS: provide 1 to 5 unique WhatsApp addresses.');
+      }
+      return values;
+    }
+    const recipients = recipientAllowlist();
     const live = env.TWILIO_LIVE_SEND_ENABLED;
     if (!sandbox && live !== undefined && live !== 'false') errors.push('TWILIO_LIVE_SEND_ENABLED must be false outside Sandbox mode.');
     if (sandbox) {
@@ -192,17 +207,25 @@ function validateConfig(env) {
         version: integerSetting('TWILIO_CONVERSATION_KEY_VERSION', 1, 1),
         runId: required('TWILIO_SANDBOX_RUN_ID', /^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$/),
         maxAttempts: integerSetting('TWILIO_SANDBOX_MAX_ATTEMPTS', 0, 0, 10) });
+      const conversationEnabled = env.TWILIO_CONVERSATION_ENABLED === 'true';
+      if (!['false','true'].includes(env.TWILIO_CONVERSATION_ENABLED || 'false')) errors.push('TWILIO_CONVERSATION_ENABLED must be false or true.');
+      conversation = Object.freeze({ enabled: conversationEnabled,
+        ttlSeconds: integerSetting('TWILIO_CONVERSATION_TTL_SECONDS', 86400, 60, 2592000),
+        pollIntervalMs: integerSetting('TWILIO_CONVERSATION_POLL_MS', 1000, 100, 60000),
+        messagesPerParticipant: integerSetting('TWILIO_SANDBOX_MESSAGES_PER_PARTICIPANT', 50, 1, 50) });
     }
     twilioSettings = Object.freeze({
       mode,
       accountSid: required('TWILIO_ACCOUNT_SID', /^AC[\da-fA-F]{32}$/),
       authToken: required('TWILIO_AUTH_TOKEN'),
       from: required('TWILIO_WHATSAPP_FROM', addressPattern),
-      recipient: required('TWILIO_TEST_RECIPIENT', addressPattern),
+      recipient: recipients[0],
+      recipients: Object.freeze([...recipients]),
       inbound: Object.freeze(endpoint('TWILIO_INBOUND_WEBHOOK_URL', '/api/v1/webhook/twilio/whatsapp')),
       status: Object.freeze(endpoint('TWILIO_STATUS_CALLBACK_URL', '/api/v1/webhook/twilio/status')),
       timeoutMs: integerSetting('TWILIO_REQUEST_TIMEOUT_MS', 10000, 100, 30000),
-      liveSendEnabled: sandbox && live === 'true'
+      liveSendEnabled: sandbox && live === 'true',
+      openSandboxParticipants: sandbox && conversation?.enabled === true
     });
   }
 
@@ -228,7 +251,8 @@ function validateConfig(env) {
     rateLimitWindowMs,
     rateLimitMax,
     twilio: twilioSettings,
-    delivery
+    delivery,
+    conversation
   };
 }
 

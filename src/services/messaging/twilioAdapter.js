@@ -80,9 +80,10 @@ class TwilioWhatsAppAdapter extends MessagingAdapter {
 
   normalizeStatusCallback(body) {
     this.#identity(body);
+    const recipients = this.#settings.recipients || [this.#settings.recipient];
     if (typeof body.MessageStatus !== 'string' || !body.MessageStatus.trim() || body.MessageStatus.length > 64 ||
         (body.From !== undefined && body.From !== this.#settings.from) ||
-        (body.To !== undefined && body.To !== this.#settings.recipient)) throw failure('TWILIO_INVALID_EVENT', 400);
+        (body.To !== undefined && !(this.#settings.openSandboxParticipants === true ? ADDRESS.test(body.To) : recipients.includes(body.To)))) throw failure('TWILIO_INVALID_EVENT', 400);
     let errorCode;
     if (body.ErrorCode !== undefined && body.ErrorCode !== '') {
       if (typeof body.ErrorCode !== 'string' || !/^\d+$/.test(body.ErrorCode) || !Number.isSafeInteger(Number(body.ErrorCode))) throw failure('TWILIO_INVALID_EVENT', 400);
@@ -97,8 +98,9 @@ class TwilioWhatsAppAdapter extends MessagingAdapter {
   }
 
   async sendTextMessage(to, text) {
+    const recipients = this.#settings.recipients || [this.#settings.recipient];
     if (!this.#httpClient) throw failure('TWILIO_SEND_DISABLED');
-    if (typeof to !== 'string' || !ADDRESS.test(to) || to !== this.#settings.recipient ||
+    if (typeof to !== 'string' || !ADDRESS.test(to) || !recipients.includes(to) ||
         !ADDRESS.test(this.#settings.from) || typeof text !== 'string' || text.length === 0 || text.length > 1600) {
       throw failure('TWILIO_INVALID_OUTBOUND');
     }

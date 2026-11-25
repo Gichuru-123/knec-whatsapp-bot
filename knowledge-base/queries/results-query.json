@@ -6,7 +6,7 @@
   "title": "Examination Results Queries",
   "description": "Draft public-service guidance; review questions must be resolved before publication.",
   "language": "en",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "status": "draft",
   "verification_status": "source_checked",
   "visibility": "public",
@@ -21,11 +21,11 @@
       "all"
     ]
   },
-  "intents": [
-    "missing marks"
-  ],
+  "intents": ["missing marks", "wrong grade", "missing subject", "pending results", "cancelled results", "absentee appeal"],
   "clarifying_questions": [
-    "Does the issue concern a missing mark, an absentee entry, pending results or cancellation?"
+    "Does the issue concern a missing or incorrect mark, subject, absentee entry, pending result or cancellation?",
+    "Which examination and release year does it concern?",
+    "Are you applying through the relevant institution or education office?"
   ],
   "claims": [
     {
@@ -53,12 +53,50 @@
           "locator": "Period Of launching queries after release of Results"
         }
       ]
+    },
+    {
+      "id": "published-query-categories",
+      "kind": "orientation",
+      "text": "The public query page defines missing or incorrectly captured marks or grades, missing subjects or papers, registration-related pending results, suspected-irregularity pending results and appeals against cancelled results as distinct query categories.",
+      "evidence_status": "supported",
+      "citations": [{"source_id":"queries-page","source_sha256":"816e8397a02149d7a43c13092e37bf8997a18fc192b83f94fb0d31c12b96b55e","locator":"Query type and definition table"}]
+    },
+    {
+      "id": "qmis-generic-route",
+      "kind": "step",
+      "text": "The 2018 QMIS guide documents selecting the relevant query type, completing the displayed fields, attaching the documents requested by the Required List, submitting, checking success feedback and tracking progress through Status.",
+      "evidence_status": "supported",
+      "citations": [{"source_id":"qmis-manual-2018","source_sha256":"4f67a0032187376ec74c7fcf5770735eafa7c13e7dee57e76796ddd19c56d181","locator":"PDF pp4-6, sections 2.0-2.4"}]
+    },
+    {
+      "id": "charter-query-window",
+      "kind": "timeline",
+      "text": "The 2026 charter says examination-result queries should be raised within 30 working days after release and routes examination-related queries through KNEC agents and online submission.",
+      "evidence_status": "supported",
+      "citations": [{"source_id":"charter-2026","source_sha256":"ede99259c38a3ed9d51ab6ca3479e933abda80c4c3ed9003594196a788726fdc","locator":"p3 row10.1-10.3"}]
+    },
+    {
+      "id": "charter-late-penalties",
+      "kind": "fee",
+      "text": "The charter lists late-query penalties by examination family: KES 5,000 for KCSE, post-school and teacher examinations, and KES 3,000 for KCPE, KPSEA/KILEA and KJSEA/KPLEA. These amounts require exact examination, year, query type and triggering event before use.",
+      "evidence_status": "supported",
+      "citations": [{"source_id":"charter-2026","source_sha256":"ede99259c38a3ed9d51ab6ca3479e933abda80c4c3ed9003594196a788726fdc","locator":"p3 row10 late-submission penalty table"}]
+    },
+    {
+      "id": "deadline-conflict",
+      "kind": "exception",
+      "text": "The captured public query page uses 30 calendar days and says appeal documents must reach KNEC through institutional or education-office channels, while the 2026 charter uses working days. The conflict must remain blocked until the controlling rule is confirmed.",
+      "evidence_status": "supported",
+      "citations": [
+        {"source_id":"queries-page","source_sha256":"816e8397a02149d7a43c13092e37bf8997a18fc192b83f94fb0d31c12b96b55e","locator":"Period Of launching queries after release of Results"},
+        {"source_id":"charter-2026","source_sha256":"ede99259c38a3ed9d51ab6ca3479e933abda80c4c3ed9003594196a788726fdc","locator":"p3 row10.3"}
+      ]
     }
   ],
   "unresolved_questions": [
-    "Historical manual: verify current procedure, eligibility, documents and portal behavior.",
-    "Distinguish this service from other similarly named queries before answering.",
-    "Resolve query-page 30-day wording versus charter p3 row10 working-day windows and exam-specific penalties."
+    "Confirm the current evidence checklist and authorized route for each results-query category.",
+    "Resolve calendar-day versus working-day wording and establish the applicable triggering event.",
+    "Confirm how appeals involving suspected irregularities or cancelled results differ from correction queries."
   ],
   "effective_from": null,
   "effective_to": null,

@@ -8,6 +8,12 @@ That separation is deliberate. The menu must remain testable and predictable bef
 
 ## Current implementation
 
+### KNEC NURU working brand and Sandbox participants
+
+The WhatsApp presentation uses **KNEC NURU** as a working brand pending institutional authorization. NURU identifies itself as a digital assistant, while repository names, database identifiers, API paths and knowledge article IDs remain unchanged. `Hi`, `Hello` and `Start` produce the first-time NURU greeting; `MAIN MENU` produces a shorter returning-user heading.
+
+Controlled Sandbox conversation mode accepts a bounded local allowlist of one to five unique `whatsapp:+E164` participants through `TWILIO_TEST_RECIPIENTS`. The legacy single `TWILIO_TEST_RECIPIENT` remains supported when the list is absent. Invalid, empty, duplicate or oversized lists fail closed. Each participant receives a separate HMAC-derived conversation identity and PostgreSQL session. Outbound jobs are routed by matching their non-reversible conversation identity against the configured allowlist; raw participant numbers are not added to conversation tables. Every participant must separately join the Twilio Sandbox before use.
+
 The navigation core is in `src/services/conversation/navigation.js`. The menu definition is in `src/services/conversation/config/menuTree.js`, and the tree validator/index is in `src/services/conversation/config/menuIndex.js`.
 
 The current tree contains 44 validated nodes beneath the root menu:
@@ -47,6 +53,8 @@ The same transaction now creates a `conversation.outbox` job containing the exac
 
 `conversationRuntime.js` now provides the offline webhook coordinator. The existing authenticated Twilio controller delegates to it only when the application explicitly installs a Phase 5 runtime. It normalizes the signed event, enforces the configured participant, derives private conversation/event identities, commits the event/session/outbox transaction, and then permits an empty TwiML acknowledgement. Unsupported media creates no conversation record. A persistence failure returns a controlled service error before acknowledgement.
 
+`applicationRuntime.js` packages that coordinator for controlled development use. `TWILIO_CONVERSATION_ENABLED=true` selects it instead of the Phase 4 diagnostic runtime. It verifies migration checksums and restricted-role privileges before accepting traffic, constructs the session store and service, and starts a single bounded polling loop only when `TWILIO_LIVE_SEND_ENABLED=true`. Shutdown stops the poll timer, awaits an active claim and closes the database pool. Conversation sending uses a separate 1–1600 character transport; the Phase 4 diagnostic sender remains restricted to its fixed diagnostic body.
+
 Account-scoped status callbacks are journalled and reconciled with outbox jobs. A callback may arrive before provider acceptance is recorded; reconciliation runs both when the callback arrives and when the worker finishes. Later low-rank statuses do not regress `delivered` or `read`. Conflicting success/failure outcomes and unknown/scheduled statuses set `review_required`. Old unmatched callback records are deleted only through bounded retention cleanup.
 
 ## Input and response contract
@@ -67,15 +75,19 @@ Responses are semantic objects (`menu`, `help`, `invalid`, `fallback`, `knowledg
 
 ## Knowledge boundary
 
-A leaf currently returns a hook containing its stable article ID. The hook is not an answer. Phase 6 must call the existing approved-answer policy with the user’s examination, audience, language and year context. If no current approved article matches, the runtime must return a controlled clarification or escalation response. It must never fall back to draft KB records or raw source text.
+A leaf returns a hook containing its stable article ID. The hook is not an answer. The final Phase 5 core milestone connects that hook to the existing approved-answer policy with the user’s required examination, audience, language, year, programme or series context. This wording supersedes the earlier assignment of approved-answer integration to Phase 6 because the Phase 5 completion definition requires clarification and approved-information retrieval.
 
-## What remains before live menu use
+The deterministic resolver reads only approval-qualified requirement metadata, asks one question at a time, and persists its versioned workflow context in the existing PostgreSQL session JSON. `BACK` and `MAIN MENU` clear the active workflow. Two invalid answers exhaust a clarification field and produce controlled escalation. If no current approved article matches, the runtime escalates without exposing draft records or raw source text and provides the verified KNEC switchboard, 0719 093 000, for clarification. It does not represent that telephone number as a WhatsApp line or assert unverified hours or call charges. The real corpus currently has no institutionally approved article, so real knowledge selections remain fail-closed; approved-answer tests use isolated synthetic fixtures only.
 
-1. Review the complete Phase 5 offline diff, migration and test evidence before publication or Sandbox activation.
-2. Add the provider capability adapter for interactive controls while retaining the verified text renderer as fallback.
-3. Connect knowledge hooks to `kbService.getApprovedAnswer` and add clarification questions for unresolved procedure facts.
-4. Package runtime startup configuration and operational shutdown/cleanup without enabling live sending by default.
-5. After explicit activation approval, migrate the development database and run the controlled Sandbox menu test.
+## Controlled activation status and remaining work
+
+Migration 002 was applied to the isolated `knec_development` database on 2026-11-11. The runtime role received usage and table DML privileges but was verified to lack schema `CREATE`; all four conversation tables were empty after migration. Offline startup and graceful shutdown were then verified against that database. This is development evidence, not production deployment.
+
+1. Commit and independently review the runtime-activation slice before enabling Sandbox traffic.
+2. Run one controlled Sandbox menu exchange and reconcile its callback/outbox evidence.
+3. Add the provider capability adapter for interactive controls while retaining the verified text renderer as fallback.
+4. Obtain institutional content approval before any real article can pass the integrated approved-answer policy. The runtime integration itself is implemented and remains fail-closed while approval is absent.
+5. Establish monitoring, backup/restore objectives, content ownership and stakeholder acceptance before broader activation.
 
 An LLM can later help classify free-text intent or phrase a verified answer, but it must sit behind this state machine and the approved-answer policy. It must not be allowed to invent a procedure, bypass a menu guard, or publish an unverified KB claim.
 

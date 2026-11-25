@@ -52,3 +52,33 @@ This closes assessment-record separation, not complete service coverage. Fee exc
 ## 4 November 2026: TVET scope separation
 
 Added ten programme fee records and three series registration records; retained reg-tvet as internal comparison. The corpus now contains 33 records (31 public drafts, two internal drafts), with 137 authored question examples (64 development, 73 reserved). Added optional programme/series scope and exact-context checks at the approved-answer boundary. See [TVET scope](kb-tvet-scope.md). All records remain unapproved; no live flow or calculator was activated.
+
+## 16 November 2026: project-owner source approval
+
+The project owner approved the collected KB PDFs, recorded public URLs and their extracted information for continued engineering, structured review and test use. This decision confirms that the collected source set may remain in the project and may be used to develop the governed retrieval and clarification workflow.
+
+This is project-owner approval of the source collection, not institutional KNEC factual sign-off or authorization for public publication. It does not resolve the service-specific conflicts listed above, establish missing effective dates, approve translations, or authorize the assistant to return draft records as official guidance. The 33 articles therefore retain their existing draft/internal statuses and the approved-answer boundary continues to fail closed. Individual articles may move to `approved` only after an accountable KNEC service reviewer records the applicable decision, role, scope, dates and content-bound approval hash.
+
+The owner also authorized use of the officially corroborated KNEC switchboard, 0719 093 000, as the safe clarification route when the assistant cannot establish the applicable deadline, penalty or procedure. The number is a general telephone contact. The official contact page does not establish WhatsApp availability, opening hours or call charges, so the assistant must not claim them.
+
+Deadline and penalty guidance remains scoped rather than universal. The public Handling Queries page describes a 30-day query period and a KES 3,000 late penalty for specified biodata amendments, while the 2026 Service Charter distinguishes examination-result queries, certificate queries and examination categories. The assistant must first identify the examination, document/query type, release or dispatch event and applicable year/circular. If those facts or the controlling rule cannot be established, it must avoid quoting a universal deadline or fee and provide the switchboard for clarification.
+
+## 16 November 2026: governed expansion baseline
+
+The current governance inventory contains 33 articles, 17 source decisions, 32 active menu mappings, seven open conflicts, eight Priority 1 review packages and six Priority 2 evidence-gap assessments. Readiness is 23 `source_checked`, 10 `research_needed`, zero `review_ready` and zero `institutionally_approved`.
+
+The difference between 33 articles and 32 menu mappings is intentional. `reg-kpsea-kjsea` is an internal comparison record retained to test and document assessment separation. It is not public-answer content and therefore has no menu hook. The separate KPSEA, KJSEA, KILEA and KPLEA articles are mapped individually.
+
+The project owner proposed consolidating the certification processing evidence into an indicative estimate of **10–15 working days**. The 10-day charter reference and 15-day certification-guideline reference are both preserved. The range is not a guaranteed completion commitment, is limited to certification, and remains an open conflict until the KNEC Archives/Certification service owner confirms both the range and the event that starts it. It must not be expressed in calendar days or generalized to equation, confirmation or another service.
+
+The evaluation bank now contains 159 authored cases: 64 development and 95 reserved. These are evaluation labels, not executable tests. Executable unit/integration tests and governance validators are reported independently so that authored coverage is never represented as runtime correctness.
+
+## 16 November 2026: QMIS guide correction and owner approval
+
+Both original QMIS PDF guides were visually re-inspected in full. They explicitly document registration, login, password recovery, home controls, query categories, service fields, attachments, submission, status lookup, payment notification and collection notification. The former `qmis-current-workflow` conflict incorrectly treated documented navigation as absent and has been removed because the two guides do not contradict each other on their shared sequence.
+
+Historical-guide applicability remains an open review dependency, not a fabricated source conflict. KNEC still needs to confirm whether the live portal retains the documented labels and sequence and provide a current status-label glossary. The assistant can explain the guide without logging in, accessing a candidate record or requesting credentials.
+
+The project owner approved the extracted guide-based QMIS article content for continued project use. This approval is recorded in the machine-readable source decisions. It does not establish current live-portal equivalence and is not institutional KNEC publication approval.
+
+The evaluation bank now contains 159 cases: 64 development and 95 reserved. The QMIS article contains 17 evidence-linked claims, and a tenth draft procedure plan covers guide-based access, service selection, submission, status tracking and credential safety.

@@ -22,7 +22,7 @@ test('Phase 5: service starts a new session and saves before returning', async (
   assert.equal(result.response.type, 'menu');
   assert.equal(result.duplicate, false);
   assert.deepEqual(result.session, { revision: 1, started: true, restarted: false });
-  assert.deepEqual(calls, [['apply', ID, EVENT, ACCOUNT], ['state', 'registration']]);
+  assert.deepEqual(calls, [['apply', ID, EVENT, ACCOUNT], ['state', 'root']]);
 });
 
 test('Phase 5: service resumes current state with its exact revision', async () => {

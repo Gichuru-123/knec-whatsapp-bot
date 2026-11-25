@@ -35,7 +35,7 @@ test('signed webhook commits one menu response, fake-sends once and reconciles c
     const service = new ConversationService({ store });
     const sends = [];
     const worker = new ConversationResponseWorker({ store, participant,
-      async send(to, body) { sends.push([to, body]); return { messageId: 'SM' + 'b'.repeat(32), status: 'queued' }; } });
+      async send(to, body) { sends.push([to, body]); return { kind: 'accepted', messageId: 'SM' + 'b'.repeat(32), status: 'queued' }; } });
     app.locals.conversationRuntime = new ConversationRuntime({ service, store, worker, accountSid,
       sender: from, participant, secret: Buffer.alloc(32, 6), version: 1 });
     const fields = { AccountSid: accountSid, From: participant, To: from,
@@ -61,7 +61,7 @@ test('signed webhook commits one menu response, fake-sends once and reconciles c
     assert.equal(await app.locals.conversationRuntime.dispatchOne(), true);
     assert.equal(await app.locals.conversationRuntime.dispatchOne(), false);
     assert.equal(sends.length, 1);
-    assert.match(sends[0][1], /KNEC DIGITAL ASSISTANT/);
+    assert.match(sends[0][1], /Welcome! I'm NURU/);
     const callback = { AccountSid: accountSid, MessageSid: 'SM' + 'b'.repeat(32), MessageStatus: 'delivered' };
     await request(app).post(config.twilio.status.target).type('form')
       .set('X-Twilio-Signature', twilio.getExpectedTwilioSignature(authToken, statusUrl, callback))

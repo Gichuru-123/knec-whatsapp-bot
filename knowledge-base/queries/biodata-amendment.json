@@ -6,7 +6,7 @@
   "title": "Biodata Amendments",
   "description": "Draft public-service guidance; review questions must be resolved before publication.",
   "language": "en",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "status": "draft",
   "verification_status": "source_checked",
   "visibility": "public",
@@ -21,11 +21,11 @@
       "all"
     ]
   },
-  "intents": [
-    "wrong name"
-  ],
+  "intents": ["wrong name", "name order", "wrong gender", "wrong birth year", "wrong entry code", "wrong citizenship"],
   "clarifying_questions": [
-    "Which field is wrong, and was it captured incorrectly or changed later?"
+    "Which field is wrong, and was it captured incorrectly or changed later?",
+    "Which examination and year does the correction concern?",
+    "Are you applying through a school or institution, an education office, or QMIS?"
   ],
   "claims": [
     {
@@ -66,12 +66,47 @@
           "locator": "PDF pp5-6, sections 3.1.1-3.1.9"
         }
       ]
+    },
+    {
+      "id": "defined-query-types",
+      "kind": "orientation",
+      "text": "The public query page separately defines incorrectly captured name order, misspelt names or initials, missing or incorrect gender, examination year, index number and centre details. A listed category does not by itself establish that every requested legal change is eligible.",
+      "evidence_status": "supported",
+      "citations": [{"source_id":"queries-page","source_sha256":"816e8397a02149d7a43c13092e37bf8997a18fc192b83f94fb0d31c12b96b55e","locator":"Query type and definition table"}]
+    },
+    {
+      "id": "historical-form-sequence",
+      "kind": "step",
+      "text": "The September 2017 QMIS guide shows selecting Bio Data Amendment, entering the examination identity directly in QMIS, selecting query type, examination, year and series, using Find, reviewing the current details, entering the proposed correction, attaching each item requested by the Required List and submitting.",
+      "evidence_status": "supported",
+      "citations": [{"source_id":"qmis-external-2017","source_sha256":"4c6a3f796aa72a0025c7aeae2cf7da792e4e1f9d2be40dff0c9d61a9692f966d","locator":"PDF pp5-6, sections 3.1.1-3.1.9"}]
+    },
+    {
+      "id": "page-deadline-penalty",
+      "kind": "timeline",
+      "text": "The captured public query page says queries should reach KNEC within 30 calendar days after release and says late name, gender and birth-year amendments attract KES 3,000. This is conflicting evidence and must not be quoted as the controlling rule without examination-, year- and event-specific review.",
+      "evidence_status": "supported",
+      "citations": [{"source_id":"queries-page","source_sha256":"816e8397a02149d7a43c13092e37bf8997a18fc192b83f94fb0d31c12b96b55e","locator":"Period Of launching queries; Charges on Queries"}]
+    },
+    {
+      "id": "charter-query-rules",
+      "kind": "exception",
+      "text": "The 2026 charter instead uses 30 working days after release for examination-result queries, 60 working days after dispatch for certificate queries and examination-specific late-query penalties. The applicable examination, year, query type and triggering event must therefore be established before guidance is given.",
+      "evidence_status": "supported",
+      "citations": [{"source_id":"charter-2026","source_sha256":"ede99259c38a3ed9d51ab6ca3479e933abda80c4c3ed9003594196a788726fdc","locator":"p3 row10.1-10.4 and late-query penalty table"}]
+    },
+    {
+      "id": "amendment-discretion",
+      "kind": "exception",
+      "text": "The public query page states that KNEC reserves the right to accept or reject amendment requests and asks the head of institution to explain the origin of the error in writing.",
+      "evidence_status": "supported",
+      "citations": [{"source_id":"queries-page","source_sha256":"816e8397a02149d7a43c13092e37bf8997a18fc192b83f94fb0d31c12b96b55e","locator":"Charges on Queries after Release of Examination Results"}]
     }
   ],
   "unresolved_questions": [
-    "Historical manual: verify current procedure, eligibility, documents and portal behavior.",
-    "Distinguish this service from other similarly named queries before answering.",
-    "Resolve query-page 30-day wording versus charter p3 row10 working-day windows and exam-specific penalties."
+    "Confirm current eligibility and document checklist for each correction type; do not treat a legal name change as equivalent to an original capture error.",
+    "Confirm that the historical QMIS screen sequence still applies to the live portal.",
+    "Resolve the public-page 30-calendar-day and KES 3,000 wording against the charter's working-day and examination-specific rules."
   ],
   "effective_from": null,
   "effective_to": null,

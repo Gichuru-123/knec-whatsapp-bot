@@ -4,6 +4,12 @@
 
 Research date: 2026-11-03. Status: discovery and preliminary evidence review; **not an approved answer corpus**.
 
+## Governed source-status update — 16 November 2026
+
+The authoritative engineering classification is now stored in `evaluation/kb/source-decisions.json` and checked by `npm run kb:governance`. Of 15 registered sources, three are current (`charter-2026`, `knec-contact`, `tvet-2026-2027`), four are conflicting, seven are historical and one is discovery-only. No source is currently recorded as superseded. Classification describes evidence use; it does not approve an article.
+
+The 2026 KCSE, KPSEA and KJSEA circulars are historical, year-bound evidence as of this checkpoint. Their dates, fees or procedures must not be projected into another examination year. The 32 active menu mappings point to public service articles; the 33rd article is the internal `reg-kpsea-kjsea` comparison record and is intentionally unmapped.
+
 ## Evidence limitations
 
 Official-domain search results exposed useful text and document links. Direct web-reader requests to QMIS, the charter landing page, downloads hub, FAQs, query page and two procedure PDFs failed with timeouts, cache misses or gateway errors. Direct Node fetch attempts to the charter and downloads pages also failed. No authenticated QMIS session was opened. No complete PDF, current portal form, payment screen or full charter tariff table was reviewed. Search crawl dates and upload-directory dates are not publication or effective dates.

@@ -18,11 +18,45 @@ const {
   handleInput
 } = require('../../src/services/conversation/navigation');
 
-test('Phase 5: menu tree validates and contains 44 nodes', () => {
+test('Phase 5: menu tree validates and contains 45 nodes', () => {
   const index = buildMenuIndex(MENU_TREE);
 
   assert.strictEqual(index.rootId, 'root');
-  assert.strictEqual(index.size(), 44);
+  assert.strictEqual(index.size(), 45);
+});
+
+test('NURU emoji system: every selectable node has one explicit contextual icon', () => {
+  const visit = node => {
+    for (const child of node.children || []) {
+      assert.strictEqual(typeof child.emoji, 'string', `${child.id} requires an emoji`);
+      assert.ok(child.emoji.length >= 1 && child.emoji.length <= 4, `${child.id} emoji must be concise`);
+      assert.ok(child.emoji.trim() === child.emoji, `${child.id} emoji must not contain padding`);
+      if (child.children) visit(child);
+    }
+  };
+  visit(MENU_TREE);
+});
+
+test('NURU emoji system: all main categories and deep TVET branches remain navigable', () => {
+  const journey = selections => {
+    let state = createInitialState();
+    let result;
+    for (const selection of selections) {
+      result = handleInput(String(selection), state);
+      state = result.state;
+    }
+    return result;
+  };
+  assert.strictEqual(journey([1, 1]).response.articleId, 'reg-kcse');
+  assert.strictEqual(journey([2, 1]).response.articleId, 'cert-replacement');
+  assert.strictEqual(journey([3, 1]).response.articleId, 'ver-results');
+  assert.strictEqual(journey([4, 1]).response.articleId, 'results-query');
+  assert.strictEqual(journey([5, 1]).response.articleId, 'qmis-navigation');
+  assert.strictEqual(journey([6, 1]).response.articleId, 'faq-general');
+  assert.strictEqual(journey([7]).response.type, 'placeholder');
+  assert.strictEqual(journey([1, 6, 2, 1]).response.articleId, 'tvet-business-stage-i');
+  assert.strictEqual(journey([1, 6, 3, 1]).response.articleId, 'tvet-technical-artisan');
+  assert.strictEqual(journey([1, 6, 4, 1]).response.articleId, 'tvet-series-2026-11');
 });
 
 test('Phase 5: initial state starts safely at root', () => {
@@ -32,18 +66,30 @@ test('Phase 5: initial state starts safely at root', () => {
     version: STATE_VERSION,
     currentNodeId: 'root',
     path: ['root'],
-    invalidAttempts: 0
+    invalidAttempts: 0,
+    workflow: null
   });
 });
 
-test('Phase 5: root menu exposes seven top-level options', () => {
+test('Phase 5: root menu exposes eight top-level options', () => {
   const menu = renderMenu(MENU_TREE);
 
   assert.strictEqual(menu.nodeId, 'root');
-  assert.strictEqual(menu.options.length, 7);
+  assert.strictEqual(menu.options.length, 8);
   assert.strictEqual(menu.commands.back, false);
   assert.strictEqual(menu.commands.mainMenu, true);
   assert.strictEqual(menu.commands.help, true);
+  assert.deepStrictEqual(menu.options.map(option => option.title), [
+    'Examinations & Registration',
+    'Certificates & Documents',
+    'Results & Qualifications',
+    'Corrections & Complaints',
+    'QMIS & Online Services',
+    'Information & Support',
+    'ICT Support & Fault Reporting',
+    'General Administration (GA) — Coming Soon'
+  ]);
+  assert.deepStrictEqual(menu.options.map(option => option.emoji), ['📝', '📄', '🎓', '📩', '🌐', 'ℹ️', '💻', '🏢']);
 });
 
 test('Phase 5: supports arbitrary-depth parent-child navigation', () => {
@@ -51,7 +97,7 @@ test('Phase 5: supports arbitrary-depth parent-child navigation', () => {
 
   let result = handleInput('1', state);
   assert.strictEqual(result.state.currentNodeId, 'registration');
-  assert.strictEqual(result.response.menu.title, 'Registration');
+  assert.strictEqual(result.response.menu.title, 'Examinations & Registration');
 
   state = result.state;
 
@@ -178,6 +224,23 @@ test('Phase 5: HOME alias returns to main menu', () => {
   assert.strictEqual(result.state.currentNodeId, 'root');
 });
 
+test('NURU: greeting aliases and whitespace variants produce first-time welcome while MAIN MENU stays concise', () => {
+  for (const input of ['Hi', 'Hello', 'Hey', 'Start', '  hI  ', '\u200BHELLO\u200B']) {
+    const result = handleInput(input, createInitialState());
+    assert.strictEqual(result.response.reason, 'welcome');
+    assert.strictEqual(result.state.currentNodeId, 'root');
+  }
+  assert.strictEqual(handleInput('MAIN MENU', createInitialState()).response.reason, 'main_menu');
+});
+
+test('NURU: greeting resets submenu and invalid-attempt state', () => {
+  const submenu = handleInput('1', createInitialState()).state;
+  const invalid = handleInput('99', submenu).state;
+  const result = handleInput(' Hi ', invalid);
+  assert.equal(result.response.reason, 'welcome');
+  assert.deepEqual(result.state, createInitialState());
+});
+
 test('Phase 5: HELP works without changing current menu', () => {
   let state = createInitialState();
 
@@ -186,6 +249,9 @@ test('Phase 5: HELP works without changing current menu', () => {
   const result = handleInput('help', state);
 
   assert.strictEqual(result.response.type, 'help');
+  assert.match(result.response.message, /0719 093 000/);
+  assert.match(result.response.message, /telephone assistance/i);
+  assert.match(result.response.message, /WhatsApp availability is not established/i);
   assert.strictEqual(
     result.state.currentNodeId,
     'registration'
@@ -281,7 +347,7 @@ test('Phase 5: input normalization is deterministic', () => {
 
 test('Phase 5: exact menu title may be used as selection', () => {
   const result = handleInput(
-    'Registration',
+    'Examinations & Registration',
     createInitialState()
   );
 
@@ -293,7 +359,7 @@ test('Phase 5: exact menu title may be used as selection', () => {
 
 test('Phase 5: GA is a controlled placeholder only', () => {
   const result = handleInput(
-    '7',
+    '8',
     createInitialState()
   );
 
@@ -306,8 +372,10 @@ test('Phase 5: GA is a controlled placeholder only', () => {
 
   assert.match(
     result.response.message,
-    /planned for a future phase/i
+    /General Administration \(GA\)/i
   );
+  assert.match(result.response.message, /no report has been submitted/i);
+  assert.match(result.response.message, /no ticket has been generated/i);
 
   assert.strictEqual(result.response.returnTo, 'root');
   assert.strictEqual(result.state.currentNodeId, 'root');
@@ -316,6 +384,18 @@ test('Phase 5: GA is a controlled placeholder only', () => {
     result.state.path,
     ['root']
   );
+});
+
+test('NURU: ICT and GA remain separate safe Coming Soon services', () => {
+  const ict = handleInput('7', createInitialState());
+  const ga = handleInput('8', createInitialState());
+  assert.equal(ict.response.nodeId, 'ict-support');
+  assert.match(ict.response.message, /Ticket creation is not yet available/);
+  assert.match(ict.response.message, /no report has been submitted/);
+  assert.equal(ga.response.nodeId, 'general-administration');
+  assert.match(ga.response.message, /facility and maintenance issues/);
+  assert.match(ga.response.message, /no ticket has been generated/);
+  assert.notEqual(ict.response.message, ga.response.message);
 });
 
 test('Phase 5: corrupt state with unknown node is rejected', () => {
